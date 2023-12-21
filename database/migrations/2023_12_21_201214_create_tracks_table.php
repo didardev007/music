@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('tracks', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('artist_id')->index();
+            $table->foreign('artist_id')->references('id')->on('artists')->cascadeOnDelete();
+            $table->unsignedBigInteger('album_id')->index();
+            $table->foreign('album_id')->references('id')->on('albums')->cascadeOnDelete();
+            $table->unsignedBigInteger('genre_id')->index();
+            $table->foreign('genre_id')->references('id')->on('genres')->cascadeOnDelete();
+            $table->string('name');
+            $table->string('durability')->nullable();
+            $table->string('release_date')->nullable();
             $table->timestamps();
         });
     }

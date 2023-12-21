@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('artists', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('date_of_birth')->nullable();
+            $table->string('country')->nullable();
+            $table->text('image')->nullable();
             $table->timestamps();
         });
     }
