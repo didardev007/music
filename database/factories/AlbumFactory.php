@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Artist;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,11 @@ class AlbumFactory extends Factory
      */
     public function definition(): array
     {
+        $artist = Artist::inRandomOrder()->first();
         return [
-            //
+            'artist_id' => $artist->id,
+            'name' => fake()->name(),
+            'description' => fake()->text(255),
         ];
     }
 }
