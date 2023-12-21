@@ -14,4 +14,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class,'index'])->name('index');
+require __DIR__ . '/web_client.php';
+require __DIR__ . '/web_admin.php';
