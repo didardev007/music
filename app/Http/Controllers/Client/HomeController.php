@@ -27,7 +27,7 @@ class HomeController extends Controller
             ];
         }
 
-        return view('home.index')
+        return view('client.home.index')
             ->with([
                 'genreTracks' => $genreTracks,
             ]);
