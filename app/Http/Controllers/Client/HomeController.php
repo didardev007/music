@@ -12,7 +12,7 @@ class HomeController extends Controller
     public function index()
     {
         $genres = Genre::withCount('tracks')
-            ->orderBy('Tracks_count' ,'desc')
+            ->orderBy('Tracks_count', 'desc')
             ->take(10)
             ->get();
 
@@ -20,7 +20,7 @@ class HomeController extends Controller
 
         foreach ($genres as $genre) {
             $genreTracks[] = [
-                'genres' => $genres,
+                'genre' => $genre,
                 'Tracks' => Track::where('genre_id', $genre->id)
                 ->with('genre')
                 ->take(10)
