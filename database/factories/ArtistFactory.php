@@ -9,15 +9,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class ArtistFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
+        $name = fake()->name();
+        $date_of_birth = fake()->date('Y-m-d', '-8 years');
+        $country = fake()->country();
+
         return [
-            //
+            'name' => $name,
+            'date_of_birth' => $date_of_birth,
+            'country' => $country,
         ];
     }
 }

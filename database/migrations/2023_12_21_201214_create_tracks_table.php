@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('durability')->nullable();
             $table->string('release_date')->nullable();
+            $table->boolean('favorite')->default(0);
             $table->timestamps();
         });
     }
