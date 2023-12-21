@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('book_languages', function (Blueprint $table) {
-            $table->foreignId('book_id')->references('id')->on('books')->cascadeOnDelete();
-            $table->foreignId('language_id')->references('id')->on('languages')->cascadeOnDelete();
-            $table->primary(['book_id', 'language_id']);
+        Schema::create('track_playlists', function (Blueprint $table) {
+            $table->foreignId('track_id')->references('id')->on('tracks')->cascadeOnDelete();
+            $table->foreignId('playlist_id')->references('id')->on('playlists')->cascadeOnDelete();
+            $table->primary(['track_id', 'playlist_id']);
         });
     }
 
