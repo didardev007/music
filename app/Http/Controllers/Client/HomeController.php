@@ -13,16 +13,17 @@ class HomeController extends Controller
     {
         $genres = Genre::withCount('tracks')
             ->orderBy('Tracks_count' ,'desc')
-            ->take(7)
+            ->take(10)
             ->get();
 
         $genreTracks = [];
+
         foreach ($genres as $genre) {
             $genreTracks[] = [
-                'genre' => $genre,
+                'genres' => $genres,
                 'Tracks' => Track::where('genre_id', $genre->id)
                 ->with('genre')
-                ->take(8)
+                ->take(10)
                 ->get(),
             ];
         }
