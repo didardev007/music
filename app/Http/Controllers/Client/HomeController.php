@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Client;
 
+use App\Http\Controllers\Controller;
 use App\Models\Genre;
 use App\Models\Track;
 use Illuminate\Http\Request;
