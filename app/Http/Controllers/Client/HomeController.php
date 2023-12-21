@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $genres = Genre::withCount('track')
+        $genres = Genre::withCount('tracks')
             ->orderBy('Tracks_count' ,'desc')
             ->take(7)
             ->get();
