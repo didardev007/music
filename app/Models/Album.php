@@ -11,6 +11,10 @@ class Album extends Model
 {
     use HasFactory;
 
+    protected $guarded = [
+        'id',
+    ];
+
     public function artist(): BelongsTo
     {
         return $this->belongsTo(Artist::class);
