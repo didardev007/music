@@ -14,21 +14,24 @@ class GenreSeeder extends Seeder
     public function run(): void
     {
         $genres = [
-            'Speed Up',
-            'Slowed + Reverb',
-            'Indie Music',
-            'Jazz',
-            'Opera',
-            'Remix',
-            'Acoustic',
-            'Rock',
-            'Rep & Hip Hop',
-            'Pop',
+            ['name' => 'Speed Up', 'name_ru' => ''],
+            ['name' => 'Slowed + Reverb', 'name_ru' => ''],
+            ['name' => 'Indie Music', 'name_ru' => 'Инди-музыка
+'],
+            ['name' => 'Jazz', 'name_ru' => 'Джаз'],
+            ['name' => 'Opera', 'name_ru' => 'Опера'],
+            ['name' => 'Remix', 'name_ru' => 'Ремикс'],
+            ['name' => 'Acoustic', 'name_ru' => 'Акустический'],
+            ['name' => 'Rock', 'name_ru' => 'Рок'],
+            ['name' => 'Rep & Hip Hop', 'name_ru' => 'Реп & хип-хоп
+'],
+            ['name' => 'Pop', 'name_ru' => 'Поп'],
         ];
 
         foreach ($genres as $genre) {
             $el = new Genre();
-            $el->name = $genre;
+            $el->name = $genre['name'];
+            $el->name_ru = $genre['name_ru'];
             $el->save();
         }
     }
