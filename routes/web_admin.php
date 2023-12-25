@@ -1,7 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Tirkeshgeldi
- * Date: 22.12.2023
- * Time: 3:11
- */
+
+
+use App\Http\Controllers\Admin\DashboardController;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/admin', [DashboardController::class,'index'])->name('dashboard');
