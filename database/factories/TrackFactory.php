@@ -8,9 +8,6 @@ use App\Models\Genre;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Track>
- */
 class TrackFactory extends Factory
 {
     public function definition(): array
@@ -29,7 +26,6 @@ class TrackFactory extends Factory
             'name' => $name,
             'durability' => $durability,
             'release_date' => $release_date,
-            'favorite' => fake()->boolean(),
         ];
     }
 }
