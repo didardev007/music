@@ -12,33 +12,33 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        Album
+                    <a class="nav-link d-flex align-items-center gap-2 link-dark" href="#">
+                       <i class="bi bi-journal-album text-danger"></i>  Album
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        Tracks
+                    <a class="nav-link d-flex align-items-center gap-2 link-dark" href="#">
+                       <i class="bi bi-music-player text-primary"></i>  Tracks
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        Artist
+                    <a class="nav-link d-flex align-items-center gap-2 link-dark" href="#">
+                        <i class="bi bi-person text-warning"></i> Artist
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        Genre
+                    <a class="nav-link d-flex align-items-center gap-2 link-dark" href="#">
+                        <i class="bi bi-film text-info"></i>Genre
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        Playlist
+                    <a class="nav-link d-flex align-items-center gap-2 link-dark" href="#">
+                        <i class="bi bi-music-note-list text-success"></i>Playlist
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        User
+                    <a class="nav-link d-flex align-items-center gap-2 link-dark" href="#">
+                        <i class="bi bi-person-add text-secondary"></i> User
                     </a>
                 </li>
             </ul>
@@ -47,13 +47,13 @@
 
             <ul class="nav flex-column mb-auto">
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        Settings
+                    <a class="nav-link d-flex align-items-center gap-2 link-dark" href="#">
+                        <i class="bi bi-gear text-warning-emphasis"></i>Settings
                     </a>
                 </li>
                 <li class="nav-item pb-5">
-                    <a class="nav-link d-flex align-items-center gap-2" href="#">
-                        Sign out
+                    <a class="nav-link d-flex align-items-center gap-2 link-danger" href="#">
+                        <i class="bi bi-x-circle text-danger"></i>Sign out
                     </a>
                 </li>
             </ul>
