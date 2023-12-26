@@ -1,5 +1,7 @@
 @extends('client.layouts.app')
 @section('title') Music.com @endsection
 @section('main')
-    @include('client.home.index.categories')
+    @foreach($tracks as $track)
+        @include('client.home.index.artist')
+    @endforeach
 @endsection
