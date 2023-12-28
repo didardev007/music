@@ -1,9 +1,7 @@
 @extends('client.layouts.app')
 @section('title') Music.com @endsection
 @section('main')
-    <div class="container-xl">
-        @foreach($tracks as $track)
-            @include('client.home.index.artist')
-        @endforeach
-    </div>
+    @include('client.home.index.artist')
+    @include('client.home.index.genre')
+    @include('client.home.index.track')
 @endsection

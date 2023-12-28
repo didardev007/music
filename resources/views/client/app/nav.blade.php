@@ -1,64 +1,21 @@
-{{--<nav class="navbar navbar-expand-lg bg-body-tertiary">--}}
-    {{--<div class="container-fluid">--}}
-        {{--<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01">--}}
-            {{--<span class="bi bi-chevron-double-down"></span>--}}
-        {{--</button>--}}
-        {{--<div class="collapse navbar-collapse" id="navbarTogglerDemo01">--}}
-            {{--<a class="navbar-brand text-danger-emphasis" href="#">Music</a>--}}
-            {{--<ul class="navbar-nav me-auto mb-2 mb-lg-0">--}}
-                {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="#">Artists</a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="#">Albums</a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="#">Playlists</a>--}}
-                {{--</li>--}}
-                {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="#">Genres</a>--}}
-                {{--</li>--}}
-                {{--<hr>--}}
-                {{--<li class="nav-item">--}}
-                    {{--<a class="nav-link" href="#">Artists</a>--}}
-                {{--</li>--}}
-            {{--</ul>--}}
-        {{--</div>--}}
-        {{--<div class="d-block d-lg-flex text-center">--}}
-            {{--<button class="btn bi bi-search" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"></button>--}}
-            {{--<div class="collapse" id="collapseExample">--}}
-                {{--<form class="d-flex" role="search">--}}
-                    {{--<input class="form-control me-2" type="search" placeholder="Search">--}}
-                    {{--<button class="btn btn-outline-success btn-sm bi bi-search" type="submit"></button>--}}
-                {{--</form>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-        {{--<div class="d-flex">--}}
-            {{--<button class="btn btn-sm text-danger-emphasis">--}}
-                {{--Rus--}}
-            {{--</button>--}}
-            {{--<button class="btn btn-sm text-danger-emphasis">--}}
-                {{--Eng--}}
-            {{--</button>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-{{--</nav>--}}
-
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand text-danger-emphasis" href="#">Music</a>
+        <a class="navbar-brand text-danger-emphasis" href="{{ route('home') }}">Music</a>
         <div class="d-flex me-2 order-lg-1">
             <div class="row row-cols-3 g-0">
                 <div class="col">
-                    <button class="btn btn-small text-danger-emphasis">
-                        Eng
-                    </button>
+                    <a href="{{ route('locale', 'en') }}">
+                        <button class="btn btn-small text-danger-emphasis">
+                            Eng
+                        </button>
+                    </a>
                 </div>
                 <div class="col">
-                    <button class="btn btn-small text-danger-emphasis">
-                        Rus
-                    </button>
+                    <a href="{{ route('locale', 'ru') }}">
+                        <button class="btn btn-small text-danger-emphasis">
+                            Rus
+                        </button>
+                    </a>
                 </div>
                 <div class="col">
                     <button class="btn btn-small text-danger-emphasis bi bi-person-square">
@@ -72,20 +29,20 @@
         <div class="collapse navbar-collapse order-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                <a class="nav-link" href="#">Artists</a>
+                <a class="nav-link text-warning-emphasis" href="#">Artists</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Albums</a>
+                <a class="nav-link text-warning-emphasis" href="#">Albums</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Playlists</a>
+                <a class="nav-link text-warning-emphasis" href="#">Playlists</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Genres</a>
+                <a class="nav-link text-warning-emphasis" href="#">Genres</a>
                 </li>
                 <hr>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Artists</a>
+                <a class="nav-link text-warning-emphasis" href="#">Artists</a>
                 </li>
             </ul>
             <form class="d-flex">
