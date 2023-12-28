@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Album;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
@@ -34,9 +35,15 @@ class AlbumController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($album)
     {
-        //
+        $obj = Album::with('tracks', 'artist')
+            ->findOrFail($album);
+
+        return view('client.tracks.show')
+            ->with([
+                'obj' => $obj,
+            ]);
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Playlist;
 use Illuminate\Http\Request;
 
 class PlaylistController extends Controller
@@ -34,9 +35,15 @@ class PlaylistController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($playlist)
     {
-        //
+        $obj = Playlist::with('tracks')
+            ->findOrFail($playlist);
+
+        return view('client.tracks.show')
+            ->with([
+                'obj' => $obj,
+            ]);
     }
 
     /**

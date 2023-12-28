@@ -4,7 +4,7 @@
     </div>
     <div class="row row-cols-3 row-cols-md-4 row-cols-lg-5 g-3 g-sm-4">
         @foreach($artists as $artist)
-            <a href="{{ route('artists.show', ['artist' => $artist->slug]) }}" class="link-danger fw-semibold
+            <a href="{{ route('artists.show', $artist->id) }}" class="link-danger fw-semibold
             text-decoration-none text-danger-emphasis h5">
                 <div class="col text-center py-3">
                     <div>

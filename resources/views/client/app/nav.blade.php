@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand text-danger-emphasis" href="{{ route('home') }}">Music</a>
+        <a class="navbar-brand text-danger-emphasis" href="{{ route('home') }}">@lang('app.music')</a>
         <div class="d-flex me-2 order-lg-1">
             <div class="row row-cols-3 g-0">
                 <div class="col">
@@ -13,7 +13,7 @@
                 <div class="col">
                     <a href="{{ route('locale', 'ru') }}">
                         <button class="btn btn-small text-danger-emphasis">
-                            Rus
+                            Рус
                         </button>
                     </a>
                 </div>
@@ -29,20 +29,16 @@
         <div class="collapse navbar-collapse order-lg-0" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                <a class="nav-link text-warning-emphasis" href="#">Artists</a>
+                <a class="nav-link text-warning-emphasis" href="{{ route('artists.index') }}">@lang('app.artist')</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-warning-emphasis" href="#">Albums</a>
+                <a class="nav-link text-warning-emphasis" href="{{ route('albums.index') }}">@lang('app.album')</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-warning-emphasis" href="#">Playlists</a>
+                <a class="nav-link text-warning-emphasis" href="{{ route('playlists.index') }}">Playlists</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-warning-emphasis" href="#">Genres</a>
-                </li>
-                <hr>
-                <li class="nav-item">
-                <a class="nav-link text-warning-emphasis" href="#">Artists</a>
+                <a class="nav-link text-warning-emphasis" href="{{ route('genres.index') }}">Genres</a>
                 </li>
             </ul>
             <form class="d-flex">
