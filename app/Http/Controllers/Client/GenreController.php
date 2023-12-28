@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class GenreController extends Controller
@@ -34,9 +35,15 @@ class GenreController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($genre)
     {
-        //
+        $obj = Genre::with('tracks')
+            ->findOrFail($genre);
+
+        return view('client.tracks.show')
+            ->with([
+                'obj' => $obj,
+            ]);
     }
 
     /**

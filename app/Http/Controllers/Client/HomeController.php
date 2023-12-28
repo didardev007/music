@@ -41,8 +41,8 @@ class HomeController extends Controller
 
     public function locale($locale)
     {
-        if ($locale == 'tm') {
-            session()->put('locale', 'tm');
+        if ($locale == 'ru') {
+            session()->put('locale', 'ru');
             return redirect()->back();
         } else {
             session()->put('locale', 'en');
