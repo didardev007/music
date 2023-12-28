@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Album;
+use App\Models\Artist;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
@@ -10,9 +13,46 @@ class AlbumController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $request->validate([
+            'q' => 'nullable|string|max:30',
+            'artist' => 'nullable|string|max:255',
+            'newAlbum' => 'nullable|boolean',
+        ]);
+        $f_q = $request->has('q') ? $request->q : null;
+        $f_artist = $request->has('artist') ? $request->artist : null;
+        $f_newAlbum = $request->has('newAlbum') ? $request->newAlbum : null;
+
+        $albums = Album::when()
+            ->when(isset($f_q), function ($query) use ($f_q) {
+                return $query->whereHas(function ($query) use ($f_q) {
+                    $query->orWhere('name', 'link', '%' . $f_q . '%');
+                });
+            })
+            ->when(isset($f_artist), function ($query) use ($f_artist) {
+                return $query->whereHas(function ($query) use ($f_artist) {
+                    $query->orWhere($f_artist);
+                });
+            })
+            ->when($f_newAlbum, function ($query) {
+                return $query->where('create_at', '>=', Carbon::now()->subMonth());
+            })
+            ->with('artist')
+            ->paginate(20)
+            ->withQueryString();
+
+        $artists = Artist::orderBy('name')
+            ->get();
+
+        return view('client.albums.index')
+            ->with([
+                'albums' => $albums,
+                'artists' => $artists,
+                'f_q' => $f_q,
+                'f_artist' => $f_artist,
+                'f_newAlbum' => $f_newAlbum,
+            ]);
     }
 
     /**

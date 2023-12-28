@@ -33,7 +33,7 @@ class TrackController extends Controller
         $f_genre = $request->has('genre') ? $request->genre : null;
         $f_newTrack = $request->has('newTrack') ? $request->newTrack : null;
 
-        $track = Track::when()
+        $tracks = Track::when()
             ->when(isset($f_q), function ($query) use ($f_q) {
                 return $query->where(function ($query) use ($f_q) {
                     $query->orWhere('name', 'like', '%' . $f_q . '%');
@@ -69,22 +69,22 @@ class TrackController extends Controller
         $users = User::orderBy('name')
             ->get();
 
-        $artist = Artist::orderBy('name')
+        $artists = Artist::orderBy('name')
             ->get();
 
-        $album = Album::orderBy('name')
+        $albums = Album::orderBy('name')
             ->get();
 
-        $genre = Genre::orderBy('name')
+        $genres = Genre::orderBy('name')
             ->get();
 
         return view('client.tracks.index')
             ->with([
-                'track' => $track,
+                'tracks' => $tracks,
                 'users' => $users,
-                'artist' => $artist,
-                'album' => $album,
-                'genre' => $genre,
+                'artists' => $artists,
+                'albums' => $albums,
+                'genres' => $genres,
                 'f_q' => $f_q,
                 'f_user' => $f_user,
                 'f_artist' => $f_artist,
