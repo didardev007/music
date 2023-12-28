@@ -24,7 +24,7 @@ class ArtistController extends Controller
         $f_album = $request->has('album') ? $request->album : null;
         $f_track = $request->has('track') ? $request->track : null;
 
-        $artists = Artist::when()
+        return $artists = Artist::when()
             ->when(isset($f_q), function ($query) use ($f_q) {
                 return $query->whereHas(function ($query) use ($f_q) {
                     $query->orWhere('name', 'like', '%' . $f_q . '%');
