@@ -1,6 +1,6 @@
 <div class="container-xl py-3">
     <div class="h4 text-primary text-center my-3">
-        Genres
+        <a href="{{ route('genres.index') }}" class="text-decoration-none link-primary">@lang('app.genres')</a>
     </div>
     <div class="row row-cols-3 row-cols-md-4 row-cols-lg-5 g-3 g-sm-4">
         @foreach($genres as $genre)

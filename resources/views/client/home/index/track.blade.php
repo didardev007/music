@@ -1,5 +1,7 @@
 <div class="container-xl py-3">
-    <div class="h4 text-primary text-center my-3">Tracks</div>
+    <div class="h4 text-primary text-center my-3">
+        <a href="{{ route('tracks.index') }}" class="text-decoration-none link-primary">@lang('app.tracks')</a>
+    </div>
     @foreach($tracks as $track)
         <div class="col">
             <div class="card h-100">
@@ -16,23 +18,27 @@
                             </a>
                             <div class="small">
                                 <div class="text-danger-emphasis">
-                                    Artist: <a href="{{ route('tracks.index', ['artist' => $track->artist->slug]) }}"
+                                    @lang('app.artist'): <a href="{{ route('tracks.index', ['artist' =>
+                                    $track->artist->slug])
+                                     }}"
                                                class="text-decoration-none">{{ $track->artist->name }}</a>
                                 </div>
                                 <div class="text-danger-emphasis">
-                                    Album: <a href="{{ route('tracks.index', ['album' => $track->album->slug]) }}"
+                                    @lang('app.album'): <a href="{{ route('tracks.index', ['album' =>
+                                    $track->album->slug]) }}"
                                               class="text-decoration-none">{{ $track->album->name }}</a>
                                 </div>
                                 <div class="text-danger-emphasis">
-                                    Genre: <a href="{{ route('tracks.index', ['genre' => $track->genre->slug]) }}"
+                                    @lang('app.genre'): <a href="{{ route('tracks.index', ['genre' =>
+                                    $track->genre->slug]) }}"
                                               class="text-decoration-none">{{ $track->genre->name }}</a>
                                 </div>
                             </div>
                             <div class="text-success">
-                                {{ $track->durability }} <span class="text-dark">minutes</span>
+                                {{ $track->durability }} <span class="text-dark">@lang('app.minutes')</span>
                             </div>
                             <div>
-                                Realeased at: <span class="text-danger">{{ $track->release_date }}</span>
+                                @lang('app.releasedAt'): <span class="text-danger">{{ $track->release_date }}</span>
                             </div>
                         </div>
                     </div>
