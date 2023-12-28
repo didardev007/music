@@ -24,7 +24,7 @@
                         <td><small class="h4 fw-normal">{{$artist->name}} </small> <br>{{$artist->country}}<br> {{$artist->date_of_birth}}</td>
                         <td>
                             @if($artist->image)
-                                <img src="{{asset('img'. $artist->image)}}" alt="Artist Image" class="img-thumbnail" style="max-width: 100px;">
+                                <img src="{{asset('img/'. $artist->image)}}" alt="Artist Image" class="img-thumbnail" style="max-width: 100px;">
                             @else
                             No Image
                             @endif
