@@ -98,52 +98,38 @@ class TrackController extends Controller
      */
     public function create()
     {
-        //
-    }
+        $users = User::orderBy('name')
+            ->get();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        $artists = Artist::orderBy('name')
+            ->get();
+
+        $albums = Album::orderBy('name')
+            ->get();
+
+        $genres = Genre::orderBy('name')
+            ->get();
+
+        return view('client.tracks.create')
+            ->with([
+                'users' => $users,
+                'artists' => $artists,
+                'albums' => $albums,
+                'genres' => $genres,
+            ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Track $track)
+    public function show($track)
     {
         $obj = Track::with('artist', 'album', 'genre')
             ->findOrFail($track);
 
-        return view('tracks.show')
+        return view('client.tracks.show')
             ->with([
                 'obj' => $obj,
             ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Track $track)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Track $track)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Track $track)
-    {
-        //
     }
 }
