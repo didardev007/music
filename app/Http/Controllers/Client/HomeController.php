@@ -49,4 +49,15 @@ class HomeController extends Controller
                 'tracks' => $tracks,
             ]);
     }
+
+    public function locale($locale)
+    {
+        if ($locale == 'tm') {
+            session()->put('locale', 'tm');
+            return redirect()->back();
+        } else {
+            session()->put('locale', 'en');
+            return redirect()->back();
+        }
+    }
 }

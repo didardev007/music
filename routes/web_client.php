@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\Admin\ArtistController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\TrackController;
 use Illuminate\Support\Facades\Route;
@@ -15,3 +16,6 @@ Route::controller(HomeController::class)
     });
 
 Route::resource('tracks', TrackController::class);
+Route::resource('artists', ArtistController::class);
+Route::resource('genres', GenreController::class);
+Route::resource('album', AlbumController::class);
