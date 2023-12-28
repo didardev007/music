@@ -13,6 +13,16 @@
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
 
+        <div class="mb-3">
+            <label for="date_of_birth" class="form-label">Date of birth</label>
+            <input type="text" class="form-control" id="date_of_birth" name="date_of_birth" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" class="form-control" id="country" name="country" required>
+        </div>
+
         <button type="submit" class="btn btn-primary">Create</button>
     </form>
 @endsection
