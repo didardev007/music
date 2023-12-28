@@ -35,15 +35,16 @@
                 <a class="nav-link text-warning-emphasis" href="{{ route('albums.index') }}">@lang('app.album')</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-warning-emphasis" href="{{ route('playlists.index') }}">Playlists</a>
+                <a class="nav-link text-warning-emphasis" href="{{ route('playlists.index') }}">@lang('app.playlist')
+                </a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link text-warning-emphasis" href="{{ route('genres.index') }}">Genres</a>
+                <a class="nav-link text-warning-emphasis" href="{{ route('genres.index') }}">@lang('app.genre')</a>
                 </li>
             </ul>
             <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-sm btn-outline-success" type="submit">Search</button>
+                <input class="form-control me-2" type="search" placeholder="@lang('app.search')" aria-label="Search">
+                <button class="btn btn-sm btn-outline-success" type="submit">@lang('app.search')</button>
             </form>
         </div>
     </div>
