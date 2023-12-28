@@ -29,17 +29,6 @@ class HomeController extends Controller
             ->inRandomOrder()
             ->take(20)
             ->get();
-//        $genreTracks = [];
-//
-//        foreach ($genres as $genre) {
-//            $genreTracks[] = [
-//                'Genre' => $genre,
-//                'Tracks' => Track::where('genre_id', $genre->id)
-//                ->with('genre')
-//                ->take(10)
-//                ->get(),
-//            ];
-//        }
 
         return view('client.home.index')
             ->with([

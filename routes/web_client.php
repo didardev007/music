@@ -1,7 +1,9 @@
 <?php
 
 
-use App\Http\Controllers\Admin\ArtistController;
+use App\Http\Controllers\Client\ArtistController;
+use App\Http\Controllers\Client\AlbumController;
+use App\Http\Controllers\Client\GenreController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\TrackController;
 use Illuminate\Support\Facades\Route;
