@@ -40,7 +40,7 @@ class ArtistController extends Controller
                     $query->where($f_track);
                 });
             })
-            ->with('album', 'track')
+            ->with('albums', 'tracks')
             ->paginate(20)
             ->withQueryString();
 
