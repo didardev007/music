@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PlaylistController extends Controller
 {
@@ -11,7 +12,7 @@ class PlaylistController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.playlist.index');
     }
 
     /**

@@ -12,10 +12,10 @@
 <body class="bg-light">
 @include('admin.app.alert')
 <div class="row g-0">
-    <div class="bg-dark">
+    <div class="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
         @include('admin.app.nav')
     </div>
-    <div>
+    <div class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         @yield('main')
     </div>
 </div>
