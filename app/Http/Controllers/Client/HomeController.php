@@ -26,7 +26,8 @@ class HomeController extends Controller
             ->get();
 
         $tracks = Track::with('artist', 'album', 'genre')
-        ->inRandomOrder()
+            ->inRandomOrder()
+            ->take(20)
             ->get();
 //        $genreTracks = [];
 //

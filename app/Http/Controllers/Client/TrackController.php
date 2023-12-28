@@ -33,7 +33,7 @@ class TrackController extends Controller
         $f_genre = $request->has('genre') ? $request->genre : null;
         $f_newTrack = $request->has('newTrack') ? $request->newTrack : null;
 
-        $track = Track::selectRaw()
+        $track = Track::when()
             ->when(isset($f_q), function ($query) use ($f_q) {
                 return $query->where(function ($query) use ($f_q) {
                     $query->orWhere('name', 'like', '%' . $f_q . '%');
@@ -63,7 +63,7 @@ class TrackController extends Controller
                 return $query->where('create_at', '>=', Carbon::now()->subMonth());
             })
             ->with('artist', 'album', 'genre')
-            ->paginator(20)
+            ->paginate(20)
             ->withQueryString();
 
         $users = User::orderBy('name')
@@ -78,7 +78,7 @@ class TrackController extends Controller
         $genre = Genre::orderBy('name')
             ->get();
 
-        return view('products.index')
+        return view('client.tracks.index')
             ->with([
                 'track' => $track,
                 'users' => $users,
