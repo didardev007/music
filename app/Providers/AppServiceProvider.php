@@ -4,6 +4,7 @@ namespace App\Providers;
 
 
 use App\Models\Genre;
+use App\Models\Playlist;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades;
 use Illuminate\Pagination\Paginator;
@@ -43,7 +44,6 @@ class AppServiceProvider extends ServiceProvider
                 ->get();
 
             $playlists = Playlist::orderBy('name')
-
                 ->get();
 
             $view->with([
@@ -52,7 +52,6 @@ class AppServiceProvider extends ServiceProvider
                 'albums' => $albums,
                 'playlists' => $playlists,
                 'user' => auth()->user(),
-
             ]);
         });
     }
