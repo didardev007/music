@@ -4,13 +4,17 @@
 @endsection
 
 @section('main')
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="mt-4">Artist Index</h1>
+            <a href="{{route('admin.artist.create')}}" class="btn btn-success">Create Artist</a>
+        </div>
         <table class="table">
             <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
                 <th>Image</th>
-                <th> Action</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
