@@ -13,7 +13,8 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        $artists = Artist::get();
+        $artists = Artist::orderBy('id' , 'desc')
+            ->get();
         return view('admin.artist.index', compact('artists'));
     }
 
