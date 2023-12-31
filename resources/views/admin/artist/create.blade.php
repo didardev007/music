@@ -15,7 +15,7 @@
 
         <div class="mb-3">
             <label for="date_of_birth" class="form-label">Date of birth</label>
-            <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required >
+            <input type="text" class="form-control" id="date_of_birth" name="date_of_birth" placeholder="year-month-day" required >
         </div>
 
         <div class="mb-3">

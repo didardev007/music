@@ -80,6 +80,7 @@ class ArtistController extends Controller
     public function destroy(string $id)
     {
         $artist = Artist::findOrFail($id);
+
         $artist->delete();
 
         return redirect()->route('admin.artist.index')->with('success', 'Artist deleted successfully');
