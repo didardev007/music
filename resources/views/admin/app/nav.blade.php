@@ -27,8 +27,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 link-dark {{request()->routeIs('genre') ? 'nav-link d-flex align-items-center gap-2 bg-info py-1 px-2 rounded-4': ''}}" href="{{route('genre')}}">
-                        <i class="bi bi-film text-info {{request()->routeIs('genre') ? 'bi bi-film text-light': ''}}"></i>Genre
+                    <a class="nav-link d-flex align-items-center gap-2 link-dark {{request()->routeIs('admin.genre.index') ? 'nav-link d-flex align-items-center gap-2 bg-info py-1 px-2 rounded-4': ''}}" href="{{route('admin.genre.index')}}">
+                        <i class="bi bi-film text-info {{request()->routeIs('admin.genre.index') ? 'bi bi-film text-light': ''}}"></i>Genre
                     </a>
                 </li>
                 <li class="nav-item">

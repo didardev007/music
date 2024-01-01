@@ -14,7 +14,7 @@ Route::get('/admin', [DashboardController::class,'index'])->name('dashboard');
 
 Route::get('/admin/album',[AlbumController::class, 'index'])->name('album');
 Route::get('/admin/track',[TrackController::class, 'index'])->name('track');
-Route::get('/admin/genre',[GenreController::class, 'index'])->name('genre');
+Route::resource('/admin/genre',GenreController::class, ['as' => 'admin'])->except(['show']);
 Route::resource('admin/artist',ArtistController::class, ['as' => 'admin'])->except(['show']);
 Route::get('/admin/user',[UserController::class, 'index'])->name('user');
 Route::get('/admin/playlist',[PlaylistController::class, 'index'])->name('playlist');
