@@ -15,6 +15,8 @@ class Album extends Model
         'id',
     ];
 
+    public $timestamps = false;
+
     public function artist(): BelongsTo
     {
         return $this->belongsTo(Artist::class);

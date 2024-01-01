@@ -32,6 +32,7 @@ class GenreSeeder extends Seeder
             $el = new Genre();
             $el->name = $genre['name'];
             $el->name_ru = $genre['name_ru'];
+            $el->slug = str($genre['name'])->slug();
             $el->save();
         }
     }

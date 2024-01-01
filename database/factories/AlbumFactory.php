@@ -10,17 +10,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class AlbumFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+
     public function definition(): array
     {
         $artist = Artist::inRandomOrder()->first();
+        $name = fake()->name();
+
         return [
             'artist_id' => $artist->id,
-            'name' => fake()->name(),
+            'name' => $name,
+            'slug' => str($name)->slug(),
             'description' => fake()->text(255),
         ];
     }

@@ -30,12 +30,17 @@ class HomeController extends Controller
             ->take(20)
             ->get();
 
+        $newTracks = Track::orderBy('created_at', 'desc')
+            ->take(10)
+            ->get();
+
         return view('client.home.index')
             ->with([
                 'genres' => $genres,
                 'artists' => $artists,
                 'albums' => $albums,
                 'tracks' => $tracks,
+                'newTracks' => $newTracks,
             ]);
     }
 

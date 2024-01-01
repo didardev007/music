@@ -21,15 +21,19 @@ class AlbumController extends Controller
             'newAlbum' => 'nullable|boolean',
         ]);
         $f_q = $request->has('q') ? $request->q : null;
+        $f_q2 = $request->has('q') ? str($request->q)->slug() : null;
         $f_artist = $request->has('artist') ? $request->artist : null;
         $f_newAlbum = $request->has('newAlbum') ? $request->newAlbum : null;
 
-        $albums = Album::when()
-            ->when(isset($f_q), function ($query) use ($f_q) {
-                return $query->whereHas(function ($query) use ($f_q) {
-                    $query->orWhere('name', 'link', '%' . $f_q . '%');
-                });
-            })
+        $albums = Album::when(isset($f_q), function ($query) use ($f_q, $f_q2) {
+            return $query->where(function ($query) use ($f_q, $f_q2) {
+                $query->orWhere('name', 'like', '%' . $f_q . '%');
+                $query->orWhere('name_ru', 'like', '%' . $f_q . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q . '%');
+                $query->orWhere('name', 'like', '%' . $f_q2 . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q2 . '%');
+            });
+        })
             ->when(isset($f_artist), function ($query) use ($f_artist) {
                 return $query->whereHas(function ($query) use ($f_artist) {
                     $query->orWhere($f_artist);

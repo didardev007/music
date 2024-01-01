@@ -27,47 +27,43 @@ class TrackController extends Controller
             'newTrack' => 'nullable|boolean',
         ]);
         $f_q = $request->has('q') ? $request->q : null;
+        $f_q2 = $request->has('q') ? str($request->q)->slug() : null;
         $f_user = $request->has('user') ? $request->user : null;
         $f_artist = $request->has('artist') ? $request->atrtist : null;
         $f_album = $request->has('album') ? $request->album : null;
         $f_genre = $request->has('genre') ? $request->genre : null;
         $f_newTrack = $request->has('newTrack') ? $request->newTrack : null;
 
-        $tracks = Track::when()
-            ->when(isset($f_q), function ($query) use ($f_q) {
-                return $query->where(function ($query) use ($f_q) {
+        $tracks = Track::when(isset($f_q), function ($query) use ($f_q, $f_q2) {
+                return $query->where(function ($query) use ($f_q, $f_q2) {
                     $query->orWhere('name', 'like', '%' . $f_q . '%');
-                });
-            })
-            ->when(isset($f_user), function ($query) use ($f_user) {
-                return $query->whereHas('user', function ($query) use ($f_user) {
-                    $query->where('username', $f_user);
+                    $query->orWhere('name_ru', 'like', '%' . $f_q . '%');
+                    $query->orWhere('slug', 'like', '%' . $f_q . '%');
+                    $query->orWhere('name', 'like', '%' . $f_q2 . '%');
+                    $query->orWhere('slug', 'like', '%' . $f_q2 . '%');
                 });
             })
             ->when(isset($f_artist), function ($query) use ($f_artist) {
                 return $query->whereHas('artist', function ($query) use ($f_artist) {
-                    $query->where($f_artist);
+                    $query->where('slug', $f_artist);
                 });
             })
             ->when(isset($f_album), function ($query) use ($f_album) {
                 return $query->whereHas('album', function ($query) use ($f_album) {
-                    $query->where($f_album);
+                    $query->where('slug', $f_album);
                 });
             })
             ->when(isset($f_genre), function ($query) use ($f_genre) {
                 return $query->whereHas('genre', function ($query) use ($f_genre) {
-                   $query->where($f_genre);
+                   $query->where('slug', $f_genre);
                 });
             })
             ->when($f_newTrack, function ($query) {
-                return $query->where('create_at', '>=', Carbon::now()->subMonth());
+                return $query->where('release_date', '>=', Carbon::now()->subWeek());
             })
             ->with('artist', 'album', 'genre')
             ->paginate(20)
             ->withQueryString();
-
-        $users = User::orderBy('name')
-            ->get();
 
         $artists = Artist::orderBy('name')
             ->get();
@@ -81,7 +77,6 @@ class TrackController extends Controller
         return view('client.tracks.index')
             ->with([
                 'tracks' => $tracks,
-                'users' => $users,
                 'artists' => $artists,
                 'albums' => $albums,
                 'genres' => $genres,

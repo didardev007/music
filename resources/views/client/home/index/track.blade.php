@@ -40,6 +40,9 @@
                             <div>
                                 @lang('app.releasedAt'): <span class="text-danger">{{ $track->release_date }}</span>
                             </div>
+                            <div>
+                                @lang('app.addedAt'): <span class="text-danger">{{ $track->created_at }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>

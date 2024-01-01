@@ -14,4 +14,6 @@ return [
     'track' => 'Трек',
     'tracks' => 'Треки',
     'releasedAt' => 'Выпущено в',
+    'minutes' => 'Минуты',
+    'addedAt' => 'Добавлено в'
 ];

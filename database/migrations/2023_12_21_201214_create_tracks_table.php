@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('genre_id')->index();
             $table->foreign('genre_id')->references('id')->on('genres')->cascadeOnDelete();
             $table->string('name');
+            $table->string('slug')->unique();
             $table->string('durability')->nullable();
             $table->string('release_date')->nullable();
             $table->timestamps();

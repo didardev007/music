@@ -19,6 +19,7 @@ class PlaylistSeeder extends Seeder
             Playlist::create([
                 'name' => $playlist['name'],
                 'name_ru' => $playlist['name_ru'],
+                'slug' => str($playlist['name'])->slug(),
             ]);
         }
     }

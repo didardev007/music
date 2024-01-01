@@ -14,6 +14,8 @@ class Artist extends Model
         'id',
     ];
 
+    public $timestamps = false;
+
     public function albums(): HasMany
     {
         return $this->hasMany(Album::class);

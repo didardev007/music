@@ -7,11 +7,27 @@
     <title>@yield('title')</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <link href="{{ asset('splide-js/dist/css/splide.min.css') }}" rel="stylesheet">
 </head>
 <body class="bg-light">
 @include('client.app.alert')
 @include('client.app.nav')
 @yield('main')
+
+<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('splide-js/dist/js/splide.min.js') }}"></script>
+<script>
+    new Splide( '#artist-carousel', {
+        type   : 'loop',
+        perPage: 3,
+    } ).mount();
+</script>
+
+<script>
+    new Splide( '#genre-carousel', {
+        type   : 'loop',
+        perPage: 3,
+    } ).mount();
+</script>
 </body>
 </html>

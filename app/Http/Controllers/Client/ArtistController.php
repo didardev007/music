@@ -21,23 +21,27 @@ class ArtistController extends Controller
             'track' => 'nullable|string|max:30',
         ]);
         $f_q = $request->has('q') ? $request->q : null;
+        $f_q2 = $request->has('q') ? str($request->q)->slug() : null;
         $f_album = $request->has('album') ? $request->album : null;
         $f_track = $request->has('track') ? $request->track : null;
 
-        return $artists = Artist::when()
-            ->when(isset($f_q), function ($query) use ($f_q) {
-                return $query->whereHas(function ($query) use ($f_q) {
-                    $query->orWhere('name', 'like', '%' . $f_q . '%');
-                });
-            })
+        $artists = Artist::when(isset($f_q), function ($query) use ($f_q, $f_q2) {
+            return $query->where(function ($query) use ($f_q, $f_q2) {
+                $query->orWhere('name', 'like', '%' . $f_q . '%');
+                $query->orWhere('name_ru', 'like', '%' . $f_q . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q . '%');
+                $query->orWhere('name', 'like', '%' . $f_q2 . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q2 . '%');
+            });
+        })
             ->when(isset($f_album), function ($query) use ($f_album) {
                 return $query->whereHas(function ($query) use ($f_album) {
-                    $query->where($f_album);
+                    $query->where('slug', $f_album);
                 });
             })
             ->when(isset($f_track), function ($query) use ($f_track) {
                 return $query->whereHas(function ($query) use ($f_track) {
-                    $query->where($f_track);
+                    $query->where('slug', $f_track);
                 });
             })
             ->with('albums', 'tracks')

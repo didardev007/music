@@ -11,6 +11,8 @@ class Genre extends Model
         'id',
     ];
 
+    public $timestamps = false;
+
     public function tracks(): HasMany
     {
         return $this->hasMany(Track::class);
