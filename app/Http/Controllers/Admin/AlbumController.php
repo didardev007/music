@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Album;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,7 +13,10 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        return view('admin.album.index');
+        $albums = Album::orderBy('id' , 'desc')
+            ->with('artist')
+            ->get();
+        return view('admin.album.index', compact('albums'));
     }
 
     /**
@@ -20,7 +24,7 @@ class AlbumController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.album.create');
     }
 
     /**
@@ -28,7 +32,13 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        Album::create($request->all());
+
+        return redirect()->route('admin.album.index')->with('success', 'Album created successfully');
     }
 
     /**
@@ -44,7 +54,9 @@ class AlbumController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $album = Album::findOrFail($id);
+
+        return view('admin.album.edit', compact('album'));
     }
 
     /**
@@ -52,7 +64,15 @@ class AlbumController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $album = Album::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $album->update($request->all());
+
+        return redirect()->route('admin.album.index')->with('success', 'Album updated successfully');
     }
 
     /**
@@ -60,6 +80,10 @@ class AlbumController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $album = Album::findOrFail($id);
+
+        $album->delete();
+
+        return redirect()->route('admin.album.index')->with('success', 'Album deleted successfully');
     }
 }

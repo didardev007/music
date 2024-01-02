@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/admin', [DashboardController::class,'index'])->name('dashboard');
 
-Route::get('/admin/album',[AlbumController::class, 'index'])->name('album');
+Route::resource('/admin/album',AlbumController::class, ['as' => 'admin'])->except(['show']);
 Route::get('/admin/track',[TrackController::class, 'index'])->name('track');
 Route::resource('/admin/genre',GenreController::class, ['as' => 'admin'])->except(['show']);
 Route::resource('admin/artist',ArtistController::class, ['as' => 'admin'])->except(['show']);
