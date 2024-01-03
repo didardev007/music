@@ -12,18 +12,18 @@
             <ul class="nav flex-column">
                 <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-warning-emphasis">Home</a></li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link text-warning-emphasis p-0" href="{{ route('artists.index') }}">@lang('app.artist')</a>
+                    <a class="nav-link text-warning-emphasis p-0" href="{{ route('artists.index') }}">@lang('app.artists')</a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link text-warning-emphasis p-0" href="{{ route('albums.index') }}">@lang('app.album')
+                    <a class="nav-link text-warning-emphasis p-0" href="{{ route('albums.index') }}">@lang('app.albums')
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link text-warning-emphasis p-0" href="{{ route('playlists.index') }}">@lang('app.playlist')
+                    <a class="nav-link text-warning-emphasis p-0" href="{{ route('playlists.index') }}">@lang('app.playlists')
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link text-warning-emphasis p-0" href="{{ route('genres.index') }}">@lang('app.genre')
+                    <a class="nav-link text-warning-emphasis p-0" href="{{ route('genres.index') }}">@lang('app.genres')
                     </a>
                 </li>
             </ul>
