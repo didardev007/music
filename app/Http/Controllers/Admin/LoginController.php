@@ -22,7 +22,7 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        return to_route('admin.dashboard');
+        return to_route('dashboard');
     }
 
     public function destroy(Request $request): RedirectResponse

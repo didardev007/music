@@ -12,16 +12,6 @@ use App\Http\Controllers\Admin\PlaylistController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
 
-Route::middleware('guest')
-    ->group(function () {
-        Route::get('login', [LoginController::class, 'create'])->name('login');
-        Route::post('login', [LoginController::class, 'store'])->middleware(ProtectAgainstSpam::class);
-    });
-
-Route::middleware('auth')
-    ->group(function () {
-        Route::post('logout', [LoginController::class, 'destroy'])->name('logout')->middleware(ProtectAgainstSpam::class);
-    });
 
 Route::middleware('auth')
     ->prefix('admin')
@@ -31,6 +21,11 @@ Route::middleware('auth')
             ->group(function () {
                 Route::get('', 'index')->name('dashboard');
             });
+    });
+
+Route::middleware('auth')
+    ->group(function () {
+        Route::post('logout', [LoginController::class, 'destroy'])->name('logout')->middleware(ProtectAgainstSpam::class);
     });
 
 
