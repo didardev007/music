@@ -1,7 +1,7 @@
 <?php
 
 
-use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Client\LoginController;
 use App\Http\Controllers\Client\ArtistController;
 use App\Http\Controllers\Client\AlbumController;
 use App\Http\Controllers\Client\GenreController;
