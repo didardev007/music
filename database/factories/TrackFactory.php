@@ -26,10 +26,11 @@ class TrackFactory extends Factory
     public function definition(): array
     {
         $artist = Artist::inRandomOrder()->first();
-        $album = Album::inRandomOrder()->first();
+        $album = Album::where('artist_id', $artist->id)->inRandomOrder()->first();
         $genre = Genre::inRandomOrder()->first();
         $name = fake()->company();
         $durability = fake()->randomFloat(2, 0, 30);
+        $viewed = rand();
         $release_date = fake()->date('Y-m-d');
         $created_at = fake()->dateTimeBetween($release_date, 'now')->format('Y-m-d');
 
@@ -38,8 +39,9 @@ class TrackFactory extends Factory
             'album_id' => $album->id,
             'genre_id' => $genre->id,
             'name' => $name,
-            'slug' => str($name)->slug(),
+            'slug' => str($name)->slug() . rand(),
             'durability' => $durability,
+            'viewed' => $viewed,
             'release_date' => $release_date,
             'created_at' => $created_at,
         ];

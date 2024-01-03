@@ -13,7 +13,10 @@ return [
     'search' => 'Search',
     'track' => 'Track',
     'tracks' => 'Tracks',
+    'newTracks' => 'New Tracks',
+    'popularTracks' => 'Popular Tracks',
     'releasedAt' => 'Released at',
     'minutes' => 'Minutes',
-    'addedAt' => 'Added at'
+    'addedAt' => 'Added at',
+    'viewed' => 'Viewed',
 ];

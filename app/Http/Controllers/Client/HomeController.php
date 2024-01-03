@@ -14,24 +14,27 @@ class HomeController extends Controller
     public function index()
     {
         $genres = Genre::inRandomOrder()
-            ->take(10)
+            ->take(9)
             ->get();
 
         $artists = Artist::inRandomOrder()
-            ->take(10)
+            ->take(9)
             ->get();
 
-        $albums = Album::inRandomOrder()
-            ->take(10)
+        $albums = Album::orderBy('release_date', 'desc')
+            ->take(9)
             ->get();
 
-        $tracks = Track::with('artist', 'album', 'genre')
-            ->inRandomOrder()
-            ->take(20)
+
+        $newTracks = Track::with('artist', 'album', 'genre')
+            ->orderBy('release_date', 'desc')
+            ->orderBy('viewed', 'desc')
+            ->take(9)
             ->get();
 
-        $newTracks = Track::orderBy('created_at', 'desc')
-            ->take(10)
+        $popularTracks = Track::with('artist', 'album', 'genre')
+            ->orderBy('viewed', 'desc')
+            ->take(9)
             ->get();
 
         return view('client.home.index')
@@ -39,8 +42,8 @@ class HomeController extends Controller
                 'genres' => $genres,
                 'artists' => $artists,
                 'albums' => $albums,
-                'tracks' => $tracks,
                 'newTracks' => $newTracks,
+                'popularTracks' => $popularTracks,
             ]);
     }
 

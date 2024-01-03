@@ -13,7 +13,10 @@ return [
     'search' => 'Поиск',
     'track' => 'Трек',
     'tracks' => 'Треки',
+    'newTracks' => 'Новые Треки',
+    'popularTracks' => 'Популярные Треки',
     'releasedAt' => 'Выпущено в',
     'minutes' => 'Минуты',
-    'addedAt' => 'Добавлено в'
+    'addedAt' => 'Добавлено в',
+    'viewed' => 'Просмотрено',
 ];

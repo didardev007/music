@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('description')->nullable();
+            $table->dateTime('release_date')->nullable();
+            $table->timestamps();
         });
     }
 

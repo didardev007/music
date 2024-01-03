@@ -14,6 +14,7 @@
 @include('client.app.nav')
 @yield('main')
 
+@include('client.app.footer')
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/splide.min.js') }}"></script>
 <script>
@@ -27,6 +28,19 @@
     new Splide( '#genre-carousel', {
         type   : 'loop',
         perPage: 3,
+    } ).mount();
+</script>
+
+<script>
+    new Splide( '#album-carousel', {
+        type   : 'loop',
+        perPage: 3,
+    } ).mount();
+</script>
+
+<script>
+    new Splide( '#newTracks-carousel', {
+        type   : 'loop',
     } ).mount();
 </script>
 </body>

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('durability')->nullable();
+            $table->unsignedBigInteger('viewed')->default(0);
             $table->string('release_date')->nullable();
             $table->timestamps();
         });

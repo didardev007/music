@@ -15,12 +15,16 @@ class AlbumFactory extends Factory
     {
         $artist = Artist::inRandomOrder()->first();
         $name = fake()->name();
+        $release_date = fake()->date('Y-m-d');
+        $created_at = fake()->dateTimeBetween($release_date, 'now')->format('Y-m-d');
 
         return [
             'artist_id' => $artist->id,
             'name' => $name,
             'slug' => str($name)->slug(),
             'description' => fake()->text(255),
+            'release_date' => $release_date,
+            'created_at' => $created_at,
         ];
     }
 }
