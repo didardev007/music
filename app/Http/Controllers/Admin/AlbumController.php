@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Album;
+use App\Models\Artist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -22,10 +23,12 @@ class AlbumController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+        public function create()
     {
-        return view('admin.album.create');
+        $artists = Artist::orderBy('id', 'desc')->get();
+        return view('admin.album.create', compact('artists'));
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -34,11 +37,15 @@ class AlbumController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'artist' => 'required|exists:artists,id',
         ]);
 
-        Album::create($request->all());
+        $album = Album::create([
+            'name' => $request->input('name'),
+            'artist_id' => $request->input('artist'),
+        ]);
 
-        return redirect()->route('admin.album.index')->with('success', 'Album created successfully');
+        return redirect()->route('admin.album.index', compact('album'))->with('success', 'Album created successfully');
     }
 
     /**
@@ -54,9 +61,13 @@ class AlbumController extends Controller
      */
     public function edit(string $id)
     {
-        $album = Album::findOrFail($id);
+        $album = Album::with('artist')
+            ->findOrFail($id);
 
-        return view('admin.album.edit', compact('album'));
+        $artists = Artist::orderBy('id', 'desc')
+            ->get();
+
+        return view('admin.album.edit', compact('album', 'artists'));
     }
 
     /**
@@ -68,12 +79,17 @@ class AlbumController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
+            'artist' => 'required|exists:artists,id', // Validate the single artist ID
         ]);
 
-        $album->update($request->all());
+        $album->update([
+            'name' => $request->input('name'),
+            'artist_id' => $request->input('artist'),
+        ]);
 
         return redirect()->route('admin.album.index')->with('success', 'Album updated successfully');
     }
+
 
     /**
      * Remove the specified resource from storage.

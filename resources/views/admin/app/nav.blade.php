@@ -7,13 +7,13 @@
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
             <ul class="nav flex-column">
                 <li class="nav-item h5">
-                    <a class="nav-link d-flex align-items-center gap-2 active link-dark" aria-current="page" href="#">
+                    <a class="nav-link d-flex align-items-center gap-2 active link-dark" aria-current="page" href="{{route('dashboard')}}">
                         <i class="bi bi-speedometer2"></i>Dashboard
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 link-dark {{request()->routeIs('admin.album.index') ? 'nav-link d-flex align-items-center gap-2 bg-danger py-1 px-2 rounded-4': ''}}" href="{{route('admin.album.index')}}">
-                       <i class="bi bi-journal-album text-danger {{request()->routeIs('admin.album.index') ? 'bi bi-journal-album text-dark': ''}}"></i>  Album
+                    <a class="nav-link d-flex align-items-center gap-2 link-dark {{request()->routeIs('admin.album.index','admin.album.edit','admin.album.create') ? 'nav-link d-flex align-items-center gap-2 bg-danger py-1 px-2 rounded-4': ''}}" href="{{route('admin.album.index')}}">
+                       <i class="bi bi-journal-album text-danger {{request()->routeIs('admin.album.index','admin.album.edit','admin.album.create') ? 'bi bi-journal-album text-dark': ''}}"></i>  Album
                     </a>
                 </li>
                 <li class="nav-item">

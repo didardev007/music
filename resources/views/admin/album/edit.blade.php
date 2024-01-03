@@ -16,7 +16,14 @@
 
         <div class="mb-3">
             <label for="artist" class="form-label">Artist</label>
-            <input type="text" class="form-control" id="artist" name="artist" value="{{$album->artist->name}}" required>
+            <select name="artist" id="artist" class="form-select">
+                @foreach($artists as $artist)
+                    <option value="{{ $artist->id }}" {{ $artist->id == $album->artist_id ? 'selected' : '' }}>
+                        {{ $artist->name }}
+                    </option>
+                @endforeach
+            </select>
+
         </div>
 
         <div class="mb-3">
