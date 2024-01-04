@@ -3,7 +3,10 @@
     Admin|Genres|Edit
 @endsection
 @section('main')
-    <h1 class="mt-4">Edit Genre</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="mt-4">Edit Genre</h1>
+        <a href="{{ route('admin.genre.index') }}" class="btn btn-secondary">Back to Genre Index</a>
+    </div>
 
     <form action="{{route('admin.genre.update', $genre->id)}}" method="post">
         @csrf

@@ -3,7 +3,10 @@
     Admin|Artists|Edit
 @endsection
 @section('main')
-    <h1 class="mt-4">Edit Artist</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="mt-4">Edit Artist</h1>
+        <a href="{{ route('admin.artist.index') }}" class="btn btn-secondary">Back to Artist Index</a>
+    </div>
 
     <form action="{{route('admin.artist.update', $artist->id)}}" method="post">
         @csrf

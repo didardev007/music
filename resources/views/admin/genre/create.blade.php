@@ -3,7 +3,10 @@
     Admin|Genres|Create
 @endsection
 @section('main')
-    <h1 class="mt-4">Create Genre</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="mt-4">Create Genre</h1>
+        <a href="{{ route('admin.genre.index') }}" class="btn btn-secondary">Back to Genre Index</a>
+    </div>
 
     <form action="{{route('admin.genre.store')}}" method="post">
         @csrf

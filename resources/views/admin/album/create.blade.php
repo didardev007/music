@@ -3,7 +3,10 @@
     Admin|Album|Create
 @endsection
 @section('main')
-    <h1 class="mt-4">Create Album</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="mt-4">Create Album</h1>
+        <a href="{{ route('admin.album.index') }}" class="btn btn-secondary">Back to Album Index</a>
+    </div>
 
     <form action="{{route('admin.album.store')}}" method="post">
         @csrf

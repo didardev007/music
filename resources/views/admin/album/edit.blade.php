@@ -3,7 +3,10 @@
     Admin|Albums|Edit
 @endsection
 @section('main')
-    <h1 class="mt-4">Edit Album</h1>
+    <div class="d-flex justify-content-between align-items-center">
+        <h1 class="mt-4">Edit Album</h1>
+        <a href="{{ route('admin.album.index') }}" class="btn btn-secondary">Back to Album Index</a>
+    </div>
 
     <form action="{{route('admin.album.update', $album->id)}}" method="post">
         @csrf
