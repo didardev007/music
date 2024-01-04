@@ -33,6 +33,6 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return to_route('login');
+        return to_route('admin.login');
     }
 }
