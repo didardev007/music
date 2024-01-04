@@ -33,8 +33,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 link-dark {{request()->routeIs('admin.user') ? 'nav-link d-flex align-items-center gap-2 bg-secondary py-1 px-2 rounded-4': ''}}" href="{{route('admin.user')}}">
-                        <i class="bi bi-person-add text-secondary {{request()->routeIs('admin.user') ? 'bi bi-person-add text-light': ''}}"></i> User
+                    <a class="nav-link d-flex align-items-center gap-2 link-dark {{request()->routeIs('admin.user.index') ? 'nav-link d-flex align-items-center gap-2 bg-secondary py-1 px-2 rounded-4': ''}}" href="{{route('admin.user.index')}}">
+                        <i class="bi bi-person-add text-secondary {{request()->routeIs('admin.user.index') ? 'bi bi-person-add text-light': ''}}"></i> User
                     </a>
                 </li>
             </ul>

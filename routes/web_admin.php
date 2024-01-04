@@ -32,7 +32,7 @@ Route::middleware('auth')
         Route::get('/track',[TrackController::class, 'index'])->name('track');
         Route::resource('/genre',GenreController::class)->except(['show']);
         Route::resource('/artist',ArtistController::class)->except(['show']);
-        Route::get('/user',[UserController::class, 'index'])->name('user');
+        Route::resource('/user',UserController::class)->except(['show']);
         Route::get('/playlist',[PlaylistController::class, 'index'])->name('playlist');
     });
 

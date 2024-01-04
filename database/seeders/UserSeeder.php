@@ -17,7 +17,8 @@ class UserSeeder extends Seeder
             'name' => 'adam',
             'username' => 'adam',
             'password' => bcrypt('music098'),
-            'email' => 'tirkeshdev@gmail.com'
+            'email' => 'tirkeshdev@gmail.com',
+            'is_admin'=> 1
         ]);
     }
 }
