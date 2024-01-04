@@ -19,11 +19,13 @@
                                      }}"
                                                     class="text-decoration-none">{{ $track->artist->name }}</a>
                         </div>
-                        <div class="text-danger-emphasis">
-                            @lang('app.album'): <a href="{{ route('tracks.index', ['album' =>
+                        @isset($track->album)
+                            <div class="text-danger-emphasis">
+                                @lang('app.album'): <a href="{{ route('tracks.index', ['album' =>
                                     $track->album->slug]) }}"
-                                                   class="text-decoration-none">{{ $track->album->name }}</a>
-                        </div>
+                                                       class="text-decoration-none">{{ $track->album->name }}</a>
+                            </div>
+                        @endisset
                         <div class="text-danger-emphasis">
                             @lang('app.genre'): <a href="{{ route('tracks.index', ['genre' =>
                                     $track->genre->slug]) }}"

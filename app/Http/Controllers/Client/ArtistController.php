@@ -18,12 +18,14 @@ class ArtistController extends Controller
         $request->validate([
             'q' => 'nullable|string|max:30',
             'album' => 'nullable|string|max:255',
-            'track' => 'nullable|string|max:30',
+            'track' => 'nullable|string|max:255',
+            'country' => 'nullable|string|max:255',
         ]);
         $f_q = $request->has('q') ? $request->q : null;
         $f_q2 = $request->has('q') ? str($request->q)->slug() : null;
         $f_album = $request->has('album') ? $request->album : null;
         $f_track = $request->has('track') ? $request->track : null;
+        $f_country = $request->has('country') ? $request->country : null;
 
         $artists = Artist::when(isset($f_q), function ($query) use ($f_q, $f_q2) {
             return $query->where(function ($query) use ($f_q, $f_q2) {
@@ -42,6 +44,11 @@ class ArtistController extends Controller
             ->when(isset($f_track), function ($query) use ($f_track) {
                 return $query->whereHas(function ($query) use ($f_track) {
                     $query->where('slug', $f_track);
+                });
+            })
+            ->when(isset($f_country), function ($query) use ($f_country) {
+                return $query->whereHas(function ($query) use ($f_country) {
+                    $query->where('slug', $f_country);
                 });
             })
             ->with('albums', 'tracks')

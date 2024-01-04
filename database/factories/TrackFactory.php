@@ -36,7 +36,7 @@ class TrackFactory extends Factory
 
         return [
             'artist_id' => $artist->id,
-            'album_id' => $album->id,
+            'album_id' => isset($album) ? $album->id : null,
             'genre_id' => $genre->id,
             'name' => $name,
             'slug' => str($name)->slug() . rand(),
