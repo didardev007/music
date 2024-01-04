@@ -5,7 +5,7 @@
 
 @section('main')
     <main class=" text-danger w-100 m-auto" style="max-width: 330px;padding: 1rem">
-        <form action="{{route('login')}}" method="post">
+        <form action="{{route('admin.login')}}" method="post">
             @csrf
             <div class="text-center">
                 <i class="bi bi-person h1 border rounded-pill py-2 px-3"></i>
