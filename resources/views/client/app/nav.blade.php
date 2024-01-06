@@ -1,26 +1,27 @@
-<div class="container-xl">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container-xl bg-info-subtle mt-5">
+    <nav class="navbar navbar-expand-lg fw-bold">
         <div class="container-fluid">
             <a class="navbar-brand text-danger-emphasis" href="{{ route('home') }}">@lang('app.music')</a>
-            <div class="d-flex me-2 order-lg-1">
+            <div class="d-flex me-lg-2 order-lg-1">
                 <div class="row row-cols-3 g-0">
                     <div class="col">
                         <a href="{{ route('locale', 'en') }}">
-                            <button class="btn btn-small text-danger-emphasis">
+                            <button class="btn btn-small text-danger-emphasis fw-bold">
                                 Eng
                             </button>
                         </a>
                     </div>
                     <div class="col">
                         <a href="{{ route('locale', 'ru') }}">
-                            <button class="btn btn-small text-danger-emphasis">
+                            <button class="btn btn-small text-danger-emphasis fw-bold">
                                 Рус
                             </button>
                         </a>
                     </div>
                     <div class="col">
-                        <button class="btn btn-small text-danger-emphasis bi bi-person-square">
-                        </button>
+                        <a href="{{ route('register') }}">
+                            <button class="btn btn-small text-danger-emphasis bi bi-person-square fw-bold"></button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -49,10 +50,12 @@
                            href="{{ route('genres.index') }}">@lang('app.genres')</a>
                     </li>
                 </ul>
-                <form class="d-flex" action="{{ route('tracks.index') }}">
-                    <input class="form-control me-2" type="search" placeholder="@lang('app.search')">
-                    <button class="btn btn-sm btn-outline-success" type="submit">@lang('app.search')</button>
-                </form>
+                @if(request()->is('/'))
+                    <form class="d-flex" action="{{ route('tracks.index') }}">
+                        <input class="form-control me-2" type="search" placeholder="@lang('app.search')">
+                        <button class="btn btn-sm btn-outline-success fw-bold" type="submit">@lang('app.search')</button>
+                    </form>
+                @endif
             </div>
         </div>
     </nav>

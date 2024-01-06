@@ -1,13 +1,13 @@
 <div class="col">
     <div class="card h-100">
         <div class="card-body p-2">
-            <div class="row">
-                <div class="col-7 col-md-5 col-lg-4 col-xl-3">
+            <div class="row align-items-center">
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                     <div class="position-relative">
                         <img src="{{ asset('img/real_mic.jpg') }}" alt="" class="img-fluid rounded">
                     </div>
                 </div>
-                <div class="col-5 col-md-7 col-lg-8 col-xl-9">
+                <div class="col-4 col-md-6 col-lg-7 col-xl-8">
                     <a href="{{ route('tracks.show', $track->id) }}" class="link-dark h6
                             text-decoration-none">
                         {{ $track->name }}
@@ -43,6 +43,16 @@
                     </div>
                     <div>
                         @lang('app.viewed'): <span class="text-success">{{ $track->viewed }}</span>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="d-md-flex">
+                        <div class="text-end me-md-2">
+                            <button class="btn btn-md btn-outline-danger bi bi-play-btn"></button>
+                        </div>
+                        <div class="text-end">
+                            <button class="btn btn-md btn-outline-danger bi bi-download"></button>
+                        </div>
                     </div>
                 </div>
             </div>
