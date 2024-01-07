@@ -45,7 +45,7 @@
 
             <!-- Register buttons -->
             <div class="text-center pb-4">
-                @lang('app.isMember')? <a href="#!">@lang('app.login')</a>
+                @lang('app.isMember')? <a href="{{ route('admin.login') }}">@lang('app.login')</a>
             </div>
         </form>
     </div>
