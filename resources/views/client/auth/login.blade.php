@@ -1,23 +1,43 @@
-<main class="form-signin w-100 m-auto">
-    <form>
-        <h1 class="bi bi-music-note-list"></h1>
-        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+@extends('client.layouts.app')
+@section('title') Music.com | Register @endsection
+@section('main')
+    <div class="container-xl bg-light">
+        <form class="pt-4 px-5">
+            <!-- Username or email input -->
+            <div class="form-outline pb-4">
+                <input type="email" id="form2Example1" class="form-control"/>
+                <label class="form-label" for="form2Example1">@lang('app.usernameOrEmail')</label>
+            </div>
 
-        <div class="form-floating">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
-        </div>
-        <div class="form-floating">
-            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
-        </div>
+            <!-- Password input -->
+            <div class="form-outline pb-4">
+                <input type="password" id="form2Example2" class="form-control"/>
+                <label class="form-label" for="form2Example2">@lang('app.password')</label>
+            </div>
 
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
-    </form>
-</main>
+            <!-- 2 column grid layout for inline styling -->
+            <div class="row pb-4">
+                <div class="col d-flex justify-content-center">
+                    <!-- Checkbox -->
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked/>
+                        <label class="form-check-label" for="form2Example31"> @lang('app.rememberMe') </label>
+                    </div>
+                </div>
+
+                <div class="col text-center">
+                    <!-- Simple link -->
+                    <a href="#!">@lang('app.forgotPassword')?</a>
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <button type="button" class="btn btn-primary btn-block pb-4">@lang('app.login')</button>
+
+            <!-- Register buttons -->
+            <div class="text-center pb-4">
+                @lang('app.notMember')? <a href="#!">@lang('app.register')</a>
+            </div>
+        </form>
+    </div>
+@endsection
