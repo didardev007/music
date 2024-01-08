@@ -2,13 +2,14 @@
 
 @section('main')
     <div class="container-xl bg-light">
-        <div class="input-group px-5 py-3">
-            <form class="d-flex" action="{{ route('search') }}" method="get">
-                @csrf
-                <input type="text" class="form-control" name="query" value="{{ old('query', $query ?? '') }}" placeholder="@lang('app.search')">
-                <button class="btn btn-outline-secondary" type="submit">@lang('app.search')</button>
-            </form>
-        </div>
+        <form class="d-flex input-group px-5 py-3" action="{{ route('search') }}" method="get">
+            @csrf
+            <input type="text" class="form-control" placeholder="@lang('app.searchArtist')" id="query"
+                   name="query"
+                   value="{{ old('query', $query ?? '') }}">
+            <button class="btn btn-outline-secondary" type="submit" id="query">@lang('app.search')
+            </button>
+        </form>
 
         <div class="row">
 
@@ -34,7 +35,9 @@
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
                         <audio id="audioPlayer" controls>
-                            <h1 class="text-danger">DINLEMELI DAL</h1><source src="{{ asset('track/1668705065_ahmet-orazgulyyew-dam-dam-2022.mp3') }}" type="audio/mp3">
+                            <h1 class="text-danger">DINLEMELI DAL</h1>
+                            <source src="{{ asset('track/1668705065_ahmet-orazgulyyew-dam-dam-2022.mp3') }}"
+                                    type="audio/mp3">
                             Your browser does not support the audio tag.
                         </audio>
                     </div>
