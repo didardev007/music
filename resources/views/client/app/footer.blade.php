@@ -10,7 +10,8 @@
         <div class="col mb-3 text-center">
             <h5 class="text-danger-emphasis bi bi-list"></h5>
             <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-warning-emphasis">Home</a></li>
+                <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-warning-emphasis">@lang('app.home')
+                    </a></li>
                 <li class="nav-item mb-2">
                     <a class="nav-link text-warning-emphasis p-0" href="{{ route('artists.index') }}">@lang('app.artists')</a>
                 </li>

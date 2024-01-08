@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'home' => 'Home',
     'music' => 'Music',
     'artist' => 'Artist',
     'artists' => 'Artists',
@@ -32,5 +33,5 @@ return [
     'isMember' => 'Have an account',
     'searchArtist' => 'Enter Artist Name',
     'searchTrack' => 'Enter Track Name',
-    'confirmPassword' => 'Confirm Password',
+    'passwordConfirmation' => 'Confirm Password',
 ];
