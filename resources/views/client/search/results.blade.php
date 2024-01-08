@@ -37,7 +37,7 @@
                     </div>
                     <div class="col-md-6 offset-md-3">
                         <audio id="audioPlayer" controls>
-                            <source src="{{ asset('track/INSTASAMKA-MONEYKEN+LOVE.mp3') }}" type="audio/mp3">
+                            <source src="{{ asset('track/selim.mp3') }}" type="audio/mp3">
                             Your browser does not support the audio tag.
                         </audio>
                     </div>
