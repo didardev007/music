@@ -2,8 +2,8 @@
 
 @section('main')
     <div class="container-xl bg-light">
-        <div class="input-group px-5 py-3">
-            <form class="d-flex" action="{{ route('search') }}" method="get">
+        <div>
+            <form class="d-flex input-group px-5 py-3" action="{{ route('search') }}" method="get">
                 @csrf
                 <input type="text" class="form-control" name="query" value="{{ old('query', $query ?? '') }}" placeholder="@lang('app.search')">
                 <button class="btn btn-outline-secondary" type="submit">@lang('app.search')</button>
