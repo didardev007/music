@@ -19,8 +19,8 @@
     </div>
 
     <div class="form-floating pb-3">
-        <input type="text" class="form-control" id="username" placeholder="username" name="username" required>
-        <label for="username" class="text-black">@lang('app.username')</label>
+        <input type="email" class="form-control" id="email" placeholder="@lang('app.email')" name="email" required>
+        <label for="email" class="text-black">@lang('app.email')</label>
     </div>
     <div class="form-floating pb-3">
         <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password"
