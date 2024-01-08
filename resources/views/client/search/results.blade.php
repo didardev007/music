@@ -28,6 +28,14 @@
 
             <div class="col-12 col-md-4">
                 <h3>Tracks</h3>
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <audio id="audioPlayer" controls>
+                            <source src="{{ asset('track/1668705065_ahmet-orazgulyyew-dam-dam-2022.mp3') }}" type="audio/mp3">
+                            Your browser does not support the audio tag.
+                        </audio>
+                    </div>
+                </div>
                 @if ($results1->isEmpty())
                     <p>No tracks found.</p>
                 @else
