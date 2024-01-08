@@ -2,6 +2,11 @@
 
 @section('main')
     <div class="container-xl bg-light">
+        <div class="input-group px-5 py-3">
+            <input type="text" class="form-control" placeholder="@lang('app.search')">
+            <button class="btn btn-outline-secondary" type="button">@lang('app.search')</button>
+        </div>
+
         <h2>Search Results for "{{ $query }}"</h2>
 
         <div>
