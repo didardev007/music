@@ -20,11 +20,23 @@
                     </div>
                     @auth
                         <div class="col">
-                            <a href="{{ route('register') }}">
-                                <button class="btn btn-small text-danger-emphasis fw-bold">
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
                                     {{ auth()->user()->name }}
                                 </button>
-                            </a>
+                                <ul class="dropdown-menu">
+                                    <li class="dropdown-item">
+                                        <a class="nav-link link-info" href="{{ route('admin.logout') }}"
+                                           onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
+                                            Logout
+                                        </a>
+                                        <form action="{{ route('admin.logout') }}" method="post" id="logoutForm">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Delete Account</a></li>
+                                </ul>
+                            </div>
                         </div>
                     @else
                         <div class="col">
