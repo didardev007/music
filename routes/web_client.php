@@ -41,4 +41,3 @@ Route::resource('genres', GenreController::class);
 Route::resource('albums', AlbumController::class);
 Route::resource('playlists', PlaylistController::class);
 Route::get('/search', [SearchController::class, 'search'])->name('search');
-Route::resource('user', UserController::class);

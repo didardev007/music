@@ -35,6 +35,10 @@
                                         </form>
                                     </li>
                                     <li><a class="dropdown-item" href="#">Delete Account</a></li>
+                                    @if(auth()->user()->is_admin)
+                                        <li><a class="dropdown-item" href="{{ route('admin.dashboard')
+                                        }}">Dashboard</a></li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>
