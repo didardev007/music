@@ -9,25 +9,12 @@
     <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('css/splide.min.css') }}" rel="stylesheet">
 </head>
-<body class="bg-dark">
+<body class="bg-light">
 @include('client.app.alert')
 @include('client.app.nav')
 @yield('main')
 
 @include('client.app.footer')
-
-<!-- Навигационная панель Laravel -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ url('/') }}">Ваш сайт</a>
-
-    <!-- Дополнительные элементы навигации... -->
-
-    <!-- Форма поиска -->
-    <form class="form-inline my-2 my-lg-0" action="{{ route('search') }}" method="GET">
-        <input class="form-control mr-sm-2" type="text" placeholder="Поиск" name="query">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Найти</button>
-    </form>
-</nav>
 
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/splide.min.js') }}"></script>

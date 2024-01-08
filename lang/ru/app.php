@@ -32,4 +32,5 @@ return [
     'isMember' => 'Есть аккаунт',
     'searchArtist' => 'Поиск Исполнитель',
     'searchTrack' => 'Поиск Трек',
+    'confirmPassword' => 'Подтвердите пароль',
 ];

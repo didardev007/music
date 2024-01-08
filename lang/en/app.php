@@ -32,4 +32,5 @@ return [
     'isMember' => 'Have an account',
     'searchArtist' => 'Enter Artist Name',
     'searchTrack' => 'Enter Track Name',
+    'confirmPassword' => 'Confirm Password',
 ];
