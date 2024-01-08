@@ -60,9 +60,10 @@
                     </li>
                 </ul>
                 @if(request()->is('/'))
-                    <form class="d-flex" action="{{ route('search') }}" role="search">
-                        <input class="form-control me-2" type="search" name="q" value="{{ isset($q) ? $q : old('q') }}"
-                               placeholder="@lang('app.search')" aria-label="Search">
+                    <form class="d-flex" action="{{ route('search') }}" method="get">
+                        @csrf
+                        <input class="form-control me-2" type="text" name="query" value="{{ old('query', $query ?? '') }}"
+                               placeholder="@lang('app.search')">
                         <button class="btn btn-sm btn-outline-success fw-bold"
                                 type="submit">@lang('app.search')</button>
                     </form>
