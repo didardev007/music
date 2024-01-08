@@ -1,7 +1,7 @@
 @extends('client.layouts.app')
 
 @section('main')
-    <div class="container">
+    <div class="container-xl bg-light">
         <h2>Search Results for "{{ $query }}"</h2>
 
         <div>
