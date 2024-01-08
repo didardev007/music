@@ -51,7 +51,7 @@
                     </li>
                 </ul>
                 @if(request()->is('/'))
-                    <form class="d-flex" action="{{ route('tracks.index') }}">
+                    <form class="d-flex" action="{{ route('search') }}">
                         <input class="form-control me-2" type="search" placeholder="@lang('app.search')">
                         <button class="btn btn-sm btn-outline-success fw-bold" type="submit">@lang('app.search')</button>
                     </form>

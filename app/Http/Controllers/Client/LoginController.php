@@ -13,7 +13,7 @@ class LoginController extends Controller
 {
     public function create(): View
     {
-        return view('auth.login');
+        return view('client.auth.login');
     }
 
 
