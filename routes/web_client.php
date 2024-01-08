@@ -1,15 +1,14 @@
 <?php
 
 
+use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Client\ArtistController;
 use App\Http\Controllers\Client\AlbumController;
 use App\Http\Controllers\Client\GenreController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\PlaylistController;
 use App\Http\Controllers\Client\RegisterController;
-use App\Http\Controllers\Client\SearchController;
 use App\Http\Controllers\Client\TrackController;
-use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -39,4 +38,3 @@ Route::resource('artists', ArtistController::class);
 Route::resource('genres', GenreController::class);
 Route::resource('albums', AlbumController::class);
 Route::resource('playlists', PlaylistController::class);
-Route::get('/search', [SearchController::class, 'search'])->name('search');
