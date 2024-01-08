@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Artist;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -11,6 +12,9 @@ class SearchController extends Controller
     {
         $query = $request->input('query');
 
-        return view('client.search.results', ['query' => $query]);
+        $results = Artist::where('name', 'LIKE', '%' . $query . '%')
+            ->get();
+
+        return view('client.search.results', ['query' => $query, 'results' => $results]);
     }
 }
