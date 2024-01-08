@@ -9,13 +9,12 @@
     <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('css/splide.min.css') }}" rel="stylesheet">
 </head>
-<body class="bg-white">
+<body class="bg-dark">
 @include('client.app.alert')
 @include('client.app.nav')
 @yield('main')
 
 @include('client.app.footer')
-
 
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/splide.min.js') }}"></script>

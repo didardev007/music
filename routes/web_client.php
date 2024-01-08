@@ -10,6 +10,7 @@ use App\Http\Controllers\Client\PlaylistController;
 use App\Http\Controllers\Client\RegisterController;
 use App\Http\Controllers\Client\SearchController;
 use App\Http\Controllers\Client\TrackController;
+use App\Http\Controllers\client\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -40,3 +41,4 @@ Route::resource('genres', GenreController::class);
 Route::resource('albums', AlbumController::class);
 Route::resource('playlists', PlaylistController::class);
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::resource('user', UserController::class);
