@@ -10,7 +10,7 @@
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </head>
 
-<body class=" text-danger w-100 m-auto" style="max-width: 330px;padding: 1rem">
+<body class=" text-black w-100 m-auto" style="max-width: 330px;padding: 1rem">
 <form action="{{route('admin.login')}}" method="post">
     @csrf
     <div class="text-center">
