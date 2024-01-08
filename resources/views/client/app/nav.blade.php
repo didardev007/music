@@ -20,9 +20,11 @@
                     </div>
                     @auth
                         <div class="col">
-                            <div class="btn btn-small text-danger-emphasis fw-bold">
-                                {{ auth()->user()->name }}
-                            </div>
+                            <a href="{{ route('register') }}">
+                                <button class="btn btn-small text-danger-emphasis fw-bold">
+                                    {{ auth()->user()->name }}
+                                </button>
+                            </a>
                         </div>
                     @else
                         <div class="col">
@@ -59,7 +61,6 @@
                 </ul>
                 @if(request()->is('/'))
                     <form class="d-flex" action="{{ route('search') }}" role="search">
-                        @csrf
                         <input class="form-control me-2" type="search" name="q" value="{{ isset($q) ? $q : old('q') }}"
                                placeholder="@lang('app.search')" aria-label="Search">
                         <button class="btn btn-sm btn-outline-success fw-bold"
