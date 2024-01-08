@@ -9,7 +9,7 @@
     <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('css/splide.min.css') }}" rel="stylesheet">
 </head>
-<body class="bg-dark">
+<body class="bg-white">
 @include('client.app.alert')
 @include('client.app.nav')
 @yield('main')
