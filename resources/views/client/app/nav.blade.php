@@ -18,24 +18,11 @@
                             </button>
                         </a>
                     </div>
-                    @auth
-                        <div class="col">
-                            <a href="{{ route('user.index') }}">
-                                <div>
-                                    <img src="{{ asset('img/user_profile.jpg') }}">
-                                </div>
-                                <div class="h6">
-                                    $user->name
-                                </div>
-                            </a>
-                        </div>
-                    @else
-                        <div class="col">
-                            <a href="{{ route('register') }}">
-                                <button class="btn btn-small text-danger-emphasis bi bi-person-square fw-bold"></button>
-                            </a>
-                        </div>
-                    @endif
+                    <div class="col">
+                        <a href="{{ route('register') }}">
+                            <button class="btn btn-small text-danger-emphasis bi bi-person-square fw-bold"></button>
+                        </a>
+                    </div>
                 </div>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -65,10 +52,8 @@
                 </ul>
                 @if(request()->is('/'))
                     <form class="d-flex" action="{{ route('search') }}" role="search">
-                        <input class="form-control me-2" type="search" name="q" value="{{ isset($q) ? $q : old('q') }}"
-                               placeholder="@lang('app.search')" aria-label="Search">
-                        <button class="btn btn-sm btn-outline-success fw-bold"
-                                type="submit">@lang('app.search')</button>
+                        <input class="form-control me-2" type="search" name="q" value="{{ isset($q) ? $q : old('q') }}" placeholder="@lang('app.search')" aria-label="Search">
+                        <button class="btn btn-sm btn-outline-success fw-bold" type="submit">@lang('app.search')</button>
                     </form>
                 @endif
             </div>
