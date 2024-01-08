@@ -1,7 +1,12 @@
 @extends('client.layouts.app')
 
 @section('main')
-    <div class="container">
+    <div class="container-xl bg-light">
+        <div class="input-group px-5 py-3">
+            <input type="text" class="form-control" placeholder="@lang('app.searchArtist')">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">@lang('app.search')</button>
+        </div>
+
         <div class="row">
 
             <div class="py-3">
