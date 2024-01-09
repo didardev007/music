@@ -30,11 +30,6 @@
         </div>
 
         <div class="mb-3">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-
-        <div class="mb-3">
             <label for="is_admin" class="form-label">Admin</label>
             <select class="form-select" id="is_admin" name="is_admin">
                 <option value="0" @if(!$user->is_admin) selected @endif>No</option>

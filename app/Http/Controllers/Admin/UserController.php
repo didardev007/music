@@ -50,7 +50,6 @@ class UserController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255|',
             'email' => 'required|email|max:255|',
-            'password' => 'nullable|min:6',
             'is_admin' => 'nullable|boolean',
             'username' => 'required|string|max:255|',
         ]);
