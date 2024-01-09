@@ -29,7 +29,7 @@ Route::middleware(['auth', 'check.admin'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('/album', AlbumController::class)->except(['show']);
-        Route::get('/track', [TrackController::class, 'index'])->name('track');
+        Route::resource('/track', TrackController::class)->except(['show']);
         Route::resource('/genre', GenreController::class)->except(['show']);
         Route::resource('/artist', ArtistController::class)->except(['show']);
         Route::resource('/user', UserController::class)->except(['show']);

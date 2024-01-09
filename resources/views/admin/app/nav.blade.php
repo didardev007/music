@@ -16,9 +16,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link d-flex align-items-center gap-2 link-dark {{request()->routeIs('admin.track') ? 'nav-link d-flex align-items-center gap-2 bg-primary py-1 px-2 rounded-4': ''}}"
-                   href="{{route('admin.track')}}">
-                    <i class="bi bi-music-player text-primary {{request()->routeIs('admin.track') ? 'bi bi-music-player text-light': ''}}"></i>
+                <a class="nav-link d-flex align-items-center gap-2 link-dark {{request()->routeIs('admin.track.index') ? 'nav-link d-flex align-items-center gap-2 bg-primary py-1 px-2 rounded-4': ''}}"
+                   href="{{route('admin.track.index')}}">
+                    <i class="bi bi-music-player text-primary {{request()->routeIs('admin.track.index') ? 'bi bi-music-player text-light': ''}}"></i>
                     Tracks
                 </a>
             </li>
@@ -53,6 +53,11 @@
         <hr class="my-3">
 
         <ul class="nav flex-column mb-auto">
+            <li class="nav-item">
+                <a class="nav-link d-flex align-items-center gap-2 link-dark" href="{{ route('home') }}" target="_blank">
+                    <i class="bi-box-arrow-up-right"></i>Home
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link d-flex align-items-center gap-2 link-dark" href="#">
                     <i class="bi bi-gear text-warning-emphasis"></i>Settings
