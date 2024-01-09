@@ -13,6 +13,8 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Country</th>
+                <th>Date of birth</th>
                 <th>Image</th>
                 <th>Action</th>
             </tr>
@@ -21,7 +23,9 @@
                 @foreach($artists as $artist)
                     <tr>
                         <td>{{$artist->id}}</td>
-                        <td><small class="h4 fw-normal">{{$artist->name}} </small> <br>{{$artist->country}}<br> {{$artist->date_of_birth}}</td>
+                        <td><small class="h4 fw-normal">{{$artist->name}} </small></td>
+                        <td><small class="h5 fw-normal">{{$artist->country}}</small></td>
+                        <td><small class="h5 fw-normal">{{$artist->date_of_birth}}</small></td>
                         <td>
                             @if($artist->image)
                                 <img src="{{asset('img/'. $artist->image)}}" alt="Artist Image" class="img-thumbnail" style="max-width: 100px;">

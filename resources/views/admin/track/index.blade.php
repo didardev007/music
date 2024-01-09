@@ -36,13 +36,13 @@
                     <small class="fw-normal">Genre: {{ $track->genre->name }}</small>
                 </td>
                 <td>
-                    <small class="h5 fw-normal">{{ $track->durability }}</small>
+                    <div class="fw-normal">{{ $track->durability }}</div>
                 </td>
                 <td>
-                    <small class="h5 fw-normal">{{ $track->viewed }}</small>
+                    <div class="fw-normal">{{ $track->viewed }}</div>
                 </td>
                 <td>
-                    <small class="h5 fw-normal">{{ $track->release_date }}</small>
+                    <div class="fw-normal">{{ $track->release_date }}</div>
                 </td>
                 <td>
                     <a href="{{ route('admin.track.edit', $track->id) }}" class="btn btn-primary">Edit</a>
