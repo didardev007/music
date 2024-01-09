@@ -23,18 +23,19 @@ Route::controller(LoginController::class)
 
 
 
-Route::middleware('auth')
+Route::middleware(['auth', 'check.admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
-        Route::get('/', [DashboardController::class,'index'])->name('dashboard');
-        Route::resource('/album',AlbumController::class)->except(['show']);
-        Route::get('/track',[TrackController::class, 'index'])->name('track');
-        Route::resource('/genre',GenreController::class)->except(['show']);
-        Route::resource('/artist',ArtistController::class)->except(['show']);
-        Route::resource('/user',UserController::class)->except(['show']);
-        Route::get('/playlist',[PlaylistController::class, 'index'])->name('playlist');
+        Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+        Route::resource('/album', AlbumController::class)->except(['show']);
+        Route::get('/track', [TrackController::class, 'index'])->name('track');
+        Route::resource('/genre', GenreController::class)->except(['show']);
+        Route::resource('/artist', ArtistController::class)->except(['show']);
+        Route::resource('/user', UserController::class)->except(['show']);
+        Route::get('/playlist', [PlaylistController::class, 'index'])->name('playlist');
     });
+
 
 
 
