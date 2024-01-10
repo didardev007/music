@@ -33,17 +33,23 @@ class TrackFactory extends Factory
         $viewed = rand();
         $release_date = fake()->date('Y-m-d');
         $created_at = fake()->dateTimeBetween($release_date, 'now')->format('Y-m-d');
+        $mp3_path = 'public/track/selim.mp3'; // Replace with your logic to generate or fetch the path
+        $file_size = fake()->randomNumber(); // Replace with your logic to generate or fetch the file size
 
         return [
             'artist_id' => $artist->id,
             'album_id' => isset($album) ? $album->id : null,
             'genre_id' => $genre->id,
+            'is_favorite' => fake()->boolean(),
             'name' => $name,
             'slug' => str($name)->slug() . rand(),
             'durability' => $durability,
             'viewed' => $viewed,
             'release_date' => $release_date,
+            'mp3_path' => $mp3_path,
+            'file_size' => $file_size,
             'created_at' => $created_at,
         ];
     }
+
 }
