@@ -74,10 +74,6 @@
                         <a class="nav-link text-warning-emphasis"
                            href="{{ route('genres.index') }}">@lang('app.genres')</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-warning-emphasis"
-                           href="{{ route('favorites') }}">Favorites</a>
-                    </li>
                 </ul>
                 @if(request()->is('/'))
                     <form class="d-flex" action="{{ route('search') }}" method="get">
