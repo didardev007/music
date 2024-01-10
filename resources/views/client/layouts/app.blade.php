@@ -8,6 +8,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('css/splide.min.css') }}" rel="stylesheet">
+    @stack('scripts')
 </head>
 <body class="bg-dark">
 @include('client.app.alert')

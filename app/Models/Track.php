@@ -21,6 +21,11 @@ class Track extends Model
         return $this->belongsTo(Artist::class);
     }
 
+    public function playlists()
+    {
+        return $this->belongsToMany(Playlist::class);
+    }
+
     public function album(): BelongsTo
     {
         return $this->belongsTo(Album::class);
@@ -31,9 +36,4 @@ class Track extends Model
         return $this->belongsTo(Genre::class);
     }
 
-
-    public function playlists(): BelongsToMany
-    {
-        return $this->belongsToMany(Playlist::class, 'track_playlists');
-    }
 }

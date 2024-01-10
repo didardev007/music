@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('durability')->nullable();
             $table->unsignedBigInteger('viewed')->default(0);
             $table->string('release_date')->nullable();
+            $table->string('mp3_path');
+            $table->string('file_size')->nullable();
             $table->timestamps();
         });
     }
