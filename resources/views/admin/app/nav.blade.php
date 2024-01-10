@@ -36,9 +36,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link d-flex align-items-center gap-2 link-dark {{request()->routeIs('admin.playlist') ? 'nav-link d-flex align-items-center gap-2 bg-success py-1 px-2 rounded-4': ''}}"
-                   href="{{route('admin.playlist')}}">
-                    <i class="bi bi-music-note-list text-success {{request()->routeIs('admin.playlist') ? 'bi bi-music-note-list text-light': ''}}"></i>Playlist
+                <a class="nav-link d-flex align-items-center gap-2 link-dark {{request()->routeIs('admin.playlist.index') ? 'nav-link d-flex align-items-center gap-2 bg-success py-1 px-2 rounded-4': ''}}"
+                   href="{{route('admin.playlist.index')}}">
+                    <i class="bi bi-music-note-list text-success {{request()->routeIs('admin.playlist.index') ? 'bi bi-music-note-list text-light': ''}}"></i>Playlist
                 </a>
             </li>
             <li class="nav-item">
