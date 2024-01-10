@@ -53,9 +53,49 @@
                         <div class="text-end">
                             <button class="btn btn-md btn-outline-danger bi bi-download"></button>
                         </div>
+                        <div class="text-end ms-md-2">
+                            <form id="favoriteForm{{ $track->id }}" method="post" action="{{ route('markFavorite', ['trackId' => $track->id]) }}">
+                                @csrf
+                                <button class="btn btn-md btn-outline-danger bi bi-heart{{ $track->is_favorite ? '-fill' : '' }}" type="submit"></button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let favoriteForms = document.querySelectorAll('form[id^="favoriteForm"]');
+
+            favoriteForms.forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+
+                    // Use Fetch API to submit the form asynchronously
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                    })
+                        .then(function (response) {
+                            return response.json();
+                        })
+                        .then(function (data) {
+                            // Toggle the heart icon based on the favorite status
+                            let heartIcon = form.querySelector('.bi-heart');
+                            if (data.is_favorite) {
+                                heartIcon.classList.add('bi-heart-fill');
+                            } else {
+                                heartIcon.classList.remove('bi-heart-fill');
+                            }
+                        })
+                        .catch(function (error) {
+                            console.error(error);
+                        });
+                });
+            });
+        });
+    </script>
+@endpush

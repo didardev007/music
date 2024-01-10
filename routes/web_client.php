@@ -40,4 +40,6 @@ Route::resource('artists', ArtistController::class);
 Route::resource('genres', GenreController::class);
 Route::resource('albums', AlbumController::class);
 Route::resource('playlists', PlaylistController::class);
+Route::get('/favorites', [PlaylistController::class, 'showFavorites'])->name('favorites');
+Route::post('/mark-favorite/{trackId}', [PlaylistController::class, 'markFavorite'])->name('markFavorite');
 Route::get('/search', [SearchController::class, 'search'])->name('search');

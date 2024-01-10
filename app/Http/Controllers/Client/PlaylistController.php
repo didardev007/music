@@ -4,13 +4,34 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Playlist;
+use App\Models\Track;
 use Illuminate\Http\Request;
 
 class PlaylistController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function markFavorite($trackId)
+    {
+        $track = Track::findOrFail($trackId);
+
+        // Toggle the favorite status
+        $track->is_favorite = !$track->is_favorite;
+        $track->save();
+
+        $message = $track->is_favorite ? 'Track marked as favorite' : 'Track canceled in favorites';
+
+        return redirect()->back()->with('success', $message);
+    }
+
+
+    public function showFavorites()
+    {
+        $favoriteTracks = Track::where('is_favorite', true)
+            ->with('artist', 'album', 'genre')
+            ->get();
+
+        return view('client.playlists.index', ['favoriteTracks' => $favoriteTracks]);
+    }
+
     public function index()
     {
         //
