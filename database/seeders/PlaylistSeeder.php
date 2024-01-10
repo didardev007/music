@@ -11,7 +11,7 @@ class PlaylistSeeder extends Seeder
     {
         $playlists = [
             ['name' => 'Favorites', 'name_ru' => 'Избранное'],
-            ['name' => 'My Playlist', 'name_ru' => 'Мой плейлист'],
+            ['name' => 'New', 'name_ru' => 'Новинки'],
             ['name' => "Top-100 of the Month", 'name_ru' => 'Топ-100 месяца'],
         ];
 

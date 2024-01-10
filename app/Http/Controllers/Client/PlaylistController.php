@@ -32,9 +32,37 @@ class PlaylistController extends Controller
         return view('client.playlists.index', ['favoriteTracks' => $favoriteTracks]);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $request->validate([
+            'q' => 'nullable|string|max:30',
+        ]);
+        $f_q = $request->has('q') ? $request->q : null;
+        $f_q2 = $request->has('q') ? str($request->q)->slug() : null;
+
+        $playlists = Playlist::when(isset($f_q), function ($query) use ($f_q, $f_q2) {
+            return $query->where(function ($query) use ($f_q, $f_q2) {
+                $query->orWhere('name', 'like', '%' . $f_q . '%');
+                $query->orWhere('name_ru', 'like', '%' . $f_q . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q . '%');
+                $query->orWhere('name', 'like', '%' . $f_q2 . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q2 . '%');
+            });
+        })
+            ->paginate(20)
+            ->withQueryString();
+
+        $topPlaylists = Playlist::where('name', 'Favorites')
+            ->orWhere('name', 'New')
+            ->orWhere('name', 'Top-100 of the Month')
+            ->get();
+
+        return view('client.playlists.index')
+            ->with([
+                'playlists' => $playlists,
+                'topPlaylists' => $topPlaylists,
+                'f_q' => $f_q,
+            ]);
     }
 
     /**

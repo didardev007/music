@@ -1,4 +1,4 @@
-<div class="container-xl bg-info-subtle mt-5">
+<div class="container-xl bg-info-subtle mt-lg-5">
     <nav class="navbar navbar-expand-lg fw-bold">
         <div class="container-fluid">
             <a class="navbar-brand text-danger-emphasis" href="{{ route('home') }}">@lang('app.music')</a>

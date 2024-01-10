@@ -1,5 +1,5 @@
 <div class="container-xl bg-light">
-    <footer class="row row-cols-1 row-cols-sm-2 justify-content-between py-5 border-top">
+    <footer class="row row-cols-1 row-cols-sm-2 justify-content-between align-items-center py-5 border-top">
         <div class="col mb-3 text-center">
             <a href="/" class="mb-3 link-dark text-decoration-none">
                 <h2 class="bi bi-music-note-list text-danger-emphasis"></h2>
