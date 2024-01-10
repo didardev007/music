@@ -10,7 +10,6 @@
                         @include('client.app.artist')
                     </li>
                 @endforeach()
-
             </ul>
         </div>
     </section>

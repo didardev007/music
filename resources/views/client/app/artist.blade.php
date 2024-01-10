@@ -5,7 +5,7 @@
             <img src="{{ asset('img/artist.jpg') }}" class="w-75 rounded-circle">
         </div>
         <div class="py-3">
-            {{ $artist->name }}
+            {{ $artist->getName() }}
         </div>
     </div>
 </a>

@@ -12,4 +12,16 @@ class Playlist extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function getName()
+    {
+        $locale = app()->getLocale();
+        if ($locale == 'ru') {
+            return $this->name_ru ?: $this->name;
+        } elseif ($locale == 'en') {
+            return $this->name_en ?: $this->name;
+        } else {
+            return $this->name;
+        }
+    }
 }

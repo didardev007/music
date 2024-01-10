@@ -18,6 +18,7 @@ class ArtistFactory extends Factory
 
         return [
             'name' => $name,
+            'name_ru' => str($name)->upper(),
             'slug' => str($name)->slug(),
             'date_of_birth' => $date_of_birth,
             'country' => $country,

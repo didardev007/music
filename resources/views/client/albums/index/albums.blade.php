@@ -1,6 +1,6 @@
 <div class="container-xl bg-light">
     <div class="h3 text-primary text-center py-3">
-        <a href="{{ route('artists.index') }}" class="text-decoration-none link-primary">@lang('app.artists')</a>
+        <a href="{{ route('albums.index') }}" class="text-decoration-none link-primary">@lang('app.albums')</a>
     </div>
     <form class="d-flex input-group px-5 py-3" action="{{ url()->current() }}" method="get">
         @csrf
@@ -9,8 +9,8 @@
         <button class="btn btn-outline-secondary" type="submit">@lang('app.search')</button>
     </form>
     <div class="row row-cols-2 row-cols-md-3">
-        @foreach($artists as $artist)
-            @include('client.app.artist')
+        @foreach($albums as $album)
+            @include('client.app.album')
         @endforeach()
     </div>
 </div>

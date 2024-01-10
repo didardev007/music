@@ -11,9 +11,31 @@ class GenreController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $request->validate([
+            'q' => 'nullable|string|max:30',
+        ]);
+        $f_q = $request->has('q') ? $request->q : null;
+        $f_q2 = $request->has('q') ? str($request->q)->slug() : null;
+
+        $genres = Genre::when(isset($f_q), function ($query) use ($f_q, $f_q2) {
+            return $query->where(function ($query) use ($f_q, $f_q2) {
+                $query->orWhere('name', 'like', '%' . $f_q . '%');
+                $query->orWhere('name_ru', 'like', '%' . $f_q . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q . '%');
+                $query->orWhere('name', 'like', '%' . $f_q2 . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q2 . '%');
+            });
+        })
+            ->paginate(20)
+            ->withQueryString();
+
+        return view('client.genres.index')
+            ->with([
+                'genres' => $genres,
+                'f_q' => $f_q,
+            ]);
     }
 
     /**
