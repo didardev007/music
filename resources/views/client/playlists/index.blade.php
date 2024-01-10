@@ -2,7 +2,7 @@
 @section('title') Music | Playlists @endsection
 @section('main')
     <div class="container-xl bg-light">
-        <div class="h4 text-primary text-center py-3">
+        <div class="h3 text-primary text-center py-3">
             <a href="{{ route('playlists.index') }}" class="text-decoration-none link-primary">@lang('app.playlists')
             </a>
         </div>

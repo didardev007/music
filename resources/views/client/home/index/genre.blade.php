@@ -14,7 +14,7 @@
                                     <img src="{{ asset('img/drawn_mic.jpg') }}" class="w-75 rounded-circle">
                                 </div>
                                 <div class="py-3">
-                                    {{ $genre->name }}
+                                    {{ $genre->getName() }}
                                 </div>
                             </div>
                         </a>

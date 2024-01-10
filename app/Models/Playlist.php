@@ -12,11 +12,4 @@ class Playlist extends Model
     protected $guarded = [
         'id',
     ];
-
-    protected $fillable = ['name', 'name_ru'];
-
-    public function tracks()
-    {
-        return $this->belongsToMany(Track::class);
-    }
 }

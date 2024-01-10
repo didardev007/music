@@ -21,6 +21,7 @@ class AlbumFactory extends Factory
         return [
             'artist_id' => $artist->id,
             'name' => $name,
+            'name_ru' => str($name)->upper(),
             'slug' => str($name)->slug(),
             'description' => fake()->text(255),
             'release_date' => $release_date,

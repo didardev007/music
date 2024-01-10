@@ -22,11 +22,40 @@
         <input type="email" class="form-control" id="email" placeholder="@lang('app.email')" name="email" required>
         <label for="email" class="text-black">@lang('app.email')</label>
     </div>
-    <div class="form-floating pb-3">
-        <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password"
-               required>
-        <label for="floatingPassword" class="text-black">@lang('app.password')</label>
+
+    <div class="mb-3">
+        <label for="password" class="form-label">@lang('app.password')</label>
+        <div class="row g-2">
+            <div class="col">
+                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required>
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-light" id="btn-password" value="0"><i class="bi-eye-slash-fill"></i></button>
+            </div>
+        </div>
+        <script>
+            document.getElementById('btn-password').addEventListener('click', function () {
+                if (this.value === '0') {
+                    this.value = '1';
+                    this.firstElementChild.className = 'text-primary bi-eye-fill';
+                    this.parentElement.previousElementSibling.firstElementChild.setAttribute('type', 'text');
+                } else {
+                    this.value = '0';
+                    this.firstElementChild.className = 'bi-eye-slash-fill';
+                    this.parentElement.previousElementSibling.firstElementChild.setAttribute('type', 'password');
+                }
+            })
+        </script>
+        @error('password')
+        <div class="alert alert-danger mt-2">{{ $message }}</div>
+        @enderror
     </div>
+
+    {{--<div class="form-floating pb-3">--}}
+        {{--<input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password"--}}
+               {{--required>--}}
+        {{--<label for="floatingPassword" class="text-black">@lang('app.password')</label>--}}
+    {{--</div>--}}
 
     <button class="btn btn-primary w-100 py-2" type="submit">@lang('app.login')</button>
 </form>

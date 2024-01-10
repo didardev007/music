@@ -14,7 +14,7 @@
                                     <img src="{{ asset('img/album.jpg') }}" class="w-75 rounded-circle">
                                 </div>
                                 <div class="py-3">
-                                    {{ $album->name }}
+                                    {{ $album->getName() }}
                                 </div>
                             </div>
                         </a>

@@ -35,6 +35,7 @@
             </div>
 
             <!-- Password input -->
+
             <div class="form-outline pb-4">
                 <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                        name="password" value="{{ old('password') }}" required>

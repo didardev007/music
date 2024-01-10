@@ -8,7 +8,7 @@
                         <img src="{{ asset('img/playlist.jpg') }}" class="w-75 rounded-circle">
                     </div>
                     <div class="py-3">
-                        {{ $playlist->name }}
+                        {{ $playlist->getName() }}
                     </div>
                 </div>
             </a>

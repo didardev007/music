@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('artist_id')->index();
             $table->foreign('artist_id')->references('id')->on('artists')->cascadeOnDelete();
             $table->string('name');
+            $table->string('name_ru')->nullable();
             $table->string('slug')->unique();
             $table->string('description')->nullable();
             $table->dateTime('release_date')->nullable();
