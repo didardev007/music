@@ -58,11 +58,6 @@
                     <i class="bi-box-arrow-up-right"></i>Home
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link d-flex align-items-center gap-2 link-dark" href="#">
-                    <i class="bi bi-gear text-warning-emphasis"></i>Settings
-                </a>
-            </li>
             <li class="nav-item pb-5">
                 <a class="nav-link link-danger" href="{{ route('admin.logout') }}"
                    onclick="event.preventDefault(); document.getElementById('logout').submit();">
