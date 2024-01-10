@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Genre;
+use App\Models\Playlist;
 use App\Models\Track;
 use Illuminate\Http\Request;
 
@@ -25,6 +26,9 @@ class HomeController extends Controller
             ->take(9)
             ->get();
 
+        $playlists = Playlist::orderBy('id', 'desc')
+            ->get();
+
 
         $newTracks = Track::with('artist', 'album', 'genre')
             ->orderBy('release_date', 'desc')
@@ -42,6 +46,7 @@ class HomeController extends Controller
                 'genres' => $genres,
                 'artists' => $artists,
                 'albums' => $albums,
+                'playlists' => $playlists,
                 'newTracks' => $newTracks,
                 'popularTracks' => $popularTracks,
             ]);

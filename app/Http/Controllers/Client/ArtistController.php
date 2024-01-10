@@ -30,10 +30,12 @@ class ArtistController extends Controller
         $artists = Artist::when(isset($f_q), function ($query) use ($f_q, $f_q2) {
             return $query->where(function ($query) use ($f_q, $f_q2) {
                 $query->orWhere('name', 'like', '%' . $f_q . '%');
-                $query->orWhere('name_ru', 'like', '%' . $f_q . '%');
                 $query->orWhere('slug', 'like', '%' . $f_q . '%');
                 $query->orWhere('name', 'like', '%' . $f_q2 . '%');
                 $query->orWhere('slug', 'like', '%' . $f_q2 . '%');
+                if ('name_ru' == null) {
+                    $query->orWhere('name_ru', 'like', '%' . $f_q . '%');
+                };
             });
         })
             ->when(isset($f_album), function ($query) use ($f_album) {
