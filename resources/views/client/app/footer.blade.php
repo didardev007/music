@@ -4,7 +4,7 @@
             <a href="/" class="mb-3 link-dark text-decoration-none">
                 <h2 class="bi bi-music-note-list text-danger-emphasis"></h2>
             </a>
-            <p class="text-muted">&copy; 2024</p>
+            <p class="text-muted">&copy; {{ date('Y') }}</p>
         </div>
 
         <div class="col mb-3 text-center">

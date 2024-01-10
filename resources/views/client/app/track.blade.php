@@ -54,7 +54,10 @@
                             <button class="btn btn-md btn-outline-danger bi bi-download"></button>
                         </div>
                         <div class="text-end ms-md-2">
-
+                            <form id="favoriteForm{{ $track->id }}" method="post" action="{{ route('markFavorite', ['trackId' => $track->id]) }}">
+                                @csrf
+                                <button class="btn btn-md btn-outline-danger bi bi-heart{{ $track->is_favorite ? '-fill' : '' }}" type="submit"></button>
+                            </form>
                         </div>
                     </div>
                 </div>
