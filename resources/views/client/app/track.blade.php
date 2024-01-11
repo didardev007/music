@@ -4,31 +4,27 @@
             <div class="row align-items-center">
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                     <div class="position-relative">
-                        <img src="{{ asset('img/real_mic.jpg') }}" alt="" class="img-fluid rounded">
+                        <!-- Make the image a circle and add spinning class -->
+                        <img src="{{ asset('img/real_mic.jpg') }}" alt="" class="img-fluid rounded-circle" id="albumImage{{$track->id}}" style="width: 100%; height: auto; aspect-ratio: 1/1;">
                     </div>
                 </div>
                 <div class="col-4 col-md-6 col-lg-7 col-xl-8">
-                    <a href="{{ route('tracks.show', $track->id) }}" class="link-dark h6
-                            text-decoration-none">
+                    <a href="{{ route('tracks.show', $track->id) }}" class="link-dark h6 text-decoration-none">
                         {{ $track->name }}
                     </a>
                     <div class="small">
                         <div class="text-danger-emphasis">
-                            @lang('app.artist'): <a href="{{ route('tracks.index', ['artist' =>
-                                    $track->artist->slug])
-                                     }}"
+                            @lang('app.artist'): <a href="{{ route('tracks.index', ['artist' => $track->artist->slug]) }}"
                                                     class="text-decoration-none">{{ $track->artist->name }}</a>
                         </div>
                         @isset($track->album)
                             <div class="text-danger-emphasis">
-                                @lang('app.album'): <a href="{{ route('tracks.index', ['album' =>
-                                    $track->album->slug]) }}"
+                                @lang('app.album'): <a href="{{ route('tracks.index', ['album' => $track->album->slug]) }}"
                                                        class="text-decoration-none">{{ $track->album->name }}</a>
                             </div>
                         @endisset
                         <div class="text-danger-emphasis">
-                            @lang('app.genre'): <a href="{{ route('tracks.index', ['genre' =>
-                                    $track->genre->slug]) }}"
+                            @lang('app.genre'): <a href="{{ route('tracks.index', ['genre' => $track->genre->slug]) }}"
                                                    class="text-decoration-none">{{ $track->genre->name }}</a>
                         </div>
                     </div>
@@ -48,16 +44,21 @@
                 <div class="col-2">
                     <div class="d-md-flex">
                         <div class="text-end me-md-2">
-                            <button class="btn btn-md btn-outline-danger bi bi-play-btn"></button>
+                            <!-- Add the play/pause button using Bootstrap icons -->
+                            <button class="btn btn-md btn-outline-danger bi bi-play-btn" id="playPauseButton{{$track->id}}" onclick="togglePlayPause('{{$track->id}}', '{{asset('track/selim.mp3')}}')">
+                            </button>
                         </div>
+
                         <div class="text-end">
-                            <button class="btn btn-md btn-outline-danger bi bi-download"></button>
+                            <!-- Download button using HTML link tag -->
+                            <a href="{{ asset('track/selim.mp3') }}" class="btn btn-md btn-outline-danger bi bi-download"
+                               download>
+                            </a>
                         </div>
                         <div class="text-end ms-md-2">
-                            <form id="favoriteForm{{ $track->id }}" method="post" action="{{ route('markFavorite', ['trackId' => $track->id]) }}">
-                                @csrf
-                                <button class="btn btn-md btn-outline-danger bi bi-heart{{ $track->is_favorite ? '-fill' : '' }}" type="submit"></button>
-                            </form>
+                            <button
+                                    class="btn btn-md btn-outline-danger bi bi-heart{{ $track->is_favorite ? '-fill' : '' }}"
+                                    type="submit"></button>
                         </div>
                     </div>
                 </div>
@@ -65,37 +66,82 @@
         </div>
     </div>
 </div>
+
+<!-- JavaScript function to play/pause audio and update image animation -->
 @push('scripts')
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            let favoriteForms = document.querySelectorAll('form[id^="favoriteForm"]');
+        let currentTrackId = null;
+        let audio = new Audio();
 
-            favoriteForms.forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    event.preventDefault();
+        function togglePlayPause(trackId, audioPath) {
+            if (currentTrackId === trackId) {
+                if (audio.paused) {
+                    playAudio(trackId, audioPath);
+                } else {
+                    pauseAudio();
+                }
+            } else {
+                // New track, stop current and play new
+                pauseAudio();
+                playAudio(trackId, audioPath);
+            }
+        }
 
-                    // Use Fetch API to submit the form asynchronously
-                    fetch(form.action, {
-                        method: 'POST',
-                        body: new FormData(form),
-                    })
-                        .then(function (response) {
-                            return response.json();
-                        })
-                        .then(function (data) {
-                            // Toggle the heart icon based on the favorite status
-                            let heartIcon = form.querySelector('.bi-heart');
-                            if (data.is_favorite) {
-                                heartIcon.classList.add('bi-heart-fill');
-                            } else {
-                                heartIcon.classList.remove('bi-heart-fill');
-                            }
-                        })
-                        .catch(function (error) {
-                            console.error(error);
-                        });
+        function playAudio(trackId, audioPath) {
+            console.log('Playing audio for track ' + trackId);
+            audio.src = audioPath;
+            audio.play()
+                .then(() => {
+                    // Start spinning animation
+                    document.getElementById('albumImage' + trackId).classList.add('spinning');
+                    // Change button icon to pause
+                    document.getElementById('playPauseButton' + trackId).classList.remove('bi-play-btn');
+                    document.getElementById('playPauseButton' + trackId).classList.add('bi-pause-btn');
+                })
+                .catch((error) => {
+                    console.error('Error playing audio:', error);
                 });
-            });
+
+            currentTrackId = trackId;
+        }
+
+        function pauseAudio() {
+            if (!audio.paused) {
+                console.log('Pausing audio for track ' + currentTrackId);
+                audio.pause();
+                // Stop spinning animation
+                document.getElementById('albumImage' + currentTrackId).classList.remove('spinning');
+                // Change button icon to play
+                document.getElementById('playPauseButton' + currentTrackId).classList.remove('bi-pause-btn');
+                document.getElementById('playPauseButton' + currentTrackId).classList.add('bi-play-btn');
+
+                currentTrackId = null;
+            }
+        }
+
+        audio.addEventListener('ended', function () {
+            // Reset image animation and button icon when audio ends
+            document.getElementById('albumImage' + currentTrackId).classList.remove('spinning');
+            document.getElementById('playPauseButton' + currentTrackId).classList.remove('bi-pause-btn');
+            document.getElementById('playPauseButton' + currentTrackId).classList.add('bi-play-btn');
+
+            currentTrackId = null;
         });
     </script>
 @endpush
+
+
+
+
+
+<style>
+    /* CSS for spinning animation */
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .spinning {
+        animation: spin 2s linear infinite;
+    }
+</style>

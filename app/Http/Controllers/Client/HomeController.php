@@ -30,7 +30,7 @@ class HomeController extends Controller
             ->get();
 
 
-        $newTracks = Track::with('artist', 'album', 'genre')
+         $newTracks = Track::with('artist', 'album', 'genre')
             ->orderBy('release_date', 'desc')
             ->orderBy('viewed', 'desc')
             ->take(9)
