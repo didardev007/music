@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Playlist;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +10,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class PlaylistFactory extends Factory
 {
+    public function configure(): static
+    {
+        return $this->afterMaking(function (Playlist $playlist) {
+            // ...
+        })->afterCreating(function (Playlist $playlist) {
+            $playlist->slug = str($playlist->name)->slug() . '-' . $playlist->id;
+            $playlist->update();
+        });
+    }
+
     public function definition(): array
     {
         $name = fake()->colorName();
@@ -16,7 +27,7 @@ class PlaylistFactory extends Factory
         return [
             'name' => $name,
             'name_ru' => str($name)->upper(),
-            'slug' => str($name)->slug(),
+            'slug' => str($name)->slug() . rand(),
         ];
     }
 }
