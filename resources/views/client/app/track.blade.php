@@ -60,7 +60,7 @@
                             <!-- Download button using HTML link tag -->
                             <a href="{{ asset('storage/' . $track->mp3_path) }}" class="btn btn-md
                             btn-outline-danger bi
-                            bi-download" download>
+                            bi-download" download="{{ $track->name }}">
                             </a>
                         </div>
                         <div class="text-end ms-md-2">
