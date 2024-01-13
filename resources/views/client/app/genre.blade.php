@@ -2,7 +2,7 @@
             text-decoration-none text-danger-emphasis h5">
     <div class="col text-center py-3">
         <div>
-            <img src="{{ asset('img/drawn_mic.jpg') }}" class="w-75 rounded-circle">
+            <img src="{{ asset('storage/img/' . $genre->images) }}" class="w-75 rounded-circle">
         </div>
         <div class="py-3">
             {{ $genre->getName() }}

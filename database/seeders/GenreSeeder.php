@@ -33,6 +33,7 @@ class GenreSeeder extends Seeder
             $el->name = $genre['name'];
             $el->name_ru = $genre['name_ru'];
             $el->slug = str($genre['name'])->slug();
+            $el->image= 'drawn_mic.jpg';
             $el->save();
         }
     }

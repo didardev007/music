@@ -14,7 +14,7 @@ class ArtistFactory extends Factory
         $name = fake()->name();
         $date_of_birth = fake()->date('Y-m-d', '-8 years');
         $country = fake()->country();
-        $image = "artist.jpg";
+        $image = 'artist.jpg';
 
         return [
             'name' => $name,

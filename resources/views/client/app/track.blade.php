@@ -5,7 +5,10 @@
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2">
                     <div class="position-relative">
                         <!-- Make the image a circle and add spinning class -->
-                        <img src="{{ asset('img/real_mic.jpg') }}" alt="" class="img-fluid rounded-circle" id="albumImage{{$track->id}}" style="width: 100%; height: auto; aspect-ratio: 1/1;">
+                        <img src="{{ asset('storage/img/' . $track->image) }}" alt="{{ $track->image }}"
+                             class="img-fluid
+                        rounded-circle"
+                             id="albumImage{{$track->id}}" style="width: 100%; height: auto; aspect-ratio: 1/1;">
                     </div>
                 </div>
                 <div class="col-4 col-md-6 col-lg-7 col-xl-8">
@@ -45,13 +48,16 @@
                     <div class="d-md-flex">
                         <div class="text-end me-md-2">
                             <!-- Add the play/pause button using Bootstrap icons -->
-                            <button class="btn btn-md btn-outline-danger bi bi-play-btn" id="playPauseButton{{$track->id}}" onclick="togglePlayPause('{{$track->id}}', '{{asset('track/selim.mp3')}}')">
+                            <button class="btn btn-md btn-outline-danger bi bi-play-btn"
+                                    id="playPauseButton{{$track->id}}" onclick="togglePlayPause('{{$track->id}}',
+                                    '{{ asset('storage/' . $track->mp3_path) }}')">
                             </button>
                         </div>
                         <div class="text-end">
                             <!-- Download button using HTML link tag -->
-                            <a href="{{ asset('track/selim.mp3') }}" class="btn btn-md btn-outline-danger bi bi-download"
-                               download>
+                            <a href="{{ asset('storage/' . $track->mp3_path) }}" class="btn btn-md
+                            btn-outline-danger bi
+                            bi-download" download>
                             </a>
                         </div>
                         <div class="text-end ms-md-2">

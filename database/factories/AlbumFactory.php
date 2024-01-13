@@ -24,6 +24,7 @@ class AlbumFactory extends Factory
             'name_ru' => str($name)->upper(),
             'slug' => str($name)->slug(),
             'description' => fake()->text(255),
+            'image' => 'album.jpg',
             'release_date' => $release_date,
             'created_at' => $created_at,
         ];

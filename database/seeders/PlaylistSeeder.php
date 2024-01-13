@@ -20,6 +20,7 @@ class PlaylistSeeder extends Seeder
                 'name' => $playlist['name'],
                 'name_ru' => $playlist['name_ru'],
                 'slug' => str($playlist['name'])->slug(),
+                'image' => 'topPlaylist.jpg',
             ]);
         }
     }

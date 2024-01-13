@@ -28,6 +28,7 @@ class PlaylistFactory extends Factory
             'name' => $name,
             'name_ru' => str($name)->upper(),
             'slug' => str($name)->slug() . rand(),
+            'image' => 'playlist.jpg',
         ];
     }
 }
