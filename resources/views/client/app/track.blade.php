@@ -43,6 +43,9 @@
                     <div>
                         @lang('app.viewed'): <span class="text-success">{{ $track->viewed }}</span>
                     </div>
+                    <div>
+                        @lang('app.size'): <span class="text-success">{{ $track->size_mb() }} Mb</span>
+                    </div>
                 </div>
                 <div class="col-2">
                     <div class="d-md-flex">

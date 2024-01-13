@@ -36,4 +36,8 @@ class Track extends Model
     {
         return $this->belongsToMany(Playlist::class, 'track_playlists');
     }
+
+    public function size_mb() {
+        return number_format($this->file_size / 1048576, 2);
+    }
 }
