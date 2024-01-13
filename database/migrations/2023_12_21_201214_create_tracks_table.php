@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('release_date')->nullable();
             $table->string('mp3_path');
             $table->string('file_size')->nullable();
+            $table->string('image');
             $table->timestamps();
         });
     }

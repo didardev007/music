@@ -48,7 +48,6 @@
                             <button class="btn btn-md btn-outline-danger bi bi-play-btn" id="playPauseButton{{$track->id}}" onclick="togglePlayPause('{{$track->id}}', '{{asset('track/selim.mp3')}}')">
                             </button>
                         </div>
-
                         <div class="text-end">
                             <!-- Download button using HTML link tag -->
                             <a href="{{ asset('track/selim.mp3') }}" class="btn btn-md btn-outline-danger bi bi-download"
@@ -58,7 +57,8 @@
                         <div class="text-end ms-md-2">
                             <button
                                     class="btn btn-md btn-outline-danger bi bi-heart{{ $track->is_favorite ? '-fill' : '' }}"
-                                    type="submit"></button>
+                                    type="submit">
+                            </button>
                         </div>
                     </div>
                 </div>
