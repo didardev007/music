@@ -40,61 +40,39 @@
         </select>
     </div>
 
-    <div class="mb-3">
-        <label for="series" class="form-label">Series</label>
-        <select class="form-select" id="series" name="series">
-            <option value selected>-</option>
-            @foreach($brands as $brand)
-                @foreach($brand->series as $series)
-                    <option value="{{ $series->slug }}" {{ $series->slug == $f_series ? 'selected':'' }}>
-                        {{ $brand->name }} ∙ {{ $series->name }}
-                    </option>
-                @endforeach
-            @endforeach
-        </select>
-    </div>
-
-    <div class="mb-3">
-        <label for="minPrice" class="form-label">Min price</label>
-        <input type="number" class="form-control" id="minPrice" name="minPrice" value="{{ $f_minPrice }}">
-    </div>
-
-    <div class="mb-3">
-        <label for="maxPrice" class="form-label">Max price</label>
-        <input type="number" class="form-control" id="maxPrice" name="maxPrice" value="{{ $f_maxPrice }}">
-    </div>
-
     <div class="form-check mb-3">
-        <input class="form-check-input" type="checkbox" value="1" id="hasDiscount" name="hasDiscount" {{ $f_hasDiscount ? 'checked':'' }}>
-        <label class="form-check-label" for="hasDiscount">
-            Has discount
+        <input class="form-check-input" type="checkbox" value="1" id="popularTrack" name="popularTrack" {{
+        $f_popularTrack ? 'checked':'' }}>
+        <label class="form-check-label" for="popularTrack">
+            Popular Tracks
         </label>
     </div>
 
     <div class="form-check mb-3">
-        <input class="form-check-input" type="checkbox" value="1" id="newProduct" name="newProduct" {{ $f_newProduct ? 'checked':'' }}>
-        <label class="form-check-label" for="newProduct">
-            New product
+        <input class="form-check-input" type="checkbox" value="1" id="newTrack" name="newTrack" {{ $f_newTrack ?
+        'checked':'' }}>
+        <label class="form-check-label" for="newTrack">
+            New Tracks
         </label>
     </div>
 
-    <div class="mb-3">
-        <label for="sortBy" class="form-label">Sort By</label>
-        <select class="form-select" id="sortBy" name="sortBy">
-            <option value {{ is_null($f_sortBy) ? 'selected':'' }}>
-                New to old
-            </option>
-            <option value="old-to-new" {{ 'old-to-new' == $f_sortBy ? 'selected':'' }}>
-                Old to new
-            </option>
-            <option value="low-to-high" {{ 'low-to-high' == $f_sortBy ? 'selected':'' }}>
-                Low to high
-            </option>
-            <option value="high-to-low" {{ 'high-to-low' == $f_sortBy ? 'selected':'' }}>
-                High to low
-            </option>
-        </select>
-    </div>
+    {{--<div class="mb-3">--}}
+        {{--<label for="sortBy" class="form-label">Sort By</label>--}}
+        {{--<select class="form-select" id="sortBy" name="sortBy">--}}
+            {{--<option value {{ is_null($f_sortBy) ? 'selected':'' }}>--}}
+                {{--New to old--}}
+            {{--</option>--}}
+            {{--<option value="old-to-new" {{ 'old-to-new' == $f_sortBy ? 'selected':'' }}>--}}
+                {{--Old to new--}}
+            {{--</option>--}}
+            {{--<option value="low-to-high" {{ 'low-to-high' == $f_sortBy ? 'selected':'' }}>--}}
+                {{--Low to high--}}
+            {{--</option>--}}
+            {{--<option value="high-to-low" {{ 'high-to-low' == $f_sortBy ? 'selected':'' }}>--}}
+                {{--High to low--}}
+            {{--</option>--}}
+        {{--</select>--}}
+    {{--</div>--}}
 
     <div class="row g-1 g-sm-2">
         <div class="col">

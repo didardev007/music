@@ -90,6 +90,7 @@ class TrackController extends Controller
                 'f_artist' => $f_artist,
                 'f_album' => $f_album,
                 'f_genre' => $f_genre,
+                'f_newTrack' => $f_newTrack,
             ]);
     }
 
