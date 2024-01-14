@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Playlist;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class PlaylistSeeder extends Seeder
 {
@@ -20,7 +21,7 @@ class PlaylistSeeder extends Seeder
                 'name' => $playlist['name'],
                 'name_ru' => $playlist['name_ru'],
                 'slug' => str($playlist['name'])->slug(),
-                'image' => 'topPlaylist.jpg',
+                'image' => 'playlist/topPlaylist',
             ]);
         }
     }

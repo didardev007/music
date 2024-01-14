@@ -85,7 +85,7 @@ class AlbumController extends Controller
         $obj = Album::with('tracks', 'artist')
             ->findOrFail($album);
 
-        return view('client.tracks.show')
+        return view('client.albums.show')
             ->with([
                 'obj' => $obj,
             ]);

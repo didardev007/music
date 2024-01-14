@@ -1,0 +1,6 @@
+.bg-album-image {
+    background-image: url("{{ Storage::disk('public')->url($obj->image) }}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}

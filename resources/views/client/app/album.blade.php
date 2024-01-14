@@ -2,7 +2,8 @@
             text-decoration-none text-danger-emphasis h5">
     <div class="col text-center py-3">
         <div>
-            <img src="{{ asset('storage/img/' . $album->image) }}" class="w-75 rounded-circle">
+            <img src="{{ asset('storage/' . $album->image) }}" class="w-75
+            rounded-circle">
         </div>
         <div class="py-3">
             {{ $album->getName() }}
