@@ -9,7 +9,7 @@
         <a href="{{ route('admin.track.index') }}" class="btn btn-secondary">Back to Track Index</a>
     </div>
 
-    <form method="post" action="{{ route('admin.track.store') }}">
+    <form method="post" action="{{ route('admin.track.store') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -57,6 +57,16 @@
         <div class="mb-3">
             <label for="release_date" class="form-label">Release Date</label>
             <input type="text" class="form-control" id="release_date" name="release_date" placeholder="year-month-day" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Track Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept=".jpg" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="mp3_path" class="form-label">Track File</label>
+            <input type="file" class="form-control" id="mp3_path" name="mp3_path" accept=".mp3, .wav, .flac" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Create Track</button>
