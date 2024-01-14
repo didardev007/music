@@ -34,4 +34,10 @@ return [
     'searchArtist' => 'Поиск Исполнитель',
     'searchTrack' => 'Поиск Трек',
     'passwordConfirmation' => 'Подтвердите пароль',
+    'size' => 'Размер',
+    'filter' => 'Фильтр',
+    'clear' => 'Очистить',
+    'deleteAccount' => 'Удалить Аккаунт',
+    'dashboard' => 'Панель Управления',
+    'logout' => 'Выйти',
 ];

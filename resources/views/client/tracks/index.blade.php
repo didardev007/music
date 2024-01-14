@@ -1,5 +1,20 @@
-<form class="d-flex" action="{{ route('tracks.index', $f_q) }}">
-    <input class="form-control me-2" type="search" placeholder="@lang('app.search')" id="q" name="q"
-           value="{{ $f_q }}" autocomplete="off" maxlength="30">
-    <button class="btn btn-sm btn-outline-success" type="submit">@lang('app.search')</button>
-</form>
+@extends('client.layouts.app')
+@section('title') Music | Tracks @endsection
+@section('main')
+    <div class="container-xl bg-light py-4">
+        <div class="h4 text-primary text-center pb-3">Tracks</div>
+        <div class="row">
+            <div class="col-md-4 col-lg-3 col-xl-2">
+                @include('client.app.filter')
+            </div>
+            <div class="col">
+                @foreach($tracks as $track)
+                    @include('client.app.track')
+                @endforeach
+                <div class="py-3">
+                    {{ $tracks->links() }}
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

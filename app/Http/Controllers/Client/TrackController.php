@@ -28,11 +28,11 @@ class TrackController extends Controller
         ]);
         $f_q = $request->has('q') ? $request->q : null;
         $f_q2 = $request->has('q') ? str($request->q)->slug() : null;
-        $f_user = $request->has('user') ? $request->user : null;
-        $f_artist = $request->has('artist') ? $request->atrtist : null;
+        $f_artist = $request->has('artist') ? $request->artist : null;
         $f_album = $request->has('album') ? $request->album : null;
         $f_genre = $request->has('genre') ? $request->genre : null;
         $f_newTrack = $request->has('newTrack') ? $request->newTrack : null;
+        $f_popularTrack = $request->has('popularTrack') ? $request->popularTrack : null;
 
         $tracks = Track::when(isset($f_q), function ($query) use ($f_q, $f_q2) {
                 return $query->where(function ($query) use ($f_q, $f_q2) {
@@ -61,10 +61,14 @@ class TrackController extends Controller
                 });
             })
             ->when($f_newTrack, function ($query) {
-                return $query->where('release_date', '>=', Carbon::now()->subWeek());
+                return $query->where('created_at', '>=', Carbon::now()->subYear())
+                    ->orderBy('created_at', 'desc');
+            })
+            ->when($f_popularTrack, function ($query) {
+                return $query->orderBy('viewed', 'desc');
             })
             ->with('artist', 'album', 'genre')
-            ->paginate(20)
+            ->paginate(10)
             ->withQueryString();
 
         $artists = Artist::orderBy('name')
@@ -83,36 +87,11 @@ class TrackController extends Controller
                 'albums' => $albums,
                 'genres' => $genres,
                 'f_q' => $f_q,
-                'f_user' => $f_user,
+                'f_popularTrack' => $f_popularTrack,
                 'f_artist' => $f_artist,
                 'f_album' => $f_album,
                 'f_genre' => $f_genre,
-            ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        $users = User::orderBy('name')
-            ->get();
-
-        $artists = Artist::orderBy('name')
-            ->get();
-
-        $albums = Album::orderBy('name')
-            ->get();
-
-        $genres = Genre::orderBy('name')
-            ->get();
-
-        return view('client.tracks.create')
-            ->with([
-                'users' => $users,
-                'artists' => $artists,
-                'albums' => $albums,
-                'genres' => $genres,
+                'f_newTrack' => $f_newTrack,
             ]);
     }
 
