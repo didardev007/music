@@ -34,4 +34,10 @@ return [
     'searchArtist' => 'Enter Artist Name',
     'searchTrack' => 'Enter Track Name',
     'passwordConfirmation' => 'Confirm Password',
+    'size' => 'Size',
+    'filter' => 'Filter',
+    'clear' => 'Clear',
+    'deleteAccount' => 'Delete Account',
+    'dashboard' => 'Dashboard',
+    'logout' => 'Logout',
 ];

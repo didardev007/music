@@ -28,16 +28,16 @@
                                     <li class="dropdown-item">
                                         <a class="nav-link link-info" href="{{ route('admin.logout') }}"
                                            onclick="event.preventDefault(); document.getElementById('logoutForm').submit();">
-                                            Logout
+                                            @lang('app.logout')
                                         </a>
                                         <form action="{{ route('admin.logout') }}" method="post" id="logoutForm">
                                             @csrf
                                         </form>
                                     </li>
-                                    <li><a class="dropdown-item" href="#">Delete Account</a></li>
+                                    <li><a class="dropdown-item" href="#">@lang('app.deleteAccount')</a></li>
                                     @if(auth()->user()->is_admin)
                                         <li><a class="dropdown-item" href="{{ route('admin.dashboard')
-                                        }}">Dashboard</a></li>
+                                        }}">@lang('app.dashboard')</a></li>
                                     @endif
                                 </ul>
                             </div>
