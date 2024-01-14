@@ -19,7 +19,6 @@ return new class extends Migration
             $table->foreign('album_id')->references('id')->on('albums')->cascadeOnDelete();
             $table->unsignedBigInteger('genre_id')->index();
             $table->foreign('genre_id')->references('id')->on('genres')->cascadeOnDelete();
-            $table->boolean('is_favorite')->default(false);
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('durability')->nullable();

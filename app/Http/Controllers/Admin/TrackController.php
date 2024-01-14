@@ -8,6 +8,7 @@ use App\Models\Genre;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class TrackController extends Controller
@@ -30,13 +31,13 @@ class TrackController extends Controller
     public function create()
     {
         $artists = Artist::orderBy('id', 'desc')
-        ->get();
+            ->get();
 
         $albums = Album::orderBy('id', 'desc')
-        ->get();
+            ->get();
 
         $genres = Genre::orderBy('id', 'desc')
-        ->get();
+            ->get();
 
         return view('admin.track.create', compact('artists', 'albums', 'genres'));
     }
@@ -51,6 +52,8 @@ class TrackController extends Controller
             'durability' => 'required|numeric',
             'viewed' => 'required|integer',
             'release_date' => 'required|date',
+            'mp3_path' => 'required|file|mimes:mp3|max:10240',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         // Generate slug from the track name
@@ -60,7 +63,32 @@ class TrackController extends Controller
         $count = Track::where('slug', $slug)->count();
         $validatedData['slug'] = ($count > 0) ? $slug . '-' . time() : $slug;
 
-        Track::create($validatedData);
+        // Create the track
+        $track = Track::create($validatedData);
+
+        // Store MP3 file
+        if ($request->hasFile('mp3_path') && $request->file('mp3_path')->isValid()) {
+            $mp3File = $request->file('mp3_path');
+            $mp3FileName = $mp3File->getClientOriginalName(); // You might want to use a unique filename
+
+            // Store the file in the "public/track" directory
+            $mp3Path = $mp3File->storeAs('public/track', $mp3FileName);
+
+            // Save the file path in the database
+            $track->update(['mp3_path' => 'track/' . $mp3FileName]);
+        }
+
+        // Handle image upload if provided
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $imageFile = $request->file('image');
+            $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
+
+            // Store the image in the "public/img" directory
+            $imagePath = $imageFile->storeAs('public/img', $imageFileName);
+
+            // Save the image path in the database
+            $track->update(['image' => $imageFileName]);
+        }
 
         return redirect()->route('admin.track.index')->with('success', 'Track created successfully.');
     }
@@ -78,47 +106,68 @@ class TrackController extends Controller
      */
     public function edit($id)
     {
-        // Find the track by ID
         $track = Track::findOrFail($id);
+        $artists = Artist::orderBy('id', 'desc')->get();
+        $albums = Album::orderBy('id', 'desc')->get();
+        $genres = Genre::orderBy('id', 'desc')->get();
 
-        // Fetch artists, albums, and genres for dropdowns
-        $artists = Artist::get();
-        $albums = Album::get();
-        $genres = Genre::get();
-
-        // Load the edit form view with track and related data
         return view('admin.track.edit', compact('track', 'artists', 'albums', 'genres'));
     }
 
+    // ... other methods ...
+
     public function update(Request $request, $id)
     {
-        // Validate the incoming request data
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string',
             'artist_id' => 'required|exists:artists,id',
             'album_id' => 'nullable|exists:albums,id',
             'genre_id' => 'required|exists:genres,id',
-            'durability' => 'required|string',
-            'viewed' => 'required|string',
+            'durability' => 'required|numeric',
+            'viewed' => 'required|integer',
             'release_date' => 'required|date',
+            'mp3_path' => 'nullable|file|mimes:mp3|max:10240',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        // Find the track by ID
         $track = Track::findOrFail($id);
 
-        // Update the track with the form data
+        // Update the track details
         $track->update([
-            'name' => $request->input('name'),
-            'artist_id' => $request->input('artist_id'),
-            'album_id' => $request->input('album_id'),
-            'genre_id' => $request->input('genre_id'),
-            'durability' => $request->input('durability'),
-            'viewed' => $request->input('viewed'),
-            'release_date' => $request->input('release_date'),
+            'name' => $validatedData['name'],
+            'artist_id' => $validatedData['artist_id'],
+            'album_id' => $validatedData['album_id'],
+            'genre_id' => $validatedData['genre_id'],
+            'durability' => $validatedData['durability'],
+            'viewed' => $validatedData['viewed'],
+            'release_date' => $validatedData['release_date'],
         ]);
 
-        // Redirect back with a success message or to another route
-        return redirect()->route('admin.track.index')->with('success', 'Track updated successfully');
+        // Update MP3 file if provided
+        if ($request->hasFile('mp3_path') && $request->file('mp3_path')->isValid()) {
+            $mp3File = $request->file('mp3_path');
+            $mp3FileName = $mp3File->getClientOriginalName(); // You might want to use a unique filename
+
+            // Store the file in the "public/track" directory
+            $mp3Path = $mp3File->storeAs('public/track', $mp3FileName);
+
+            // Save the file path in the database
+            $track->update(['mp3_path' => 'track/' . $mp3FileName]);
+        }
+
+        // Update image if provided
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $imageFile = $request->file('image');
+            $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
+
+            // Store the image in the "public/img" directory
+            $imagePath = $imageFile->storeAs('public/img', $imageFileName);
+
+            // Save the image path in the database
+            $track->update(['image' => $imageFileName]);
+        }
+
+        return redirect()->route('admin.track.index')->with('success', 'Track updated successfully.');
     }
 
     /**

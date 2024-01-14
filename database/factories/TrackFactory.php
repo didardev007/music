@@ -44,7 +44,6 @@ class TrackFactory extends Factory
             'artist_id' => $artist->id,
             'album_id' => isset($album) ? $album->id : null,
             'genre_id' => $genre->id,
-            'is_favorite' => fake()->boolean(),
             'name' => $name,
             'slug' => str($name)->slug() . rand(),
             'durability' => $durability,
