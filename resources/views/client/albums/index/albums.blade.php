@@ -1,4 +1,4 @@
-<div class="container-xl bg-light">
+<div class="container-xl">
     <div class="h3 text-primary text-center py-3">
         <a href="{{ route('albums.index') }}" class="text-decoration-none link-primary">@lang('app.albums')</a>
     </div>

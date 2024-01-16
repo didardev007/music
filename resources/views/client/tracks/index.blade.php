@@ -1,7 +1,7 @@
 @extends('client.layouts.app')
 @section('title') Music | Tracks @endsection
 @section('main')
-    <div class="container-xl bg-light py-4">
+    <div class="container-xl py-4">
         <div class="h4 text-primary text-center pb-3">Tracks</div>
         <div class="row">
             <div class="col-md-4 col-lg-3 col-xl-2">

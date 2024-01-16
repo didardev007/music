@@ -1,7 +1,7 @@
 @extends('client.layouts.app')
 @section('title') Music.com | Register @endsection
 @section('main')
-    <div class="container-xl bg-light">
+    <div class="container-xl">
         <form action="{{ route('register') }}" class="pt-4 px-5" method="post">
         @csrf
         <!-- Name input -->

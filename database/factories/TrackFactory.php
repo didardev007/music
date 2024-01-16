@@ -29,6 +29,9 @@ class TrackFactory extends Factory
         $files = Storage::disk('public')->allFiles('track');
         $randomFile = $files[rand(0, count($files) - 1)];
 
+        $images = Storage::disk('public')->allFiles('track_img');
+        $randomImages = $images[rand(0, count($images) - 1)];
+
         $artist = Artist::inRandomOrder()->first();
         $album = Album::where('artist_id', $artist->id)->inRandomOrder()->first();
         $genre = Genre::inRandomOrder()->first();
@@ -51,7 +54,7 @@ class TrackFactory extends Factory
             'release_date' => $release_date,
             'mp3_path' => $mp3_path,
             'file_size' => $file_size,
-            'image' => 'real_mic.jpg',
+            'image' => $randomImages,
             'created_at' => $created_at,
         ];
     }

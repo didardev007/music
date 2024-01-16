@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 
 
+Route::get('locale/{locale}', [HomeController::class, 'locale'])->name('locale')->where('locale', '[a-z]+');
 
 Route::controller(HomeController::class)
     ->group(function() {
         Route::get('', 'index')->name('home');
-        Route::get('locale/{locale}', 'locale')->name('locale')->where('locale', '[a-z]+');
     });
 
 Route::middleware('guest')

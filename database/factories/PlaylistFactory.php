@@ -11,20 +11,18 @@ use Illuminate\Support\Facades\Storage;
  */
 class PlaylistFactory extends Factory
 {
-    public function configure(): static
-    {
-        return $this->afterMaking(function (Playlist $playlist) {
-            // ...
-        })->afterCreating(function (Playlist $playlist) {
-            $playlist->slug = str($playlist->name)->slug() . '-' . $playlist->id;
-            $playlist->update();
-        });
-    }
-
     public function definition(): array
     {
         $files = Storage::disk('public')->allFiles('playlist');
+
+        foreach ($files as $file) {
+            if ($file = array_search('playlist/topPlaylist.jpg', $files)) {
+                unset($files[$file]);
+            }
+        }
+
         $randomFile = $files[rand(0, count($files) - 1)];
+
 
         $name = fake()->colorName();
 

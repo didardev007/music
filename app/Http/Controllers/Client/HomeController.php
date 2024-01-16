@@ -37,8 +37,8 @@ class HomeController extends Controller
             ->get();
 
         $popularTracks = Track::with('artist', 'album', 'genre')
-            ->orderBy('viewed', 'desc')
-            ->take(9)
+            ->where('viewed', '>', 10)
+            ->take(10)
             ->get();
 
         return view('client.home.index')

@@ -15,9 +15,6 @@ class GenreSeeder extends Seeder
     public function run(): void
     {
 
-        $files = Storage::disk('public')->allFiles('genre');
-        $randomFile = $files[rand(0, count($files) - 1)];
-
         $genres = [
             ['name' => 'Speed Up', 'name_ru' => ''],
             ['name' => 'Slowed + Reverb', 'name_ru' => ''],
@@ -34,11 +31,14 @@ class GenreSeeder extends Seeder
         ];
 
         foreach ($genres as $genre) {
+            $files = Storage::disk('public')->allFiles('genre');
+            $randomFile = $files[rand(0, count($files) - 1)];
+
             $el = new Genre();
             $el->name = $genre['name'];
             $el->name_ru = $genre['name_ru'];
             $el->slug = str($genre['name'])->slug();
-            $el->image= $randomFile;
+            $el->image = $randomFile;
             $el->save();
         }
     }

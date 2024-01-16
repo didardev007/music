@@ -10,7 +10,7 @@
     <link href="{{ asset('css/splide.min.css') }}" rel="stylesheet">
     @stack('scripts')
 </head>
-<body class="bg-dark">
+<body>
 @include('client.app.alert')
 @include('client.app.nav')
 @yield('main')
@@ -24,14 +24,56 @@
 <script>
     new Splide( '#artist-carousel', {
         type   : 'loop',
-        perPage: 3,
+        autoplay: true,
+        perPage: 5,
+        interval: 2500,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        perMove: 1,
+        arrows: false,
+        pagination: false,
+        breakpoints: {
+            576: {
+                perPage: 1,
+            },
+            767: {
+                perPage: 3,
+            },
+            991: {
+                perPage: 3,
+            },
+            1199: {
+                perPage: 4,
+            }
+        }
     } ).mount();
 </script>
 
 <script>
     new Splide( '#genre-carousel', {
         type   : 'loop',
-        perPage: 3,
+        autoplay: true,
+        perPage: 5,
+        interval: 2500,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        perMove: 1,
+        arrows: false,
+        pagination: false,
+        breakpoints: {
+            576: {
+                perPage: 1,
+            },
+            767: {
+                perPage: 3,
+            },
+            991: {
+                perPage: 3,
+            },
+            1199: {
+                perPage: 4,
+            }
+        }
     } ).mount();
 </script>
 
@@ -45,6 +87,22 @@
 <script>
     new Splide( '#newTracks-carousel', {
         type   : 'loop',
+        perPage: 3,
+        autoplay: true,
+        interval: 2500,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        perMove: 1,
+        arrows: false,
+        pagination: false,
+        breakpoints: {
+            576: {
+                perPage: 1,
+            },
+            991: {
+                perPage: 2,
+            },
+        }
     } ).mount();
 </script>
 </body>

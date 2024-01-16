@@ -1,7 +1,7 @@
 @extends('client.layouts.app')
 
 @section('main')
-    <div class="container-xl bg-light">
+    <div class="container-xl">
         <form class="d-flex input-group px-5 py-3" action="{{ route('search') }}" method="get">
             @csrf
             <input type="text" class="form-control" name="query" value="{{ old('query', $query ?? '') }}" placeholder="@lang('app.search')">

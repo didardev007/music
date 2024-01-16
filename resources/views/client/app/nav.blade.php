@@ -1,6 +1,5 @@
-<div class="container-xl bg-info-subtle mt-lg-5">
-    <nav class="navbar navbar-expand-lg fw-bold">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg bg-info-subtle fw-bold">
+        <div class="container-xl">
             <a class="navbar-brand text-danger-emphasis" href="{{ route('home') }}">@lang('app.music')</a>
             <div class="d-flex me-lg-2 order-lg-1">
                 <div class="row row-cols-3 align-items-center g-0">
@@ -87,4 +86,3 @@
             </div>
         </div>
     </nav>
-</div>

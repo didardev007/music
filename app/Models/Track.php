@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Storage;
 
 class Track extends Model
 {
@@ -37,7 +38,8 @@ class Track extends Model
         return $this->belongsToMany(Playlist::class, 'track_playlists');
     }
 
-    public function size_mb() {
-        return number_format($this->file_size / 1048576, 2);
+    public function size_mb()
+    {
+        return number_format(Storage::disk('public')->size($this->mp3_path) / 1048576, 2);
     }
 }
