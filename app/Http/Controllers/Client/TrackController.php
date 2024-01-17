@@ -103,6 +103,8 @@ class TrackController extends Controller
         $obj = Track::with('artist', 'album', 'genre')
             ->findOrFail($track);
 
+        $obj->increment('viewed');
+
         return view('client.tracks.show')
             ->with([
                 'obj' => $obj,

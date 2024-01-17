@@ -5,7 +5,7 @@
         </a>
     </div>
     <div class="row row-cols-1 row-cols-lg-2 g-0">
-        @foreach($popularTracks as $track)
+        @foreach($popularTracks as $obj)
             @include('client.app.track')
         @endforeach
     </div>

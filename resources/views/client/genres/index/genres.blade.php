@@ -9,7 +9,7 @@
         <button class="btn btn-outline-secondary" type="submit">@lang('app.search')</button>
     </form>
     <div class="row row-cols-2 row-cols-md-3">
-        @foreach($genres as $genre)
+        @foreach($genres as $obj)
             @include('client.app.genre')
         @endforeach()
     </div>

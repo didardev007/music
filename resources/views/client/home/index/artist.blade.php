@@ -5,7 +5,7 @@
     <div id="artist-carousel" class="splide" aria-label="Beautiful Images">
         <div class="splide__track">
             <ul class="splide__list">
-                @foreach($artists as $artist)
+                @foreach($artists as $obj)
                     <li class="splide__slide">
                         @include('client.app.artist')
                     </li>
