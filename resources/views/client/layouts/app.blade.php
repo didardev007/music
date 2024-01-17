@@ -23,7 +23,9 @@
 
 <script>
     new Splide( '#artist-carousel', {
-        type   : 'loop',
+        @if(!request()->routeIs('search'))
+            type: 'loop',
+        @endif
         autoplay: true,
         perPage: 5,
         interval: 2500,
@@ -80,12 +82,99 @@
 <script>
     new Splide( '#album-carousel', {
         type   : 'loop',
-        perPage: 3,
+        autoplay: true,
+        perPage: 5,
+        interval: 2500,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        perMove: 1,
+        arrows: false,
+        pagination: false,
+        breakpoints: {
+            576: {
+                perPage: 1,
+            },
+            767: {
+                perPage: 3,
+            },
+            991: {
+                perPage: 3,
+            },
+            1199: {
+                perPage: 4,
+            }
+        }
     } ).mount();
 </script>
 
 <script>
     new Splide( '#newTracks-carousel', {
+        type   : 'loop',
+        perPage: 3,
+        autoplay: true,
+        interval: 2500,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        perMove: 1,
+        arrows: false,
+        pagination: false,
+        breakpoints: {
+            576: {
+                perPage: 1,
+            },
+            991: {
+                perPage: 2,
+            },
+        }
+    } ).mount();
+</script>
+
+<script>
+    new Splide( '#sameArtist-carousel', {
+        type   : 'loop',
+        perPage: 3,
+        autoplay: true,
+        interval: 2500,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        perMove: 1,
+        arrows: false,
+        pagination: false,
+        breakpoints: {
+            576: {
+                perPage: 1,
+            },
+            991: {
+                perPage: 2,
+            },
+        }
+    } ).mount();
+</script>
+
+<script>
+    new Splide( '#sameAlbum-carousel', {
+        type   : 'loop',
+        perPage: 3,
+        autoplay: true,
+        interval: 2500,
+        pauseOnHover: false,
+        pauseOnFocus: false,
+        perMove: 1,
+        arrows: false,
+        pagination: false,
+        breakpoints: {
+            576: {
+                perPage: 1,
+            },
+            991: {
+                perPage: 2,
+            },
+        }
+    } ).mount();
+</script>
+
+<script>
+    new Splide( '#sameGenre-carousel', {
         type   : 'loop',
         perPage: 3,
         autoplay: true,

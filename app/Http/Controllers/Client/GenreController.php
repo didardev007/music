@@ -4,6 +4,7 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Genre;
+use App\Models\Track;
 use Illuminate\Http\Request;
 
 class GenreController extends Controller
@@ -64,9 +65,15 @@ class GenreController extends Controller
         $obj = Genre::with('tracks')
             ->findOrFail($genre);
 
-        return view('client.tracks.show')
+        $tracks = Track::where('genre_id', $obj->id)
+            ->with('artist', 'genre', 'album', 'playlists')
+            ->orderBy('release_date', 'desc')
+            ->get();
+
+        return view('client.genres.show')
             ->with([
                 'obj' => $obj,
+                'tracks' => $tracks,
             ]);
     }
 

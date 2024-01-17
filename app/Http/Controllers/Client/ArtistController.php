@@ -98,7 +98,7 @@ class ArtistController extends Controller
         $obj = Artist::with('tracks', 'albums')
             ->findOrFail($artist);
 
-        return view('client.tracks.show')
+        return view('client.artists.show')
             ->with([
                 'obj' => $obj,
             ]);

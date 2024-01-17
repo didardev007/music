@@ -105,9 +105,27 @@ class TrackController extends Controller
 
         $obj->increment('viewed');
 
+        $sameGenre = Track::where('genre_id', $obj->genre_id)
+            ->with('artist', 'album', 'genre')
+            ->orderBy('release_date', 'desc')
+            ->get();
+
+        $sameArtist = Track::where('artist_id', $obj->artist_id)
+            ->with('artist', 'album', 'genre')
+            ->orderBy('release_date', 'desc')
+            ->get();
+
+        $sameAlbum = Track::where('album_id', $obj->album_id)
+            ->with('artist', 'album', 'genre')
+            ->orderBy('release_date', 'desc')
+            ->get();
+
         return view('client.tracks.show')
             ->with([
                 'obj' => $obj,
+                'sameGenre' => $sameGenre,
+                'sameArtist' => $sameArtist,
+                'sameAlbum' => $sameAlbum,
             ]);
     }
 }

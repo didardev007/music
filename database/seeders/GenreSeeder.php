@@ -34,10 +34,13 @@ class GenreSeeder extends Seeder
             $files = Storage::disk('public')->allFiles('genre');
             $randomFile = $files[rand(0, count($files) - 1)];
 
+            $description = fake()->paragraph(3);
+
             $el = new Genre();
             $el->name = $genre['name'];
             $el->name_ru = $genre['name_ru'];
             $el->slug = str($genre['name'])->slug();
+            $el->description = $description;
             $el->image = $randomFile;
             $el->save();
         }

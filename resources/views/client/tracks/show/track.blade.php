@@ -1,8 +1,8 @@
 <div class="col p-2">
     <div class="card h-100">
         <div class="card-body">
-            <div class="row align-items-center mt-2">
-                <div class="col-5 col-md-5 col-lg-5 col-xl-3">
+            <div class="d-block d-md-flex align-items-center">
+                <div class="col-6 col-md-5 col-lg-5 col-xl-3 ms-auto me-auto">
                     <div class="position-relative">
                         <!-- Make the image a circle and add spinning class -->
                         <a href="{{ route('tracks.show', $obj->id) }}" class="link-dark h6 text-decoration-none">
@@ -14,7 +14,7 @@
                     </div>
                 </div>
                 <div
-                    class="col-5 col-md-5 col-lg-5 col-xl-7">
+                    class="col-md-5 col-lg-5 col-xl-7 text-center pt-3">
                     <a href="{{ route('tracks.show', $obj->id) }}" class="link-dark h6 text-decoration-none">
                         {{ $obj->name }}
                     </a>
@@ -39,11 +39,25 @@
                             @lang('app.size'): <span class="text-success">{{ $obj->size_mb() }} Mb</span>
                         </div>
                     </div>
+                    <div class="text-success">
+                        {{ $obj->durability }} <span class="text-dark">@lang('app.minutes')</span>
+                    </div>
+                    <div>
+                        @lang('app.releasedAt'): <span
+                            class="text-danger">{{ \Carbon\Carbon::parse($obj->release_date)->format('d M Y') }}</span>
+                    </div>
+                    <div>
+                        @lang('app.addedAt'): <span
+                            class="text-danger">{{ \Carbon\Carbon::parse($obj->created_at)->format('d M Y') }}</span>
+                    </div>
+                    <div>
+                        @lang('app.viewed'): <span class="text-success">{{ $obj->viewed }}</span>
+                    </div>
                 </div>
-                <div class="col-2">
+                <div class="py-3">
                     <div
-                        class="d-block">
-                        <div class="text-end">
+                        class="d-flex d-md-block justify-content-center">
+                        <div class="ms-auto me-auto">
                             <!-- Add the play/pause button using Bootstrap icons -->
                             <button class="btn btn-md btn-outline-danger bi bi-play-btn"
                                     id="playPauseButton{{$obj->id}}" onclick="togglePlayPause('{{$obj->id}}',
@@ -51,7 +65,7 @@
                             </button>
                         </div>
                         <div
-                            class="text-end my-2">
+                            class="ms-auto me-auto py-md-2">
                             <!-- Download button using HTML link tag -->
                             <a href="{{ asset('storage/' . $obj->mp3_path) }}" download="{{ $obj->mp3_path }}">
                                 <button class="btn btn-md
@@ -60,7 +74,7 @@
                                 </button>
                             </a>
                         </div>
-                        <div class="text-end">
+                        <div class="ms-auto me-auto">
                             <button
                                 class="btn btn-md btn-outline-danger bi bi-heart{{ $obj->is_favorite ? '-fill' : '' }}"
                                 type="submit" id="favorite">
@@ -72,86 +86,3 @@
         </div>
     </div>
 </div>
-
-<!-- JavaScript function to play/pause audio and update image animation -->
-@push('scripts')
-    <script>
-        let currentTrackId = null;
-        let audio = new Audio();
-
-        function togglePlayPause(trackId, audioPath) {
-            if (currentTrackId === trackId) {
-                if (audio.paused) {
-                    playAudio(trackId, audioPath);
-                } else {
-                    pauseAudio();
-                }
-            } else {
-                // New track, stop current and play new
-                pauseAudio();
-                playAudio(trackId, audioPath);
-            }
-        }
-
-        function playAudio(trackId, audioPath) {
-            console.log('Playing audio for track ' + trackId);
-            audio.src = audioPath;
-            audio.play()
-                .then(() => {
-                    // Start spinning animation
-                    document.getElementById('albumImage' + trackId).classList.add('spinning');
-                    // Change button icon to pause
-                    document.getElementById('playPauseButton' + trackId).classList.remove('bi-play-btn');
-                    document.getElementById('playPauseButton' + trackId).classList.add('bi-pause-btn');
-                })
-                .catch((error) => {
-                    console.error('Error playing audio:', error);
-                });
-
-            currentTrackId = trackId;
-        }
-
-        function pauseAudio() {
-            if (!audio.paused) {
-                console.log('Pausing audio for track ' + currentTrackId);
-                audio.pause();
-                // Stop spinning animation
-                document.getElementById('albumImage' + currentTrackId).classList.remove('spinning');
-                // Change button icon to play
-                document.getElementById('playPauseButton' + currentTrackId).classList.remove('bi-pause-btn');
-                document.getElementById('playPauseButton' + currentTrackId).classList.add('bi-play-btn');
-
-                currentTrackId = null;
-            }
-        }
-
-        audio.addEventListener('ended', function () {
-            // Reset image animation and button icon when audio ends
-            document.getElementById('albumImage' + currentTrackId).classList.remove('spinning');
-            document.getElementById('playPauseButton' + currentTrackId).classList.remove('bi-pause-btn');
-            document.getElementById('playPauseButton' + currentTrackId).classList.add('bi-play-btn');
-
-            currentTrackId = null;
-        });
-    </script>
-@endpush
-
-
-
-
-
-<style>
-    /* CSS for spinning animation */
-    @keyframes spin {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-
-    .spinning {
-        animation: spin 2s linear infinite;
-    }
-</style>

@@ -9,7 +9,7 @@
         <button class="btn btn-outline-secondary" type="submit">@lang('app.search')</button>
     </form>
     <div class="row row-cols-2 row-cols-md-3">
-        @foreach($albums as $album)
+        @foreach($albums as $obj)
             @include('client.app.album')
         @endforeach()
     </div>

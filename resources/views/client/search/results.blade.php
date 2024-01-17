@@ -1,58 +1,32 @@
 @extends('client.layouts.app')
-
+@section('title')
+    Music | Search
+@endsection
 @section('main')
     <div class="container-xl">
-        <form class="d-flex input-group px-5 py-3" action="{{ route('search') }}" method="get">
+        <form class="d-flex input-group p-3" action="{{ route('search') }}" method="get">
             @csrf
-            <input type="text" class="form-control" name="query" value="{{ old('query', $query ?? '') }}" placeholder="@lang('app.search')">
+            <input type="text" class="form-control" name="q" value="{{ old('q', $f_q ?? '') }}"
+                   placeholder="@lang('app.search')">
             <button class="btn btn-outline-secondary" type="submit">@lang('app.search')</button>
         </form>
-
-        <div class="row">
-
-            <div class="py-3">
-                <h2>Search Results for "{{ $query }}"</h2>
+        @isset($tracks[0])
+            <div class="h4 text-center text-primary py-3">
+                @lang('app.tracks')
             </div>
-
-            <div class="col-12 col-md-4">
-                <h3>Artists</h3>
-                @if ($results->isEmpty())
-                    <p>No artists found.</p>
-                @else
-                    <ul>
-                        @foreach ($results as $artist)
-                            <li>{{ $artist->name }}</li>
-                        @endforeach
-                    </ul>
-                @endif
+            <div class="row row-cols-1 row-cols-lg-2">
+                @foreach($tracks as $obj)
+                    <div class="col">
+                        @include('client.app.track')
+                    </div>
+                @endforeach
             </div>
-
-            <div class="col-12 col-md-4">
-                <h3>Tracks</h3>
-                @if ($results1->isEmpty())
-                    <p>No tracks found.</p>
-                @else
-                    <ul>
-                        @foreach ($results1 as $track)
-                            <li>{{ $track->name }}</li>
-                        @endforeach
-                    </ul>
-                @endif
-            </div>
-
-            <div class="col-12 col-md-4">
-                <h3>Albums</h3>
-                @if ($results2->isEmpty())
-                    <p>No albums found.</p>
-                @else
-                    <ul>
-                        @foreach ($results2 as $album)
-                            <li>{{ $album->name }}</li>
-                        @endforeach
-                    </ul>
-                @endif
-            </div>
-        </div>
+        @endisset
+        @isset($albums[0])
+            @include('client.home.index.album')
+        @endisset
+        @isset($artists[0])
+            @include('client.home.index.artist')
+        @endisset
     </div>
 @endsection
-

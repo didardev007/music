@@ -86,7 +86,7 @@ class PlaylistController extends Controller
         $obj = Playlist::with('tracks')
             ->findOrFail($playlist);
 
-        return view('client.tracks.show')
+        return view('client.playlists.show')
             ->with([
                 'obj' => $obj,
             ]);

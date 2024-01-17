@@ -12,18 +12,6 @@ use Illuminate\Support\Facades\Storage;
 
 class TrackFactory extends Factory
 {
-
-    public function configure(): static
-    {
-        return $this->afterMaking(function (Track $track) {
-            // ...
-        })->afterCreating(function (Track $track) {
-            $track->slug = str($track->name)->slug() . '-' . $track->id;
-            $track->update();
-        });
-    }
-
-
     public function definition(): array
     {
         $files = Storage::disk('public')->allFiles('track');

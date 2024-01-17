@@ -9,6 +9,9 @@
             {{ Breadcrumbs::render('track', $obj) }}
         </div>
         <hr>
-        @include('client.app.track')
+        @include('client.tracks.show.track')
+        @include('client.tracks.show.same_genre')
+        @include('client.tracks.show.same_artist')
+        @include('client.tracks.show.same_album')
     </div>
 @endsection

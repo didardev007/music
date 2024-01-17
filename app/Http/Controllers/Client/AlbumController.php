@@ -5,6 +5,7 @@ namespace App\Http\Controllers\client;
 use App\Http\Controllers\Controller;
 use App\Models\Album;
 use App\Models\Artist;
+use App\Models\Track;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -85,9 +86,15 @@ class AlbumController extends Controller
         $obj = Album::with('tracks', 'artist')
             ->findOrFail($album);
 
+        $tracks = Track::where('album_id', $obj->id)
+            ->with('artist', 'album', 'genre')
+            ->orderBy('release_date', 'desc')
+            ->get();
+
         return view('client.albums.show')
             ->with([
                 'obj' => $obj,
+                'tracks' => $tracks,
             ]);
     }
 

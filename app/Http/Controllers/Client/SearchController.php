@@ -13,23 +13,61 @@ class SearchController extends Controller
 {
     public function search(Request $request)
     {
-        $query = $request->input('query');
+        $request->validate([
+            'q' => 'nullable|string|max:30',
+        ]);
+        $f_q = $request->has('q') ? $request->q : null;
+        $f_q2 = $request->has('q') ? str($request->q)->slug() : null;
 
-        $results = Artist::where('name', 'LIKE', '%' . $query . '%')
+        $artists = Artist::when(isset($f_q), function ($query) use ($f_q, $f_q2) {
+            return $query->where(function ($query) use ($f_q, $f_q2) {
+                $query->orWhere('name', 'like', '%' . $f_q . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q . '%');
+                $query->orWhere('name', 'like', '%' . $f_q2 . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q2 . '%');
+                if ('name_ru' == null) {
+                    $query->orWhere('name_ru', 'like', '%' . $f_q . '%');
+                };
+            });
+        })
+            ->with('albums', 'tracks')
             ->get();
 
-        $results1 = Track::where('name', 'LIKE', '%' . $query . '%')
+        $albums = Album::when(isset($f_q), function ($query) use ($f_q, $f_q2) {
+            return $query->where(function ($query) use ($f_q, $f_q2) {
+                $query->orWhere('name', 'like', '%' . $f_q . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q . '%');
+                $query->orWhere('name', 'like', '%' . $f_q2 . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q2 . '%');
+                if ('name_ru' == null) {
+                    $query->orWhere('name_ru', 'like', '%' . $f_q . '%');
+                };
+            });
+        })
+            ->with('tracks')
             ->get();
 
-        $results2 = Album::where('name', 'LIKE', '%' . $query . '%')
-            ->get();
+        $tracks = Track::when(isset($f_q), function ($query) use ($f_q, $f_q2) {
+            return $query->where(function ($query) use ($f_q, $f_q2) {
+                $query->orWhere('name', 'like', '%' . $f_q . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q . '%');
+                $query->orWhere('name', 'like', '%' . $f_q2 . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q2 . '%');
+                if ('name_ru' == null) {
+                    $query->orWhere('name_ru', 'like', '%' . $f_q . '%');
+                };
+            });
+        })
+            ->with('album', 'artist', 'genre')
+            ->paginate(20)
+            ->withQueryString();
 
         return view('client.search.results')
             ->with([
-                'query' => $query,
-                'results' => $results,
-                'results1' => $results1,
-                'results2' => $results2,
+                'f_q' => $f_q,
+                'tracks' => $tracks,
+                'artists' => $artists,
+                'albums' => $albums,
             ]);
     }
 }
