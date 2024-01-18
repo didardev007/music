@@ -5,6 +5,7 @@
 use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Genre;
+use App\Models\Playlist;
 use App\Models\Track;
 use Diglactic\Breadcrumbs\Breadcrumbs;
 
@@ -59,8 +60,20 @@ Breadcrumbs::for('albums', function (BreadcrumbTrail $trail) {
     $trail->push('Albums', route('albums.index'));
 });
 
-// Home > genres > [genre]
+// Home > albums > [album]
 Breadcrumbs::for('album', function (BreadcrumbTrail $trail, Album $obj) {
     $trail->parent('albums');
     $trail->push($obj->getName(), route('albums.show', $obj));
+});
+
+// Home > playlists
+Breadcrumbs::for('playlists', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Playlists', route('playlists.index'));
+});
+
+// Home > playlists > [playlist]
+Breadcrumbs::for('playlist', function (BreadcrumbTrail $trail, Playlist $obj) {
+    $trail->parent('playlists');
+    $trail->push($obj->getName(), route('playlists.show', $obj));
 });

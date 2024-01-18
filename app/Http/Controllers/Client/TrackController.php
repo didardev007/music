@@ -100,7 +100,7 @@ class TrackController extends Controller
      */
     public function show($track)
     {
-        $obj = Track::with('artist', 'album', 'genre')
+        $obj = Track::with('artist', 'album', 'genre', 'playlists')
             ->findOrFail($track);
 
         $obj->increment('viewed');

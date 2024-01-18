@@ -16,5 +16,4 @@
         <hr class="pb-3">
         @include('client.playlists.index.playlists')
     </div>
-
 @endsection

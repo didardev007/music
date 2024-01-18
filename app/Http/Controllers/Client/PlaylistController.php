@@ -46,6 +46,7 @@ class PlaylistController extends Controller
                 };
             });
         })
+            ->with('tracks')
             ->paginate(20)
             ->withQueryString();
 
@@ -83,7 +84,10 @@ class PlaylistController extends Controller
      */
     public function show($playlist)
     {
-        $obj = Playlist::with('tracks')
+        $obj = Playlist::with(['tracks' => function ($query) {
+            $query->with('artist', 'album', 'genre', 'playlists');
+            $query->orderBy('release_date', 'desc');
+        }])
             ->findOrFail($playlist);
 
         return view('client.playlists.show')
