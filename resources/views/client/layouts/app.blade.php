@@ -125,6 +125,9 @@
             991: {
                 perPage: 2,
             },
+            1199: {
+                perPage: 2,
+            }
         }
     } ).mount();
 </script>

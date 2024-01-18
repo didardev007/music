@@ -8,6 +8,7 @@ use App\Models\Artist;
 use App\Models\Genre;
 use App\Models\Playlist;
 use App\Models\Track;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -41,6 +42,9 @@ class HomeController extends Controller
             ->take(10)
             ->get();
 
+        $users = User::inRandomOrder()
+            ->get();
+
         return view('client.home.index')
             ->with([
                 'genres' => $genres,
@@ -49,6 +53,7 @@ class HomeController extends Controller
                 'playlists' => $playlists,
                 'newTracks' => $newTracks,
                 'popularTracks' => $popularTracks,
+                'users' => $users,
             ]);
     }
 

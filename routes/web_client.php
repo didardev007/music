@@ -33,6 +33,7 @@ Route::middleware('guest')
 Route::middleware('auth')
     ->group(function () {
         Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
+        Route::resource('users',UserController::class);
     });
 
 Route::resource('tracks', TrackController::class);

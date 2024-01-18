@@ -25,7 +25,7 @@ class TrackFactory extends Factory
         $genre = Genre::inRandomOrder()->first();
         $name = fake()->company();
         $durability = fake()->randomFloat(2, 0, 30);
-        $viewed = rand();
+        $viewed = rand(0, 1000);
         $release_date = fake()->date('Y-m-d');
         $created_at = fake()->dateTimeBetween($release_date, 'now')->format('Y-m-d');
         $mp3_path = $randomFile;

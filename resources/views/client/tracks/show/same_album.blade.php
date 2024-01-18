@@ -1,9 +1,11 @@
 <div class="container-xl py-2">
-    <div class="h4 text-primary text-center my-3">
-        <a href="{{ route('tracks.index', ['album' => $obj->album->slug]) }}" class="text-decoration-none
+    @isset($obj->album_id)
+        <div class="h4 text-primary text-center my-3">
+            <a href="{{ route('tracks.index', ['album' => $obj->album->slug]) }}" class="text-decoration-none
         link-primary">@lang('app.sameAlbum')
-        </a>
-    </div>
+            </a>
+        </div>
+    @endisset
     <div id="sameAlbum-carousel" class="splide" aria-label="Beautiful Images">
         <div class="splide__track">
             <ul class="splide__list">

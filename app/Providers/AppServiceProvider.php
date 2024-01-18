@@ -10,6 +10,7 @@ use Illuminate\Support\Facades;
 use Illuminate\Pagination\Paginator;
 use App\Models\Album;
 use App\Models\Artist;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
 use Laravel\Sanctum\Sanctum;
@@ -45,12 +46,14 @@ class AppServiceProvider extends ServiceProvider
             $playlists = Playlist::orderBy('name')
                 ->get();
 
+            $user = Auth::user();
+
             $view->with([
                 'genres' => $genres,
                 'artists' => $artists,
                 'albums' => $albums,
                 'playlists' => $playlists,
-                'user' => auth()->user(),
+                'user' => $user,
             ]);
         });
     }

@@ -15,8 +15,6 @@ class Track extends Model
     protected $guarded = [
         'id',
     ];
-
-
     public function artist(): BelongsTo
     {
         return $this->belongsTo(Artist::class);
@@ -41,6 +39,11 @@ class Track extends Model
     public function size_mb()
     {
         return number_format(Storage::disk('public')->size($this->mp3_path) / 1048576, 2);
+    }
+
+    public function hasAlbum()
+    {
+        return $this->album_id == null ? false : true;
     }
 
     public function getName()

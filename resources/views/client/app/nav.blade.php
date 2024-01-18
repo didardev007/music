@@ -33,7 +33,16 @@
                                         @csrf
                                     </form>
                                 </li>
-                                <li><a class="dropdown-item" href="#">@lang('app.deleteAccount')</a></li>
+                                <li class="dropdown-item">
+                                    <a class="nav-link link-danger" href="{{ route('users.destroy', auth()->user()->id) }}"
+                                       onclick="event.preventDefault(); document.getElementById('deleteForm').submit();">
+                                        @lang('app.deleteAccount')
+                                    </a>
+                                    <form action="{{ route('users.destroy', auth()->user()->id) }}" method="post" id="deleteForm">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </li>
                                 @if(auth()->user()->is_admin)
                                     <li><a class="dropdown-item" href="{{ route('admin.dashboard')
                                         }}">@lang('app.dashboard')</a></li>

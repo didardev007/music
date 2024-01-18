@@ -3,8 +3,8 @@
 return [
     'home' => 'Домой',
     'music' => 'Музыка',
-    'artist' => 'Артист',
-    'artists' => 'Артисты',
+    'artist' => 'Исполнитель',
+    'artists' => 'Исполнители',
     'album' => 'Альбом',
     'albums' => 'Альбомы',
     'genre' => 'Жанр',
@@ -31,7 +31,7 @@ return [
     'login' => 'Авторизоваться',
     'notMember' => 'Еще не авторизован',
     'isMember' => 'Есть аккаунт',
-    'searchArtist' => 'Поиск Исполнитель',
+    'searchArtist' => 'Поиск Исполнителя',
     'searchTrack' => 'Поиск Трек',
     'passwordConfirmation' => 'Подтвердите пароль',
     'size' => 'Размер',
@@ -40,4 +40,7 @@ return [
     'deleteAccount' => 'Удалить Аккаунт',
     'dashboard' => 'Панель Управления',
     'logout' => 'Выйти',
+    'sameGenre' => 'Еще из этого Жанра',
+    'sameArtist' => 'Другие работы этого Исполнителя',
+    'sameAlbum' => 'Еще из этого Альбома',
 ];

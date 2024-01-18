@@ -40,4 +40,7 @@ return [
     'deleteAccount' => 'Delete Account',
     'dashboard' => 'Dashboard',
     'logout' => 'Logout',
+    'sameGenre' => 'More from this Genre',
+    'sameArtist' => 'More from this Artist',
+    'sameAlbum' => 'More from this Album',
 ];

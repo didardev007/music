@@ -24,7 +24,7 @@
                                 href="{{ route('tracks.index', ['artist' => $obj->artist->slug]) }}"
                                 class="text-decoration-none">{{ $obj->artist->getName() }}</a>
                         </div>
-                        @isset($obj->album)
+                        @isset($obj->album_id)
                             <div class="text-danger-emphasis">
                                 @lang('app.album'): <a
                                     href="{{ route('tracks.index', ['album' => $obj->album->slug]) }}"
