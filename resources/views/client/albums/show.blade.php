@@ -1,5 +1,5 @@
 @extends('client.layouts.app')
-@section('title') Music | Album | {{ $obj->getName() }} @endsection
+@section('title') Music | @lang('app.albums') | {{ $obj->getName() }} @endsection
 @section('main')
     <div class="container-xl">
         <hr>

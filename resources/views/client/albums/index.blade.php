@@ -1,5 +1,5 @@
 @extends('client.layouts.app')
-@section('title') Music | Album @endsection
+@section('title') Music | @lang('app.albums') @endsection
 @section('main')
     <div class="container-xl py-4">
         <hr>

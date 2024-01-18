@@ -98,9 +98,15 @@ class ArtistController extends Controller
         $obj = Artist::with('tracks', 'albums')
             ->findOrFail($artist);
 
+        $tracks = Track::where('artist_id', $obj->id)
+            ->with('artist', 'album', 'genre')
+            ->orderBy('release_date', 'desc')
+            ->get();
+
         return view('client.artists.show')
             ->with([
                 'obj' => $obj,
+                'tracks' => $tracks,
             ]);
     }
 

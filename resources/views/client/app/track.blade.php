@@ -22,21 +22,24 @@
                         <div class="text-danger-emphasis">
                             @lang('app.artist'): <a
                                 href="{{ route('tracks.index', ['artist' => $obj->artist->slug]) }}"
-                                class="text-decoration-none">{{ $obj->artist->name }}</a>
+                                class="text-decoration-none">{{ $obj->artist->getName() }}</a>
                         </div>
                         @isset($obj->album)
                             <div class="text-danger-emphasis">
                                 @lang('app.album'): <a
                                     href="{{ route('tracks.index', ['album' => $obj->album->slug]) }}"
-                                    class="text-decoration-none">{{ $obj->album->name }}</a>
+                                    class="text-decoration-none">{{ $obj->album->getName() }}</a>
                             </div>
                         @endisset
                         <div class="text-danger-emphasis">
                             @lang('app.genre'): <a href="{{ route('tracks.index', ['genre' => $obj->genre->slug]) }}"
-                                                   class="text-decoration-none">{{ $obj->genre->name }}</a>
+                                                   class="text-decoration-none">{{ $obj->genre->getName() }}</a>
                         </div>
                         <div>
                             @lang('app.size'): <span class="text-success">{{ $obj->size_mb() }} Mb</span>
+                        </div>
+                        <div class="text-danger-emphasis" id="viewed{{ $obj->id }}">
+                            @lang('app.viewed'): {{ $obj->viewed }}
                         </div>
                     </div>
                 </div>
@@ -78,6 +81,7 @@
     <script>
         let currentTrackId = null;
         let audio = new Audio();
+
 
         function togglePlayPause(trackId, audioPath) {
             if (currentTrackId === trackId) {

@@ -5,7 +5,7 @@
     <div class="col-md-7 px-3 pt-3 pt-md-0">
         <div class="text-center">
             <div class="h2 text-primary pb-3">
-                {{ $obj->name }}
+                {{ $obj->getName() }}
             </div>
             <div class="h6 fw-normal">
                 {{ $obj->description }}
@@ -16,7 +16,7 @@
                         <img src="{{ asset('storage/' . $obj->artist->image) }}" class="img-fluid rounded-circle">
                     </div>
                     <div class="col-6 text-start">
-                        <span class="text-danger-emphasis">@lang('app.artist'):</span> {{ $obj->artist->name }}
+                        <span class="text-danger-emphasis">@lang('app.artist'):</span> {{ $obj->artist->getName }}
                     </div>
                 </div>
             </a>
