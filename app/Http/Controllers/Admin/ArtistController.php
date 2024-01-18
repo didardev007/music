@@ -33,9 +33,21 @@ class ArtistController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        Artist::create($request->all());
+        $artist = Artist::create($request->all());
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $imageFile = $request->file('image');
+            $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
+
+            // Store the image in the "public/img" directory
+            $imagePath = $imageFile->storeAs('public/artist', $imageFileName);
+
+            // Save the image path in the database
+            $artist->update(['image' => 'artist/' . $imageFileName]);
+        }
 
         return redirect()->route('admin.artist.index')->with('success', 'Artist created successfully');
     }
@@ -67,9 +79,21 @@ class ArtistController extends Controller
 
         $request->validate([
            'name' => 'required|string|max:255',
+           'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $artist->update($request->all());
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $imageFile = $request->file('image');
+            $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
+
+            // Store the image in the "public/img" directory
+            $imagePath = $imageFile->storeAs('public/artist', $imageFileName);
+
+            // Save the image path in the database
+            $artist->update(['image' => 'artist/' . $imageFileName]);
+        }
 
         return redirect()->route('admin.artist.index')->with('success', 'Artist updated successfully');
     }

@@ -8,7 +8,7 @@
         <a href="{{ route('admin.artist.index') }}" class="btn btn-secondary">Back to Artist Index</a>
     </div>
 
-    <form action="{{route('admin.artist.update', $artist->id)}}" method="post">
+    <form action="{{route('admin.artist.update', $artist->id)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="mb-3">
@@ -27,8 +27,8 @@
         </div>
 
         <div class="mb-3">
-            <label for="image" class="form-label">Image</label>
-            <input type="text" class="form-control" id="image" name="image" value="{{$artist->image}}" required>
+            <label for="image" class="form-label">Artist Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept=".jpg">
         </div>
 
         <button type="submit" class="btn btn-primary">Update</button>
