@@ -84,10 +84,10 @@ class TrackController extends Controller
             $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
 
             // Store the image in the "public/img" directory
-            $imagePath = $imageFile->storeAs('public/img', $imageFileName);
+            $imagePath = $imageFile->storeAs('public/track_img', $imageFileName);
 
             // Save the image path in the database
-            $track->update(['image' => $imageFileName]);
+            $track->update(['image' => 'track_img/' . $imageFileName]);
         }
 
         return redirect()->route('admin.track.index')->with('success', 'Track created successfully.');
@@ -161,10 +161,10 @@ class TrackController extends Controller
             $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
 
             // Store the image in the "public/img" directory
-            $imagePath = $imageFile->storeAs('public/img', $imageFileName);
+            $imagePath = $imageFile->storeAs('public/track_img', $imageFileName);
 
             // Save the image path in the database
-            $track->update(['image' => $imageFileName]);
+            $track->update(['image' => 'track_img/' . $imageFileName]);
         }
 
         return redirect()->route('admin.track.index')->with('success', 'Track updated successfully.');
