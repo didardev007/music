@@ -13,7 +13,7 @@
                                 <div>
                                     <img src="{{ asset('storage/' . $genre->image) }}" alt="{{ $genre->image }}"
                                          class="w-75
-                                    rounded-circle">
+                                    rounded-circle" style="object-fit: fill; max-width:350px; max-height:190px;">
                                 </div>
                                 <div class="py-3">
                                     {{ $genre->getName() }}
