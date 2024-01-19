@@ -13,7 +13,7 @@ class GenreController extends Controller
      */
     public function index()
     {
-        $genres = Genre::orderBy('id' , 'desc')
+        $genres = Genre::orderBy('id', 'desc')
             ->get();
 
         return view('admin.genre.index', compact('genres'));
@@ -35,6 +35,7 @@ class GenreController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'name_ru' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         Genre::create($request->all());
@@ -70,6 +71,7 @@ class GenreController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'name_ru' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $genre->update($request->all());

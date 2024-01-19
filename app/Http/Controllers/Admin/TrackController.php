@@ -50,7 +50,6 @@ class TrackController extends Controller
             'album_id' => 'nullable|exists:albums,id',
             'genre_id' => 'required|exists:genres,id',
             'durability' => 'required|numeric',
-            'viewed' => 'required|integer',
             'release_date' => 'required|date',
             'mp3_path' => 'required|file|mimes:mp3|max:10240',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -124,7 +123,6 @@ class TrackController extends Controller
             'album_id' => 'nullable|exists:albums,id',
             'genre_id' => 'required|exists:genres,id',
             'durability' => 'required|numeric',
-            'viewed' => 'required|integer',
             'release_date' => 'required|date',
             'mp3_path' => 'nullable|file|mimes:mp3|max:10240',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
@@ -139,7 +137,6 @@ class TrackController extends Controller
             'album_id' => $validatedData['album_id'],
             'genre_id' => $validatedData['genre_id'],
             'durability' => $validatedData['durability'],
-            'viewed' => $validatedData['viewed'],
             'release_date' => $validatedData['release_date'],
         ]);
 

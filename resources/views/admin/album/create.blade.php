@@ -8,7 +8,7 @@
         <a href="{{ route('admin.album.index') }}" class="btn btn-secondary">Back to Album Index</a>
     </div>
 
-    <form action="{{route('admin.album.store')}}" method="post">
+    <form action="{{route('admin.album.store')}}" method="post" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -23,6 +23,11 @@
                     <option value="{{ $artist->id }}">{{ $artist->name }}</option>
                 @endforeach
             </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Album Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept=".jpg">
         </div>
 
         <div class="mb-3">

@@ -8,7 +8,7 @@
         <a href="{{ route('admin.genre.index') }}" class="btn btn-secondary">Back to Genre Index</a>
     </div>
 
-    <form action="{{route('admin.genre.store')}}" method="post">
+    <form action="{{route('admin.genre.store')}}" method="post" enctype="multipart/form-data">
         @csrf
 
         <div class="mb-3">
@@ -19,6 +19,11 @@
         <div class="mb-3">
             <label for="name_ru" class="form-label">Name_ru</label>
             <input type="text" class="form-control" id="name_ru" name="name_ru" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Genre Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept=".jpg">
         </div>
 
         <div class="mb-3">

@@ -35,16 +35,16 @@ class TrackController extends Controller
         $f_popularTrack = $request->has('popularTrack') ? $request->popularTrack : null;
 
         $tracks = Track::when(isset($f_q), function ($query) use ($f_q, $f_q2) {
-                return $query->where(function ($query) use ($f_q, $f_q2) {
-                    $query->orWhere('name', 'like', '%' . $f_q . '%');
-                    $query->orWhere('slug', 'like', '%' . $f_q . '%');
-                    $query->orWhere('name', 'like', '%' . $f_q2 . '%');
-                    $query->orWhere('slug', 'like', '%' . $f_q2 . '%');
-                    if ('name_ru' == null) {
-                        $query->orWhere('name_ru', 'like', '%' . $f_q . '%');
-                    };
-                });
-            })
+            return $query->where(function ($query) use ($f_q, $f_q2) {
+                $query->orWhere('name', 'like', '%' . $f_q . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q . '%');
+                $query->orWhere('name', 'like', '%' . $f_q2 . '%');
+                $query->orWhere('slug', 'like', '%' . $f_q2 . '%');
+                if ('name_ru' == null) {
+                    $query->orWhere('name_ru', 'like', '%' . $f_q . '%');
+                };
+            });
+        })
             ->when(isset($f_artist), function ($query) use ($f_artist) {
                 return $query->whereHas('artist', function ($query) use ($f_artist) {
                     $query->where('slug', $f_artist);
@@ -57,7 +57,7 @@ class TrackController extends Controller
             })
             ->when(isset($f_genre), function ($query) use ($f_genre) {
                 return $query->whereHas('genre', function ($query) use ($f_genre) {
-                   $query->where('slug', $f_genre);
+                    $query->where('slug', $f_genre);
                 });
             })
             ->when($f_newTrack, function ($query) {
@@ -80,6 +80,7 @@ class TrackController extends Controller
         $genres = Genre::orderBy('name')
             ->get();
 
+
         return view('client.tracks.index')
             ->with([
                 'tracks' => $tracks,
@@ -93,6 +94,22 @@ class TrackController extends Controller
                 'f_genre' => $f_genre,
                 'f_newTrack' => $f_newTrack,
             ]);
+    }
+
+    public function incrementView(Request $request)
+    {
+        $trackId = $request->input('track_id');
+
+        // Assuming you have a Track model
+        $track = Track::find($trackId);
+
+        if ($track) {
+            // Increment the view count
+            $track->increment('viewed');
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
     }
 
     /**

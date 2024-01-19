@@ -50,11 +50,6 @@
         </div>
 
         <div class="mb-3">
-            <label for="viewed" class="form-label">Viewed</label>
-            <input type="text" class="form-control" id="viewed" name="viewed" required>
-        </div>
-
-        <div class="mb-3">
             <label for="release_date" class="form-label">Release Date</label>
             <input type="text" class="form-control" id="release_date" name="release_date" placeholder="year-month-day" required>
         </div>

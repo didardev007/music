@@ -14,7 +14,7 @@ class AlbumController extends Controller
      */
     public function index()
     {
-        $albums = Album::orderBy('id' , 'desc')
+        $albums = Album::orderBy('id', 'desc')
             ->with('artist')
             ->get();
         return view('admin.album.index', compact('albums'));
@@ -23,7 +23,7 @@ class AlbumController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-        public function create()
+    public function create()
     {
         $artists = Artist::orderBy('id', 'desc')->get();
         return view('admin.album.create', compact('artists'));
@@ -38,12 +38,10 @@ class AlbumController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'artist' => 'required|exists:artists,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $album = Album::create([
-            'name' => $request->input('name'),
-            'artist_id' => $request->input('artist'),
-        ]);
+        Album::create($request->all());
 
         return redirect()->route('admin.album.index', compact('album'))->with('success', 'Album created successfully');
     }
@@ -79,13 +77,11 @@ class AlbumController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'artist' => 'required|exists:artists,id', // Validate the single artist ID
+            'artist' => 'required|exists:artists,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',// Validate the single artist ID
         ]);
 
-        $album->update([
-            'name' => $request->input('name'),
-            'artist_id' => $request->input('artist'),
-        ]);
+        $album->update($request->all());
 
         return redirect()->route('admin.album.index')->with('success', 'Album updated successfully');
     }

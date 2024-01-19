@@ -50,10 +50,6 @@
             <input type="text" class="form-control" id="durability" name="durability" value="{{ $track->durability }}" required>
         </div>
 
-        <div class="mb-3">
-            <label for="viewed" class="form-label">Viewed</label>
-            <input type="text" class="form-control" id="viewed" name="viewed" value="{{ $track->viewed }}" required>
-        </div>
 
         <div class="mb-3">
             <label for="release_date" class="form-label">Release Date</label>

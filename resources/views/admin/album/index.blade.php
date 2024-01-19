@@ -14,6 +14,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Artist name</th>
+            <th>Image</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -26,6 +27,13 @@
                 </td>
                 <td>
                     {{$album->artist->name}}
+                </td>
+                <td>
+                    @if($album->image)
+                        <img src="{{asset('storage/'. $album->image)}}" alt="Artist Image" class="img-thumbnail" style="max-width: 100px;">
+                    @else
+                        No Image
+                    @endif
                 </td>
                 <td>
                     <a href="{{route('admin.album.edit', $album->id)}}" class="btn btn-primary">Edit</a>

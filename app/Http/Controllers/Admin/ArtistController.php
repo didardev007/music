@@ -13,7 +13,7 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        $artists = Artist::orderBy('id' , 'desc')
+        $artists = Artist::orderBy('id', 'desc')
             ->get();
         return view('admin.artist.index', compact('artists'));
     }
@@ -78,8 +78,8 @@ class ArtistController extends Controller
         $artist = Artist::findOrFail($id);
 
         $request->validate([
-           'name' => 'required|string|max:255',
-           'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $artist->update($request->all());

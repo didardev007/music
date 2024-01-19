@@ -8,7 +8,7 @@
         <a href="{{ route('admin.album.index') }}" class="btn btn-secondary">Back to Album Index</a>
     </div>
 
-    <form action="{{route('admin.album.update', $album->id)}}" method="post">
+    <form action="{{route('admin.album.update', $album->id)}}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
         <div class="mb-3">
@@ -30,8 +30,16 @@
         </div>
 
         <div class="mb-3">
+            <label for="image" class="form-label">Album Image</label>
+            <input type="file" class="form-control" id="image" name="image" accept=".jpg">
+        </div>
+
+
+        <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" name="description" id="description" rows="5" placeholder="Enter description">{{$album->description}}</textarea>
+            <textarea class="form-control" name="description" id="description" rows="5" placeholder="Enter description">
+                {{$album->description}}
+            </textarea>
         </div>
 
         <button type="submit" class="btn btn-primary">Update</button>

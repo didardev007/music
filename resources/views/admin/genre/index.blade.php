@@ -24,6 +24,13 @@
                 <td><small class="h5 fw-normal">{{$genre->name}}</small></td>
                 <td><small class="h5 fw-normal">{{$genre->name_ru}}</small></td>
                 <td>
+                    @if($genre->image)
+                        <img src="{{asset('storage/'. $genre->image)}}" alt="Artist Image" class="img-thumbnail" style="max-width: 100px;">
+                    @else
+                        No Image
+                    @endif
+                </td>
+                <td>
                     <a href="{{route('admin.genre.edit', $genre->id)}}" class="btn btn-primary">Edit</a>
                     <form action="{{route('admin.genre.destroy', $genre->id)}}" method="post" style="display:inline;">
                         @csrf

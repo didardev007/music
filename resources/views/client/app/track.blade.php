@@ -107,6 +107,9 @@
                     // Change button icon to pause
                     document.getElementById('playPauseButton' + trackId).classList.remove('bi-play-btn');
                     document.getElementById('playPauseButton' + trackId).classList.add('bi-pause-btn');
+
+                    // Increment view count by making an asynchronous request to the server
+                    incrementViewCount(trackId);
                 })
                 .catch((error) => {
                     console.error('Error playing audio:', error);
@@ -138,7 +141,32 @@
             currentTrackId = null;
         });
     </script>
+    <script>
+        function incrementViewCount(trackId) {
+            // Make an asynchronous request to the server to increment the view count
+            fetch('/tracks/increment-view', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}', // Add CSRF token if using Laravel
+                },
+                body: JSON.stringify({ track_id: trackId }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        console.log('View count incremented for track ' + trackId);
+                    } else {
+                        console.error('Failed to increment view count for track ' + trackId);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error incrementing view count:', error);
+                });
+        }
+    </script>
 @endpush
+
 
 
 

@@ -24,7 +24,7 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255|',
             'email' => 'required|email|max:255|',
             'password' => 'nullable|min:6',
@@ -32,7 +32,7 @@ class UserController extends Controller
             'username' => 'required|string|max:255|',
         ]);
 
-        User::create($data);
+        User::create($request->all());
 
         return redirect()->route('admin.user.index')
             ->with('success', 'User created successfully!');
@@ -47,7 +47,7 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255|',
             'email' => 'required|email|max:255|',
             'is_admin' => 'nullable|boolean',
@@ -56,7 +56,7 @@ class UserController extends Controller
 
         $user = User::findOrFail($id);
 
-        $user->update($data);
+        $user->update($request->all());
 
         return redirect()->route('admin.user.index')->with('success', 'User updated successfully!');
     }

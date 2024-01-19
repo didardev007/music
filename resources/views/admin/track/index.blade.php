@@ -16,7 +16,6 @@
             <th>Name</th>
             <th>Others</th>
             <th>Durability</th>
-            <th>Viewed</th>
             <th>Release Date</th>
             <th>Action</th>
         </tr>
@@ -37,9 +36,6 @@
                 </td>
                 <td>
                     <div class="fw-normal">{{ $track->durability }}</div>
-                </td>
-                <td>
-                    <div class="fw-normal">{{ $track->viewed }}</div>
                 </td>
                 <td>
                     <div class="fw-normal">{{ $track->release_date }}</div>
