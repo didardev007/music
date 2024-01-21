@@ -16,7 +16,7 @@
                         <img src="{{ asset('storage/' . $obj->artist->image) }}" class="img-fluid rounded-circle">
                     </div>
                     <div class="col-6 text-start">
-                        <span class="text-danger-emphasis">@lang('app.artist'):</span> {{ $obj->artist->getName }}
+                        <span class="text-danger-emphasis">@lang('app.artist'):</span> {{ $obj->artist->getName() }}
                     </div>
                 </div>
             </a>

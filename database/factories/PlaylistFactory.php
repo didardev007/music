@@ -21,7 +21,7 @@ class PlaylistFactory extends Factory
             $playlist->update();
 
             $track_playlists = [];
-            $tracks = Track::all();
+            $tracks = Track::get();
             foreach ($tracks as $track) {
                 $track = Track::inRandomOrder()
                     ->first();
