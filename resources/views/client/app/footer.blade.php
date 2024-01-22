@@ -10,21 +10,21 @@
         <div class="col mb-3 text-center">
             <h5 class="text-danger-emphasis bi bi-list"></h5>
             <ul class="nav flex-column">
-                <li class="nav-item mb-2"><a href="/" class="nav-link p-0 text-warning-emphasis">@lang('app.home')
+                <li class="mb-2"><a href="/" class="text-decoration-none p-0 text-warning-emphasis">@lang('app.home')
                     </a></li>
-                <li class="nav-item mb-2">
-                    <a class="nav-link text-warning-emphasis p-0" href="{{ route('artists.index') }}">@lang('app.artists')</a>
+                <li class="mb-2">
+                    <a class="text-decoration-none text-warning-emphasis p-0" href="{{ route('artists.index') }}">@lang('app.artists')</a>
                 </li>
-                <li class="nav-item mb-2">
-                    <a class="nav-link text-warning-emphasis p-0" href="{{ route('albums.index') }}">@lang('app.albums')
+                <li class="mb-2">
+                    <a class="text-decoration-none text-warning-emphasis p-0" href="{{ route('albums.index') }}">@lang('app.albums')
                     </a>
                 </li>
-                <li class="nav-item mb-2">
-                    <a class="nav-link text-warning-emphasis p-0" href="{{ route('playlists.index') }}">@lang('app.playlists')
+                <li class="mb-2">
+                    <a class="text-decoration-none text-warning-emphasis p-0" href="{{ route('playlists.index') }}">@lang('app.playlists')
                     </a>
                 </li>
-                <li class="nav-item mb-2">
-                    <a class="nav-link text-warning-emphasis p-0" href="{{ route('genres.index') }}">@lang('app.genres')
+                <li class="mb-2">
+                    <a class="text-decoration-none text-warning-emphasis p-0" href="{{ route('genres.index') }}">@lang('app.genres')
                     </a>
                 </li>
             </ul>

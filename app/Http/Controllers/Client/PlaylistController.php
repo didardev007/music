@@ -5,28 +5,11 @@ namespace App\Http\Controllers\client;
 use App\Http\Controllers\Controller;
 use App\Models\Playlist;
 use App\Models\Track;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 
 class PlaylistController extends Controller
 {
-    public function addTrack($playlistId, $trackId)
-    {
-        $playlist = Playlist::findOrFail($playlistId);
-        $playlist->tracks()->attach($trackId);
-
-        return redirect()->route('playlist.show', $playlistId);
-    }
-
-
-    public function showFavorites()
-    {
-        $favoriteTracks = Track::where('is_favorite', true)
-            ->with('artist', 'album', 'genre')
-            ->get();
-
-        return view('client.playlists.index', ['favoriteTracks' => $favoriteTracks]);
-    }
-
     public function index(Request $request)
     {
         $request->validate([
@@ -90,9 +73,20 @@ class PlaylistController extends Controller
         }])
             ->findOrFail($playlist);
 
+        $top_100 = Playlist::with(['tracks' => function ($query) {
+            $query->with('artist', 'album', 'genre', 'playlists');
+            $query->orderBy('viewed', 'desc');
+        }])
+            ->findOrFail($playlist);
+
+        $user = auth()->user();
+        $favorites = $user->tracks();
+
         return view('client.playlists.show')
             ->with([
                 'obj' => $obj,
+                'top_100' => $top_100,
+                'favorites' => $favorites,
             ]);
     }
 

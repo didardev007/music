@@ -69,4 +69,16 @@ class UserController extends Controller
                 'success' => 'Account deleted!',
             ]);
     }
+
+    public function addToFavorites($userId, $trackId)
+    {
+        $user = User::find($userId);
+        $user->tracks()->attach($trackId);
+    }
+
+    public function removeFromFavorites($userId, $trackId)
+    {
+        $user = User::find($userId);
+        $user->tracks()->detach($trackId);
+    }
 }

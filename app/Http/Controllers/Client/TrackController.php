@@ -123,8 +123,6 @@ class TrackController extends Controller
         $obj = Track::with('artist', 'album', 'genre', 'playlists')
             ->findOrFail($track);
 
-        $obj->increment('viewed');
-
         $sameGenre = Track::where('genre_id', $obj->genre_id)
             ->with('artist', 'album', 'genre')
             ->orderBy('release_date', 'desc')

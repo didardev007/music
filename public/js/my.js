@@ -8,5 +8,3 @@ const player = document.querySelector('.player'),
       title = document.querySelector('.track_name'),
       cover = document.querySelector('img_src'),
       btnSrc = document.querySelector('.btn_src')
-
-const songs =
