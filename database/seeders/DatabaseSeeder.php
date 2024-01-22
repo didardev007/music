@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\Artist::factory(10)->create();
         \App\Models\Album::factory(15)->create();
         \App\Models\Track::factory(50)->create();
-        \App\Models\Playlist::factory(10)->create();
         $this->call([
             PlaylistSeeder::class,
         ]);
+        \App\Models\Playlist::factory(10)->create();
     }
 }

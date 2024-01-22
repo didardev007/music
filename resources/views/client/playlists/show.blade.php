@@ -9,7 +9,7 @@
         <hr>
         @include('client.playlists.show.playlist')
         <hr>
-        @if ($obj->id == 0)
+        @if ($obj->id == 1)
             <div class="row row-cols-1 row-cols-lg-2 pt-3">
                 @foreach($favorites->tracks as $obj)
                     <div class="col">
@@ -17,7 +17,7 @@
                     </div>
                 @endforeach
             </div>
-        @elseif($obj->id == 1)
+        @elseif($obj->id == 2)
             <div class="row row-cols-1 row-cols-lg-2 pt-3">
                 @foreach($obj->tracks as $obj)
                     <div class="col">
@@ -25,7 +25,7 @@
                     </div>
                 @endforeach
             </div>
-        @elseif($obj->id == 2)
+        @elseif($obj->id == 3)
             <div class="row row-cols-1 row-cols-lg-2 pt-3">
                 @foreach($top_100->tracks as $obj)
                     <div class="col">

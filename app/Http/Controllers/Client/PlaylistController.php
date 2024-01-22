@@ -79,14 +79,10 @@ class PlaylistController extends Controller
         }])
             ->findOrFail($playlist);
 
-        $user = auth()->user();
-        $favorites = $user->tracks();
-
         return view('client.playlists.show')
             ->with([
                 'obj' => $obj,
                 'top_100' => $top_100,
-                'favorites' => $favorites,
             ]);
     }
 
