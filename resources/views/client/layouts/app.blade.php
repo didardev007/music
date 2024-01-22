@@ -14,17 +14,17 @@
 @include('client.app.alert')
 @include('client.app.nav')
 @yield('main')
-
 @include('client.app.footer')
 
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/splide.min.js') }}"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="{{ asset('js.my.js') }}"></script>
 
 <script>
-    new Splide( '#artist-carousel', {
+    new Splide('#artist-carousel', {
         @if(!request()->routeIs('search'))
-            type: 'loop',
+        type: 'loop',
         @endif
         autoplay: true,
         perPage: 5,
@@ -48,12 +48,12 @@
                 perPage: 4,
             }
         }
-    } ).mount();
+    }).mount();
 </script>
 
 <script>
-    new Splide( '#genre-carousel', {
-        type   : 'loop',
+    new Splide('#genre-carousel', {
+        type: 'loop',
         autoplay: true,
         perPage: 5,
         interval: 2500,
@@ -76,12 +76,12 @@
                 perPage: 4,
             }
         }
-    } ).mount();
+    }).mount();
 </script>
 
 <script>
-    new Splide( '#album-carousel', {
-        type   : 'loop',
+    new Splide('#album-carousel', {
+        type: 'loop',
         autoplay: true,
         perPage: 5,
         interval: 2500,
@@ -104,12 +104,12 @@
                 perPage: 4,
             }
         }
-    } ).mount();
+    }).mount();
 </script>
 
 <script>
-    new Splide( '#newTracks-carousel', {
-        type   : 'loop',
+    new Splide('#newTracks-carousel', {
+        type: 'loop',
         perPage: 3,
         autoplay: true,
         interval: 2500,
@@ -129,12 +129,12 @@
                 perPage: 2,
             }
         }
-    } ).mount();
+    }).mount();
 </script>
 
 <script>
-    new Splide( '#sameArtist-carousel', {
-        type   : 'loop',
+    new Splide('#sameArtist-carousel', {
+        type: 'loop',
         perPage: 3,
         autoplay: true,
         interval: 2500,
@@ -151,12 +151,12 @@
                 perPage: 2,
             },
         }
-    } ).mount();
+    }).mount();
 </script>
 
 <script>
-    new Splide( '#sameAlbum-carousel', {
-        type   : 'loop',
+    new Splide('#sameAlbum-carousel', {
+        type: 'loop',
         perPage: 3,
         autoplay: true,
         interval: 2500,
@@ -173,12 +173,12 @@
                 perPage: 2,
             },
         }
-    } ).mount();
+    }).mount();
 </script>
 
 <script>
-    new Splide( '#sameGenre-carousel', {
-        type   : 'loop',
+    new Splide('#sameGenre-carousel', {
+        type: 'loop',
         perPage: 3,
         autoplay: true,
         interval: 2500,
@@ -195,7 +195,8 @@
                 perPage: 2,
             },
         }
-    } ).mount();
+    }).mount();
 </script>
+
 </body>
 </html>

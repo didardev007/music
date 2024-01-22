@@ -11,12 +11,11 @@ class PlaylistSeeder extends Seeder
 {
     public function run(): void
     {
-        $songs = Track::orderBy('id')->take(25)->get();
         $new = Track::orderBy('release_date', 'desc')->take(25)->get();
         $top = Track::orderBy('viewed', 'desc')->take(25)->get();
 
         $playlists = [
-            ['name' => 'Favorites', 'name_ru' => 'Избранное', 'values' => $songs],
+            ['name' => 'Favorites', 'name_ru' => 'Избранное', 'values' => []],
             ['name' => 'New', 'name_ru' => 'Новинки', 'values' => $new],
             ['name' => "Top-100 of the Month", 'name_ru' => 'Топ-100 месяца', 'values' => $top],
         ];

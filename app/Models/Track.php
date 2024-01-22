@@ -57,4 +57,9 @@ class Track extends Model
             return $this->name;
         }
     }
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'favorites');
+    }
 }
