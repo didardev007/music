@@ -25,6 +25,7 @@ class PlaylistController extends Controller
      */
     public function create()
     {
+
         return view('admin.playlist.create');
     }
 
@@ -67,10 +68,15 @@ class PlaylistController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit($playlist)
     {
-        $playlist = Playlist::findOrFail($id);
-        return view('admin.playlist.edit', compact('playlist'));
+        $obj = Playlist::with(['tracks' => function ($query) {
+            $query->with('artist', 'album', 'genre', 'playlists');
+            $query->orderBy('release_date', 'desc');
+        }])
+            ->findOrFail($playlist);
+
+        return view('admin.playlist.edit', compact('obj'));
     }
 
     public function update(Request $request, $id)

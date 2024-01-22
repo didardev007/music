@@ -42,5 +42,4 @@ Route::resource('genres', GenreController::class);
 Route::resource('albums', AlbumController::class);
 Route::resource('playlists', PlaylistController::class);
 Route::post('/tracks/increment-view', [TrackController::class , 'incrementView']);
-Route::post('/playlists/{playlistId}/add-track/{trackId}', [PlaylistController::class, 'addTrack'])->name('addTrack');
 Route::get('/search', [SearchController::class, 'search'])->name('search');
