@@ -33,7 +33,7 @@ Route::middleware(['auth', 'check.admin'])
         Route::resource('/genre', GenreController::class)->except(['show']);
         Route::resource('/artist', ArtistController::class)->except(['show']);
         Route::resource('/user', UserController::class)->except(['show']);
-        Route::resource('/playlist', PlaylistController::class)->except('show');
+        Route::resource('/playlist', PlaylistController::class)->except(['show']);
     });
 
 

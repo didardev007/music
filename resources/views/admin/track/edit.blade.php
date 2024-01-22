@@ -58,7 +58,7 @@
 
         <div class="mb-3">
             <label for="image" class="form-label">Track Image</label>
-            <input type="file" class="form-control" id="image" name="image" accept=".jpg">
+            <input type="file" class="form-control" id="image" name="image" accept=".jpg, .jpeg, .png, .svg">
         </div>
 
         <div class="mb-3">
