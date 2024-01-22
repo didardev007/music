@@ -80,6 +80,8 @@ class TrackController extends Controller
         $genres = Genre::orderBy('name')
             ->get();
 
+        $tracks_all = Track::all();
+
 
         return view('client.tracks.index')
             ->with([
@@ -93,6 +95,7 @@ class TrackController extends Controller
                 'f_album' => $f_album,
                 'f_genre' => $f_genre,
                 'f_newTrack' => $f_newTrack,
+                'tracks_all' => $tracks_all,
             ]);
     }
 
