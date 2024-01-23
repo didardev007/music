@@ -34,16 +34,7 @@ Route::middleware(['auth', 'check.admin'])
         Route::resource('/artist', ArtistController::class)->except(['show']);
         Route::resource('/user', UserController::class)->except(['show']);
         Route::resource('/playlist', PlaylistController::class)->except(['show']);
+        Route::post('/playlist/{id}/attach', [PlaylistController::class, 'attach'])->name('playlist.attach');
+        Route::post('/playlist/{id}/detach', [PlaylistController::class, 'detach'])->name('playlist.detach');
+
     });
-
-
-
-
-
-//Route::get('/admin', [DashboardController::class,'index'])->name('dashboard');
-//Route::resource('/admin/album',AlbumController::class, ['as' => 'admin'])->except(['show']);
-//Route::get('/admin/track',[TrackController::class, 'index'])->name('track');
-//Route::resource('/admin/genre',GenreController::class, ['as' => 'admin'])->except(['show']);
-//Route::resource('admin/artist',ArtistController::class, ['as' => 'admin'])->except(['show']);
-//Route::get('/admin/user',[UserController::class, 'index'])->name('user');
-//Route::get('/admin/playlist',[PlaylistController::class, 'index'])->name('playlist');
