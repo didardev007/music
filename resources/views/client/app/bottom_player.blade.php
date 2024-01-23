@@ -29,7 +29,7 @@
     <ul>
         @foreach($tracks as $track)
             <li>
-                <a href="#" onclick="playTrack('{{ $track->pm3_path }}')">
+                <a href="{{ route('tracks.show', $track->id) }}" onclick="playTrack('{{ $track->pm3_path }}')">
                     {{ $track->name }} - {{ $track->artist->name }}
                 </a>
             </li>

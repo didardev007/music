@@ -17,186 +17,91 @@
 @include('client.app.footer')
 
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-<script src="{{ asset('js/splide.min.js') }}"></script>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="{{ asset('js.my.js') }}"></script>
-
 <script>
-    new Splide('#artist-carousel', {
-        @if(!request()->routeIs('search'))
-        type: 'loop',
-        @endif
-        autoplay: true,
-        perPage: 5,
-        interval: 2500,
-        pauseOnHover: false,
-        pauseOnFocus: false,
-        perMove: 1,
-        arrows: false,
-        pagination: false,
-        breakpoints: {
-            576: {
-                perPage: 1,
-            },
-            767: {
-                perPage: 3,
-            },
-            991: {
-                perPage: 3,
-            },
-            1199: {
-                perPage: 4,
+    let currentTrackId = null;
+    let audio = new Audio()
+
+    function togglePlayPause(trackId, audioPath) {
+        if (currentTrackId === trackId) {
+            if (audio.paused) {
+                playAudio(trackId, audioPath);
+            } else {
+                pauseAudio();
             }
+        } else {
+            // New track, stop current and play new
+            pauseAudio();
+            playAudio(trackId, audioPath);
         }
-    }).mount();
-</script>
+    }
 
+    function playAudio(trackId, audioPath) {
+        console.log('Playing audio for track ' + trackId);
+        audio.src = audioPath;
+        audio.play()
+            .then(() => {
+                // Start spinning animation
+                document.getElementsByClassName('albumImage' + trackId)[0].classList.add('spinning');
+                // Change button icon to pause
+                document.getElementsByClassName('playPauseButton' + trackId)[0].classList.remove('bi-play-btn');
+                document.getElementsByClassName('playPauseButton' + trackId)[0].classList.add('bi-pause-btn');
+
+                // Increment view count by making an asynchronous request to the server
+                incrementViewCount(trackId);
+            })
+            .catch((error) => {
+                console.error('Error playing audio:', error);
+            });
+
+        currentTrackId = trackId;
+    }
+
+    function pauseAudio() {
+        if (!audio.paused) {
+            console.log('Pausing audio for track ' + currentTrackId);
+            audio.pause();
+            // Stop spinning animation
+            document.getElementsByClassName('albumImage' + currentTrackId)[0].classList.remove('spinning');
+            // Change button icon to play
+            document.getElementsByClassName('playPauseButton' + currentTrackId)[0].classList.remove('bi-pause-btn');
+            document.getElementsByClassName('playPauseButton' + currentTrackId)[0].classList.add('bi-play-btn');
+
+            currentTrackId = null;
+        }
+    }
+
+    audio.addEventListener('ended', function () {
+        // Reset image animation and button icon when audio ends
+        document.getElementsByClassName('albumImage' + currentTrackId)[0].classList.remove('spinning');
+        document.getElementsByClassName('playPauseButton' + currentTrackId)[0].classList.remove('bi-pause-btn');
+        document.getElementsByClassName('playPauseButton' + currentTrackId)[0].classList.add('bi-play-btn');
+
+        currentTrackId = null;
+    });
+</script>
 <script>
-    new Splide('#genre-carousel', {
-        type: 'loop',
-        autoplay: true,
-        perPage: 5,
-        interval: 2500,
-        pauseOnHover: false,
-        pauseOnFocus: false,
-        perMove: 1,
-        arrows: false,
-        pagination: false,
-        breakpoints: {
-            576: {
-                perPage: 1,
+    function incrementViewCount(trackId) {
+        // Make an asynchronous request to the server to increment the view count
+        fetch('/tracks/increment-view', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}', // Add CSRF token if using Laravel
             },
-            767: {
-                perPage: 3,
-            },
-            991: {
-                perPage: 3,
-            },
-            1199: {
-                perPage: 4,
-            }
-        }
-    }).mount();
+            body: JSON.stringify({track_id: trackId}),
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    console.log('View count incremented for track ' + trackId);
+                } else {
+                    console.error('Failed to increment view count for track ' + trackId);
+                }
+            })
+            .catch(error => {
+                console.error('Error incrementing view count:', error);
+            });
+    }
 </script>
-
-<script>
-    new Splide('#album-carousel', {
-        type: 'loop',
-        autoplay: true,
-        perPage: 5,
-        interval: 2500,
-        pauseOnHover: false,
-        pauseOnFocus: false,
-        perMove: 1,
-        arrows: false,
-        pagination: false,
-        breakpoints: {
-            576: {
-                perPage: 1,
-            },
-            767: {
-                perPage: 3,
-            },
-            991: {
-                perPage: 3,
-            },
-            1199: {
-                perPage: 4,
-            }
-        }
-    }).mount();
-</script>
-
-<script>
-    new Splide('#newTracks-carousel', {
-        type: 'loop',
-        perPage: 3,
-        autoplay: true,
-        interval: 2500,
-        pauseOnHover: false,
-        pauseOnFocus: false,
-        perMove: 1,
-        arrows: false,
-        pagination: false,
-        breakpoints: {
-            576: {
-                perPage: 1,
-            },
-            991: {
-                perPage: 2,
-            },
-            1199: {
-                perPage: 2,
-            }
-        }
-    }).mount();
-</script>
-
-<script>
-    new Splide('#sameArtist-carousel', {
-        type: 'loop',
-        perPage: 3,
-        autoplay: true,
-        interval: 2500,
-        pauseOnHover: false,
-        pauseOnFocus: false,
-        perMove: 1,
-        arrows: false,
-        pagination: false,
-        breakpoints: {
-            576: {
-                perPage: 1,
-            },
-            991: {
-                perPage: 2,
-            },
-        }
-    }).mount();
-</script>
-
-<script>
-    new Splide('#sameAlbum-carousel', {
-        type: 'loop',
-        perPage: 3,
-        autoplay: true,
-        interval: 2500,
-        pauseOnHover: false,
-        pauseOnFocus: false,
-        perMove: 1,
-        arrows: false,
-        pagination: false,
-        breakpoints: {
-            576: {
-                perPage: 1,
-            },
-            991: {
-                perPage: 2,
-            },
-        }
-    }).mount();
-</script>
-
-<script>
-    new Splide('#sameGenre-carousel', {
-        type: 'loop',
-        perPage: 3,
-        autoplay: true,
-        interval: 2500,
-        pauseOnHover: false,
-        pauseOnFocus: false,
-        perMove: 1,
-        arrows: false,
-        pagination: false,
-        breakpoints: {
-            576: {
-                perPage: 1,
-            },
-            991: {
-                perPage: 2,
-            },
-        }
-    }).mount();
-</script>
-
 </body>
 </html>

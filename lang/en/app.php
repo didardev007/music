@@ -19,7 +19,7 @@ return [
     'releasedAt' => 'Released at',
     'minutes' => 'Minutes',
     'addedAt' => 'Added at',
-    'viewed' => 'Viewed',
+    'viewed' => 'Listened',
     'name' => 'Name',
     'username' => 'Username',
     'email' => 'Email',
