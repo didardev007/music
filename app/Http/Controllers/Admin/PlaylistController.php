@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Playlist;
+use App\Models\Track;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Str;
@@ -75,9 +76,43 @@ class PlaylistController extends Controller
             $query->orderBy('release_date', 'desc');
         }])
             ->findOrFail($playlist);
+        $allTracks = Track::orderBy('id', 'desc')
+            ->get();
 
-        return view('admin.playlist.edit', compact('obj'));
+        return view('admin.playlist.edit', compact('obj', 'allTracks'));
     }
+
+
+    public function attach(Request $request, $id)
+    {
+        $playlist = Playlist::findOrFail($id);
+
+        $trackIds = $request->input('track_ids', []);
+
+        // Filter out already attached tracks
+        $newTrackIds = array_diff($trackIds, $playlist->tracks->pluck('id')->toArray());
+
+        // Attach selected tracks to playlist
+        $playlist->tracks()->attach($newTrackIds);
+
+        return redirect()->route('admin.playlist.edit', $id)->with('success', 'Tracks attached to playlist successfully.');
+    }
+
+
+    public function detach(Request $request, $id)
+    {
+        $playlist = Playlist::findOrFail($id);
+
+        $trackId = $request->input('track_id');
+
+        // Detach track from playlist
+        $playlist->tracks()->detach($trackId);
+
+        // Optionally, you can redirect back to the playlist edit page with a success message
+        return redirect()->route('admin.playlist.edit', $id)->with('success', 'Track detached from playlist successfully.');
+    }
+
+
 
     public function update(Request $request, $id)
     {
@@ -114,6 +149,7 @@ class PlaylistController extends Controller
     public function destroy($id)
     {
         $playlist = Playlist::findOrFail($id);
+
         $playlist->delete();
 
         return redirect()->route('admin.playlist.index')->with('success', 'Playlist deleted successfully.');
