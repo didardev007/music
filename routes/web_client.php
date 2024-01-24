@@ -34,6 +34,7 @@ Route::middleware('auth')
     ->group(function () {
         Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
         Route::resource('users',UserController::class);
+        Route::get('/user/{userId}/favorites', [UserController::class, 'showFavorites'])->name('favorites');
     });
 
 Route::resource('tracks', TrackController::class);

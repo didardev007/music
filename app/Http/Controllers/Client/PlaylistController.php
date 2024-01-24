@@ -4,8 +4,6 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Playlist;
-use App\Models\Track;
-use http\Client\Curl\User;
 use Illuminate\Http\Request;
 
 class PlaylistController extends Controller

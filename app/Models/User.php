@@ -32,6 +32,6 @@ class User extends Authenticatable
 
     public function tracks(): BelongsToMany
     {
-        return $this->belongsToMany(Track::class, 'favorites');
+        return $this->belongsToMany(Track::class, 'track_users');
     }
 }

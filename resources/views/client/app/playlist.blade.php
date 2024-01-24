@@ -1,4 +1,5 @@
-<a href="{{ route('playlists.show', $obj->id) }}" class="link-danger fw-semibold
+<a href="{{ route('playlists.show', $obj->id) }}"
+   class="link-danger fw-semibold
             text-decoration-none text-danger-emphasis h5">
     <div class="col text-center py-3">
         <div>

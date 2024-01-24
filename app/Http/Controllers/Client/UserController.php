@@ -81,4 +81,18 @@ class UserController extends Controller
         $user = User::find($userId);
         $user->tracks()->detach($trackId);
     }
+
+    public function showFavorites($userId)
+    {
+        $favorites = User::with(['tracks' => function ($query) {
+            $query->with('artist', 'album', 'genre', 'playlists');
+            $query->orderBy('id');
+        }])
+            ->findOrFail($userId);
+
+        return view('playlists.show')
+            ->with([
+                'favorites' => $favorites
+            ]);
+    }
 }

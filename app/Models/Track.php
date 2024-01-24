@@ -60,6 +60,6 @@ class Track extends Model
 
     public function users(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'favorites');
+        return $this->belongsToMany(User::class, 'track_users');
     }
 }
