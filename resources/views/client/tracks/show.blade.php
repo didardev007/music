@@ -13,8 +13,9 @@
         @include('client.tracks.show.same_genre')
         @include('client.tracks.show.same_artist')
         @include('client.tracks.show.same_album')
+    </div>
 
-        <script src="{{ asset('js/splide.min.js') }}"
+        <script src="{{ asset('js/splide.min.js') }}"></script>
 
         <script>
             new Splide('#sameArtist-carousel', {
