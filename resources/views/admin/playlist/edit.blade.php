@@ -62,30 +62,6 @@
                     <td>
                         <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteTrackModal{{ $track->id }}">Delete</button>
                     </td>
-
-                    <!-- Modal for detaching track from playlist -->
-                    <!-- Modal for detaching track from playlist -->
-                    <div class="modal fade" id="deleteTrackModal{{ $track->id }}" tabindex="-1" aria-labelledby="deleteTrackModalLabel{{ $track->id }}" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="deleteTrackModalLabel{{ $track->id }}">Confirm Delete</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Are you sure you want to delete the track "{{ $track->name }}" from the playlist?</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                    <form method="post" action="{{ route('admin.playlist.detach', ['id' => $obj->id, 'track_id' => $track->id]) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </tr>
             @endforeach
             </tbody>
@@ -93,6 +69,30 @@
 
         <button type="submit" class="btn btn-primary">Update Playlist</button>
     </form>
+
+    @foreach($obj->tracks as $track)
+        <div class="modal fade" id="deleteTrackModal{{ $track->id }}" tabindex="-1" aria-labelledby="deleteTrackModalLabel{{ $track->id }}" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteTrackModalLabel{{ $track->id }}">Confirm Delete</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete the track "{{ $track->name }}" from the playlist?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <form method="post" action="{{ route('admin.playlist.detach', ['id' => $obj->id, 'track_id' => $track->id]) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
 
     <!-- Modal for adding tracks -->
     <div class="modal fade" id="addTrackModal" tabindex="-1" aria-labelledby="addTrackModalLabel" aria-hidden="true">

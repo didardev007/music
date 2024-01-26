@@ -35,6 +35,6 @@ Route::middleware(['auth', 'check.admin'])
         Route::resource('/user', UserController::class)->except(['show']);
         Route::resource('/playlist', PlaylistController::class)->except(['show']);
         Route::post('/playlist/{id}/attach', [PlaylistController::class, 'attach'])->name('playlist.attach');
-        Route::post('/playlist/{id}/detach', [PlaylistController::class, 'detach'])->name('playlist.detach');
+        Route::delete('/playlist/{id}/detach', [PlaylistController::class, 'detach'])->name('playlist.detach');
 
     });
