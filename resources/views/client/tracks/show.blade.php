@@ -25,6 +25,7 @@
                 interval: 2500,
                 pauseOnHover: false,
                 perMove: 1,
+                arrows: false,
                 pagination: false,
                 breakpoints: {
                     576: {

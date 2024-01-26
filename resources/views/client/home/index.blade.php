@@ -24,6 +24,7 @@
             pauseOnHover: false,
             perMove: 1,
             pagination: false,
+            arrows: false,
             breakpoints: {
                 576: {
                     perPage: 1,
