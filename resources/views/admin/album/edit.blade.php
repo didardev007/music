@@ -18,8 +18,8 @@
 
 
         <div class="mb-3">
-            <label for="artist" class="form-label">Artist</label>
-            <select name="artist" id="artist" class="form-select">
+            <label for="artist_id" class="form-label">Artist</label>
+            <select name="artist_id" id="artist_id" class="form-select">
                 @foreach($artists as $artist)
                     <option value="{{ $artist->id }}" {{ $artist->id == $album->artist_id ? 'selected' : '' }}>
                         {{ $artist->name }}

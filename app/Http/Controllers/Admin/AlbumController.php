@@ -6,6 +6,7 @@ use App\Models\Album;
 use App\Models\Artist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class AlbumController extends Controller
 {
@@ -37,13 +38,28 @@ class AlbumController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'artist' => 'required|exists:artists,id',
+            'artist_id' => 'required|exists:artists,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        Album::create($request->all());
+        $slug = Str::slug($request['name']);
+        $count = Album::where('slug', $slug)->count();
+        $request['slug'] = ($count > 0) ? $slug . '-' . time() : $slug;
 
-        return redirect()->route('admin.album.index', compact('album'))->with('success', 'Album created successfully');
+        $album = Album::create($request->all());
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $imageFile = $request->file('image');
+            $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
+
+            // Store the image in the "public/img" directory
+            $imagePath = $imageFile->storeAs('public/album', $imageFileName);
+
+            // Save the image path in the database
+            $album->update(['image' => 'album/' . $imageFileName]);
+        }
+
+        return redirect()->route('admin.album.index')->with('success', 'Album created successfully');
     }
 
     /**
@@ -77,11 +93,26 @@ class AlbumController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'artist' => 'required|exists:artists,id',
+            'artist_id' => 'required|exists:artists,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',// Validate the single artist ID
         ]);
 
+        $slug = Str::slug($request['name']);
+        $count = Album::where('slug', $slug)->count();
+        $request['slug'] = ($count > 0) ? $slug . '-' . time() : $slug;
+
         $album->update($request->all());
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $imageFile = $request->file('image');
+            $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
+
+            // Store the image in the "public/img" directory
+            $imagePath = $imageFile->storeAs('public/album', $imageFileName);
+
+            // Save the image path in the database
+            $album->update(['image' => 'artist/' . $imageFileName]);
+        }
 
         return redirect()->route('admin.album.index')->with('success', 'Album updated successfully');
     }
