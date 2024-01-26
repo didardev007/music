@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             GenreSeeder::class,
         ]);
-        \App\Models\User::factory(10)->create();
         \App\Models\Artist::factory(10)->create();
         \App\Models\Album::factory(15)->create();
         \App\Models\Track::factory(50)->create();
@@ -20,5 +19,6 @@ class DatabaseSeeder extends Seeder
             PlaylistSeeder::class,
         ]);
         \App\Models\Playlist::factory(10)->create();
+        \App\Models\User::factory(10)->create();
     }
 }

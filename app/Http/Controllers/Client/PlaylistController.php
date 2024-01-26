@@ -4,6 +4,7 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Playlist;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PlaylistController extends Controller
@@ -36,11 +37,14 @@ class PlaylistController extends Controller
             ->orWhere('name', 'Top-100 of the Month')
             ->get();
 
+        $user = auth()->user();
+
         return view('client.playlists.index')
             ->with([
                 'playlists' => $playlists,
                 'topPlaylists' => $topPlaylists,
                 'f_q' => $f_q,
+                'user' => $user,
             ]);
     }
 

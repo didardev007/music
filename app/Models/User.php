@@ -34,4 +34,19 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Track::class, 'track_users');
     }
+
+    public function checkFavorite(Track $obj) {
+        return $this->tracks()->where('track_id', $obj->id)->exists();
+    }
+    public function getName()
+    {
+        $locale = app()->getLocale();
+        if ($locale == 'ru') {
+            return $this->name_ru ?: $this->name;
+        } elseif ($locale == 'en') {
+            return $this->name_en ?: $this->name;
+        } else {
+            return $this->name;
+        }
+    }
 }

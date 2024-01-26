@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
+use App\Models\Playlist;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -67,32 +68,6 @@ class UserController extends Controller
         return to_route('home')
             ->with([
                 'success' => 'Account deleted!',
-            ]);
-    }
-
-    public function addToFavorites($userId, $trackId)
-    {
-        $user = User::find($userId);
-        $user->tracks()->attach($trackId);
-    }
-
-    public function removeFromFavorites($userId, $trackId)
-    {
-        $user = User::find($userId);
-        $user->tracks()->detach($trackId);
-    }
-
-    public function showFavorites($userId)
-    {
-        $favorites = User::with(['tracks' => function ($query) {
-            $query->with('artist', 'album', 'genre', 'playlists');
-            $query->orderBy('id');
-        }])
-            ->findOrFail($userId);
-
-        return view('playlists.show')
-            ->with([
-                'favorites' => $favorites
             ]);
     }
 }

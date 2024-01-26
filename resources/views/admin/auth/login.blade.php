@@ -58,5 +58,9 @@
     {{--</div>--}}
 
     <button class="btn btn-primary w-100 py-2" type="submit">@lang('app.login')</button>
+
+    <div class="text-center pt-4">
+        <a href="{{ route('register') }}" class="link-dark">@lang('app.register')</a>
+    </div>
 </form>
 </body>

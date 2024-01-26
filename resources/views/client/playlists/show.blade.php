@@ -9,15 +9,17 @@
         <hr>
         @include('client.playlists.show.playlist')
         <hr>
-        @if ($obj->id == 1)
-            <div class="row row-cols-1 row-cols-lg-2 pt-3">
-                @foreach($favorites->tracks as $obj)
-                    <div class="col">
-                        @include('client.app.track')
-                    </div>
-                @endforeach
-            </div>
-        @elseif($obj->id == 2)
+        @if ($obj->slug == 'favorites')
+            @auth
+                <div class="row row-cols-1 row-cols-lg-2 pt-3">
+                    @foreach($favorites->tracks as $obj)
+                        <div class="col">
+                            @include('client.app.track')
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        @elseif($obj->slug == 'new')
             <div class="row row-cols-1 row-cols-lg-2 pt-3">
                 @foreach($obj->tracks as $obj)
                     <div class="col">
@@ -25,7 +27,7 @@
                     </div>
                 @endforeach
             </div>
-        @elseif($obj->id == 3)
+        @elseif($obj->slug == 'top-100-of-the-month')
             <div class="row row-cols-1 row-cols-lg-2 pt-3">
                 @foreach($top_100->tracks as $obj)
                     <div class="col">

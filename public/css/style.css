@@ -1,6 +1,13 @@
-.bg-album-image {
-    background-image: url("{{ Storage::disk('public')->url($obj->image) }}");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+/* CSS for spinning animation */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.spinning {
+    animation: spin 2s linear infinite;
 }

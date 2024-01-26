@@ -18,16 +18,16 @@ class UserFactory extends Factory
         return $this->afterMaking(function (User $user) {
             // ...
         })->afterCreating(function (User $user) {
-            $track_playlists = [];
+            $track_users = [];
             $tracks = Track::get();
             foreach ($tracks as $track) {
                 $track = Track::inRandomOrder()
                     ->first();
 
-                $track_playlists[] = $track->id;
+                $track_users[] = $track->id;
             }
 
-            $user->tracks()->sync($track_playlists);
+            $user->tracks()->sync($track_users);
         });
     }
 

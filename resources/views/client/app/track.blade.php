@@ -8,7 +8,8 @@
                         <a href="{{ route('tracks.show', $obj->id) }}" class="link-dark h6 text-decoration-none">
                             <img src="{{ asset('storage/' . $obj->image) }}" alt="{{ $obj->image }}"
                                  class="img-fluid
-                        rounded-circle text-center albumImage{{$obj->id}}" style="width: 100%; height: auto; aspect-ratio: 1/1;">
+                        rounded-circle text-center albumImage{{ $obj->id }}"
+                                 style="width: 100%; height: auto; aspect-ratio: 1/1;">
                         </a>
                     </div>
                 </div>
@@ -43,11 +44,10 @@
                     </div>
                 </div>
                 <div class="col-2">
-                    <div
-                        class="d-block">
+                    <div class="d-block">
                         <div class="text-end">
-                            <!-- Add the play/pause button using Bootstrap icons -->
-                            <button class="btn btn-md btn-outline-danger bi bi-play-btn playPauseButton{{$obj->id}}" onclick="togglePlayPause('{{$obj->id}}',
+                            <button class="btn btn-md btn-outline-danger bi bi-play-btn playPauseButton{{$obj->id}}"
+                                    onclick="togglePlayPause('{{$obj->id}}',
                                     '{{ asset('storage/' . $obj->mp3_path) }}')">
                             </button>
                         </div>
@@ -62,10 +62,33 @@
                             </a>
                         </div>
                         <div class="text-end">
-                            <button
-                                class="btn btn-md btn-outline-danger bi bi-heart{{ $obj->is_favorite ? '-fill' : '' }}"
-                                type="submit">
-                            </button>
+                            @auth
+                                @if (Auth::user()->checkFavorite($obj))
+                                    <form action="{{ route('removeFavorite', ['trackId' => $obj->id]) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-md
+                            btn-outline-danger bi
+                            bi-heart-fill">
+                                        </button>
+                                    </form>
+                                @else
+                                    <form action="{{ route('addFavorite', ['trackId' => $obj->id]) }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="btn btn-md
+                            btn-outline-danger bi
+                            bi-heart">
+                                        </button>
+                                    </form>
+                                @endif
+                            @else
+                                <form action="{{ route('register') }}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-md
+                            btn-outline-danger bi
+                            bi-heart">
+                                    </button>
+                                </form>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -73,19 +96,3 @@
         </div>
     </div>
 </div>
-
-<style>
-    /* CSS for spinning animation */
-    @keyframes spin {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-
-    .spinning {
-        animation: spin 2s linear infinite;
-    }
-</style>

@@ -4,6 +4,7 @@
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Client\ArtistController;
 use App\Http\Controllers\Client\AlbumController;
+use App\Http\Controllers\Client\FavoritesController;
 use App\Http\Controllers\Client\GenreController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\PlaylistController;
@@ -26,15 +27,14 @@ Route::middleware('guest')
     ->group(function () {
         Route::get('register', [RegisterController::class, 'create'])->name('register');
         Route::post('register', [RegisterController::class, 'store']);
-        Route::get('login', [LoginController::class, 'create'])->name('login');
-        Route::post('login', [LoginController::class, 'store']);
     });
 
 Route::middleware('auth')
     ->group(function () {
         Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
         Route::resource('users',UserController::class);
-        Route::get('/user/{userId}/favorites', [UserController::class, 'showFavorites'])->name('favorites');
+        Route::post('/tracks/addFavorite/{trackId}', [FavoritesController::class, 'addToFavorites'])->name('addFavorite');
+        Route::post('/tracks/removeFavorite/{trackId}', [FavoritesController::class, 'removeFromFavorites'])->name('removeFavorite');
     });
 
 Route::resource('tracks', TrackController::class);
@@ -42,5 +42,6 @@ Route::resource('artists', ArtistController::class);
 Route::resource('genres', GenreController::class);
 Route::resource('albums', AlbumController::class);
 Route::resource('playlists', PlaylistController::class);
+Route::get('/playlists/{playlistId}/{userId}', [FavoritesController::class, 'showFavorites'])->name('favorites');
 Route::post('/tracks/increment-view', [TrackController::class , 'incrementView']);
 Route::get('/search', [SearchController::class, 'search'])->name('search');
