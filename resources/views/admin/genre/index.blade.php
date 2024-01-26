@@ -14,6 +14,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Name_ru</th>
+            <th>Image</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -25,7 +26,7 @@
                 <td><small class="h5 fw-normal">{{$genre->name_ru}}</small></td>
                 <td>
                     @if($genre->image)
-                        <img src="{{asset('storage/'. $genre->image)}}" alt="Artist Image" class="img-thumbnail" style="max-width: 100px;">
+                        <img src="{{asset('storage/'. $genre->image)}}" alt="Genre Image" class="img-thumbnail" style="max-width: 100px;">
                     @else
                         No Image
                     @endif

@@ -30,7 +30,7 @@
                 </td>
                 <td>
                     @if($album->image)
-                        <img src="{{asset('storage/'. $album->image)}}" alt="Artist Image" class="img-thumbnail" style="max-width: 100px;">
+                        <img src="{{asset('storage/'. $album->image)}}" alt="Album Image" class="img-thumbnail" style="max-width: 100px;">
                     @else
                         No Image
                     @endif
