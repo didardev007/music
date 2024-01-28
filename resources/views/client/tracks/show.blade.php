@@ -15,71 +15,70 @@
         @include('client.tracks.show.same_album')
     </div>
 
-        <script src="{{ asset('js/splide.min.js') }}"></script>
+    <script src="{{ asset('js/splide.min.js') }}"></script>
 
-        <script>
-            new Splide('#sameArtist-carousel', {
-                type: 'loop',
-                perPage: 3,
-                autoplay: true,
-                interval: 2500,
-                pauseOnHover: false,
-                perMove: 1,
-                arrows: false,
-                pagination: false,
-                breakpoints: {
-                    576: {
-                        perPage: 1,
-                    },
-                    991: {
-                        perPage: 2,
-                    },
-                }
-            }).mount();
-        </script>
+    <script>
+        new Splide('#sameArtist-carousel', {
+            type: 'loop',
+            perPage: 3,
+            autoplay: true,
+            interval: 2500,
+            pauseOnHover: false,
+            perMove: 1,
+            arrows: false,
+            pagination: false,
+            breakpoints: {
+                576: {
+                    perPage: 1,
+                },
+                991: {
+                    perPage: 2,
+                },
+            }
+        }).mount();
+    </script>
 
-        <script>
-            new Splide('#sameAlbum-carousel', {
-                type: 'loop',
-                perPage: 3,
-                autoplay: true,
-                interval: 2500,
-                pauseOnHover: false,
-                pauseOnFocus: false,
-                perMove: 1,
-                arrows: false,
-                pagination: false,
-                breakpoints: {
-                    576: {
-                        perPage: 1,
-                    },
-                    991: {
-                        perPage: 2,
-                    },
-                }
-            }).mount();
-        </script>
+    <script>
+        new Splide('#sameAlbum-carousel', {
+            type: 'loop',
+            perPage: 3,
+            autoplay: true,
+            interval: 2500,
+            pauseOnHover: false,
+            pauseOnFocus: false,
+            perMove: 1,
+            arrows: false,
+            pagination: false,
+            breakpoints: {
+                576: {
+                    perPage: 1,
+                },
+                991: {
+                    perPage: 2,
+                },
+            }
+        }).mount();
+    </script>
 
-        <script>
-            new Splide('#sameGenre-carousel', {
-                type: 'loop',
-                perPage: 3,
-                autoplay: true,
-                interval: 2500,
-                pauseOnHover: false,
-                pauseOnFocus: false,
-                perMove: 1,
-                arrows: false,
-                pagination: false,
-                breakpoints: {
-                    576: {
-                        perPage: 1,
-                    },
-                    991: {
-                        perPage: 2,
-                    },
-                }
-            }).mount();
-        </script>
-    </div>
+    <script>
+        new Splide('#sameGenre-carousel', {
+            type: 'loop',
+            perPage: 3,
+            autoplay: true,
+            interval: 2500,
+            pauseOnHover: false,
+            pauseOnFocus: false,
+            perMove: 1,
+            arrows: false,
+            pagination: false,
+            breakpoints: {
+                576: {
+                    perPage: 1,
+                },
+                991: {
+                    perPage: 2,
+                },
+            }
+        }).mount();
+    </script>
 @endsection
