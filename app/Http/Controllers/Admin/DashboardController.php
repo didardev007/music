@@ -18,7 +18,7 @@ class DashboardController extends Controller
     public function index()
     {
         $tracks = Track::orderBy('id', 'desc')
-            ->with('artist', 'album', 'genre')
+            ->with('artist', 'album', 'genre', 'users')
             ->get();
 
         $inFavorites = User::with('checkFavorite')->count();
