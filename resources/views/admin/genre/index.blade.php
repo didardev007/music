@@ -8,6 +8,15 @@
         <h1 class="mt-4">Genre Index</h1>
         <a href="{{route('admin.genre.create')}}" class="btn btn-success">Create Genre</a>
     </div>
+
+    <div class="py-3">
+        <form action="{{ route('admin.genre.index') }}" role="search">
+            <input class="form-control" type="search" name="q"
+                   value="{{ isset($q) ? $q : old('q') }}" placeholder="Search"
+                   aria-label="Search">
+        </form>
+    </div>
+
     <table class="table">
         <thead>
         <tr>

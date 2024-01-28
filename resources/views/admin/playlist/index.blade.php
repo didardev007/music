@@ -10,6 +10,14 @@
         <a href="{{ route('admin.playlist.create') }}" class="btn btn-success">Create Playlist</a>
     </div>
 
+    <div class="py-3">
+        <form action="{{ route('admin.user.index') }}" role="search">
+            <input class="form-control" type="search" name="q"
+                   value="{{ isset($q) ? $q : old('q') }}" placeholder="Search"
+                   aria-label="Search">
+        </form>
+    </div>
+
     <table class="table">
         <thead>
         <tr>

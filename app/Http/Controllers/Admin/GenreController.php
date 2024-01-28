@@ -12,9 +12,22 @@ class GenreController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $genres = Genre::orderBy('id', 'desc')
+        $request->validate([
+            'q' => 'nullable|string|max:255',
+        ]);
+
+
+        $q = $request->q ?: null;
+
+        $genres = Genre::when($q, function ($query, $q) {
+            return $query->where(function ($query) use ($q) {
+                $query->orWhere('name', 'like', '%' . $q . '%');
+                $query->orWhere('name_ru', 'like', '%' . $q . '%');
+            });
+        })
+            ->orderBy('id', 'desc')
             ->get();
 
         return view('admin.genre.index', compact('genres'));

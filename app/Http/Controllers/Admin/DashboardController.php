@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Track;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,7 +21,9 @@ class DashboardController extends Controller
             ->with('artist', 'album', 'genre')
             ->get();
 
-        return view('admin.track.index', compact('tracks'));
+        $inFavorites = User::with('checkFavorite')->count();
+
+        return view('admin.track.index', compact('tracks', 'inFavorites'));
     }
 
 }

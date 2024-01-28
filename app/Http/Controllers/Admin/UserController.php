@@ -8,9 +8,21 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderBy('id', 'desc')
+        $request->validate([
+            'q' => 'nullable|string|max:255',
+        ]);
+
+
+        $q = $request->q ?: null;
+
+        $users = User::when($q, function ($query, $q) {
+            return $query->where(function ($query) use ($q) {
+                $query->orWhere('username', 'like', '%' . $q . '%');
+            });
+        })
+            ->orderBy('id', 'desc')
             ->get();
 
 

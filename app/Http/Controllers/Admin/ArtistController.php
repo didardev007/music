@@ -12,9 +12,20 @@ class ArtistController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $artists = Artist::orderBy('id', 'desc')
+        $request->validate([
+            'q' => 'nullable|string|max:255',
+        ]);
+
+
+        $q = $request->q ?: null;
+
+        $artists = Artist::when($q, function ($query, $q) {
+            return $query->where(function ($query) use ($q) {
+                $query->orWhere('name', 'like', '%' . $q . '%');
+            });
+        })  ->orderBy('id', 'desc')
             ->get();
         return view('admin.artist.index', compact('artists'));
     }

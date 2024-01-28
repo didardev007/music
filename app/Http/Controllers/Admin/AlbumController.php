@@ -13,9 +13,21 @@ class AlbumController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $albums = Album::orderBy('id', 'desc')
+        $request->validate([
+            'q' => 'nullable|string|max:255',
+        ]);
+
+
+        $q = $request->q ?: null;
+
+        $albums = Album::when($q, function ($query, $q) {
+            return $query->where(function ($query) use ($q) {
+                $query->orWhere('name', 'like', '%' . $q . '%');
+            });
+        })
+            ->orderBy('id' , 'desc')
             ->with('artist')
             ->get();
         return view('admin.album.index', compact('albums'));

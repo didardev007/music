@@ -9,14 +9,23 @@
         <a href="{{ route('admin.track.create') }}" class="btn btn-success">Create Track</a>
     </div>
 
+    <div class="py-3">
+        <form action="{{ route('admin.track.index') }}" role="search">
+            <input class="form-control" type="search" name="q"
+                   value="{{ isset($q) ? $q : old('q') }}" placeholder="Search"
+                   aria-label="Search">
+        </form>
+    </div>
+
     <table class="table">
         <thead>
         <tr>
-            <th>ID</th>
+            <th width="5%">ID</th>
             <th>Name</th>
-            <th>Others</th>
+            <th width="20%">Others</th>
             <th>Durability</th>
             <th>Release Date</th>
+            <th>In Favorites</th>
             <th>Action</th>
         </tr>
         </thead>
@@ -39,6 +48,9 @@
                 </td>
                 <td>
                     <div class="fw-normal">{{ $track->release_date }}</div>
+                </td>
+                <td>
+                    <div>{{count($track->users)}}</div>
                 </td>
                 <td>
                     <a href="{{ route('admin.track.edit', $track->id) }}" class="btn btn-primary">Edit</a>
