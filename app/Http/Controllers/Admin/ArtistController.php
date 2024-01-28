@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Artist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class ArtistController extends Controller
 {
@@ -35,6 +36,10 @@ class ArtistController extends Controller
             'name' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        $slug = Str::slug($request['name']);
+        $count = Artist::where('slug', $slug)->count();
+        $request['slug'] = ($count > 0) ? $slug . '-' . time() : $slug;
 
         $artist = Artist::create($request->all());
 
@@ -81,6 +86,10 @@ class ArtistController extends Controller
             'name' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+
+        $slug = Str::slug($request['name']);
+        $count = Artist::where('slug', $slug)->count();
+        $request['slug'] = ($count > 0) ? $slug . '-' . time() : $slug;
 
         $artist->update($request->all());
 

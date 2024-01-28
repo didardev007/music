@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Genre;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class GenreController extends Controller
 {
@@ -34,11 +35,26 @@ class GenreController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'name_ru' => 'required|string|max:255',
+            'name_ru' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        Genre::create($request->all());
+        $slug = Str::slug($request['name']);
+        $count = Genre::where('slug', $slug)->count();
+        $request['slug'] = ($count > 0) ? $slug . '-' . time() : $slug;
+
+        $genre = Genre::create($request->all());
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $imageFile = $request->file('image');
+            $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
+
+            // Store the image in the "public/img" directory
+            $imagePath = $imageFile->storeAs('public/genre', $imageFileName);
+
+            // Save the image path in the database
+            $genre->update(['image' => 'genre/' . $imageFileName]);
+        }
 
         return redirect()->route('admin.genre.index')->with('success', 'Genre created successfully');
     }
@@ -74,7 +90,22 @@ class GenreController extends Controller
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        $slug = Str::slug($request['name']);
+        $count = Genre::where('slug', $slug)->count();
+        $request['slug'] = ($count > 0) ? $slug . '-' . time() : $slug;
+
         $genre->update($request->all());
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $imageFile = $request->file('image');
+            $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
+
+            // Store the image in the "public/img" directory
+            $imagePath = $imageFile->storeAs('public/genre', $imageFileName);
+
+            // Save the image path in the database
+            $genre->update(['image' => 'genre/' . $imageFileName]);
+        }
 
         return redirect()->route('admin.genre.index')->with('success', 'Genre updated successfully');
     }
