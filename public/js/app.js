@@ -1,5 +1,5 @@
-let currentTrackId = null;
-let audio = new Audio()
+let currentTrackId = 0;
+let audio = new Audio();
 
 function togglePlayPause(trackId, audioPath) {
     if (currentTrackId === trackId) {
@@ -22,8 +22,8 @@ function playAudio(trackId, audioPath) {
     let albumImage = document.getElementsByClassName('albumImage' + trackId);
 
     for (const item of playButton) {
-        item.classList.add('bi-pause-btn')
-        item.classList.remove('bi-play-btn')
+        item.classList.add('bi-pause-btn');
+        item.classList.remove('bi-play-btn');
         for (const itemElement of albumImage) {
             if (itemElement) {
                 itemElement.classList.add('spinning');
@@ -57,8 +57,8 @@ function pauseAudio(trackId) {
         let albumImage = document.getElementsByClassName('albumImage' + currentTrackId);
 
         for (const item of playButton) {
-            item.classList.remove('bi-pause-btn')
-            item.classList.add('bi-play-btn')
+            item.classList.remove('bi-pause-btn');
+            item.classList.add('bi-play-btn');
             for (const itemElement of albumImage) {
                 if (itemElement) {
                     itemElement.classList.remove('spinning');
@@ -77,8 +77,8 @@ audio.addEventListener('ended', function () {
     let albumImage = document.getElementsByClassName('albumImage' + currentTrackId);
 
     for (const item of playButton) {
-        item.classList.remove('bi-pause-btn')
-        item.classList.add('bi-play-btn')
+        item.classList.remove('bi-pause-btn');
+        item.classList.add('bi-play-btn');
         for (const itemElement of albumImage) {
             if (itemElement) {
                 itemElement.classList.remove('spinning');

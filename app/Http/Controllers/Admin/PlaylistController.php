@@ -39,7 +39,6 @@ class PlaylistController extends Controller
      */
     public function create()
     {
-
         return view('admin.playlist.create');
     }
 
@@ -62,7 +61,7 @@ class PlaylistController extends Controller
             $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
 
             // Store the image in the "public/img" directory
-            $imagePath = $imageFile->storeAs('public/playlist', $imageFileName);
+            $imageFile->storeAs('public/playlist', $imageFileName);
 
             // Save the image path in the database
             $playlist->update(['image' => 'playlist/' . $imageFileName]);
@@ -150,7 +149,7 @@ class PlaylistController extends Controller
             $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
 
             // Store the image in the "public/img" directory
-            $imagePath = $imageFile->storeAs('public/playlist', $imageFileName);
+            $imageFile->storeAs('public/playlist', $imageFileName);
 
             // Save the image path in the database
             $playlist->update(['image' => 'playlist/' . $imageFileName]);

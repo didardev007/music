@@ -18,7 +18,7 @@
 
         <div class="mb-3">
             <label for="name_ru" class="form-label">Name_ru</label>
-            <input type="text" class="form-control" id="name_ru" name="name_ru" value="{{$genre->name_ru}}" required>
+            <input type="text" class="form-control" id="name_ru" name="name_ru" value="{{$genre->name_ru}}" >
         </div>
 
         <div class="mb-3">

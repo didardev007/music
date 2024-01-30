@@ -63,7 +63,7 @@ class GenreController extends Controller
             $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
 
             // Store the image in the "public/img" directory
-            $imagePath = $imageFile->storeAs('public/genre', $imageFileName);
+            $imageFile->storeAs('public/genre', $imageFileName);
 
             // Save the image path in the database
             $genre->update(['image' => 'genre/' . $imageFileName]);
@@ -99,7 +99,7 @@ class GenreController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'name_ru' => 'required|string|max:255',
+            'name_ru' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -114,7 +114,7 @@ class GenreController extends Controller
             $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
 
             // Store the image in the "public/img" directory
-            $imagePath = $imageFile->storeAs('public/genre', $imageFileName);
+            $imageFile->storeAs('public/genre', $imageFileName);
 
             // Save the image path in the database
             $genre->update(['image' => 'genre/' . $imageFileName]);

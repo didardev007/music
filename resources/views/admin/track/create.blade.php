@@ -27,15 +27,6 @@
         </div>
 
         <div class="mb-3">
-            <label for="album" class="form-label">Album</label>
-            <select class="form-select" id="album" name="album_id">
-                @foreach ($albums as $album)
-                    <option value="{{ $album->id }}">{{ $album->name }}</option>
-                @endforeach
-            </select>
-        </div>
-
-        <div class="mb-3">
             <label for="genre" class="form-label">Genre</label>
             <select class="form-select" id="genre" name="genre_id" required>
                 @foreach ($genres as $genre)
@@ -51,7 +42,7 @@
 
         <div class="mb-3">
             <label for="release_date" class="form-label">Release Date</label>
-            <input type="text" class="form-control" id="release_date" name="release_date" placeholder="year-month-day" required>
+            <input type="date" class="form-control" id="release_date" name="release_date" placeholder="year-month-day" required>
         </div>
 
         <div class="mb-3">

@@ -24,7 +24,7 @@
             <th>Name</th>
             <th width="20%">Others</th>
             <th>Durability</th>
-            <th>Release Date</th>
+            <th>Released Date</th>
             <th>In Favorites</th>
             <th>Action</th>
         </tr>
