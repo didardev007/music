@@ -8,7 +8,7 @@
                 {{ $obj->getName() }}
             </div>
             <div class="h6 fw-normal">
-                {{ $obj->description }}
+                {{ $obj->getDescription() }}
             </div>
             <a href="{{ route('artists.show', ['artist' => $obj->artist->id]) }}" class="text-decoration-none">
                 <div class="row align-items-center justify-content-center py-3">

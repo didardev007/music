@@ -14,12 +14,16 @@
             <div class="h4 text-center text-primary py-3">
                 @lang('app.tracks')
             </div>
-            <div class="row row-cols-1 row-cols-lg-2">
-                @foreach($tracks as $obj)
-                    <div class="col">
-                        @include('client.app.track')
-                    </div>
-                @endforeach
+            <div id="tracks-carousel" class="splide" aria-label="Beautiful Images">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        @foreach($tracks as $obj)
+                            <li class="splide__slide">
+                                @include('client.app.track')
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         @endisset
         @isset($albums[0])
@@ -33,8 +37,10 @@
     <script src="{{ asset('js/splide.min.js') }}"></script>
 
     <script>
-        new Splide('#newTracks-carousel', {
+        new Splide('#tracks-carousel', {
+            @if(!request()->routeIs('search'))
             type: 'loop',
+            @endif
             perPage: 3,
             autoplay: false,
             interval: 2500,
@@ -57,8 +63,10 @@
     </script>
 
     <script>
-        new Splide('#genre-carousel', {
+        new Splide('#album-carousel', {
+            @if(!request()->routeIs('search'))
             type: 'loop',
+            @endif
             autoplay: true,
             perPage: 5,
             interval: 2500,

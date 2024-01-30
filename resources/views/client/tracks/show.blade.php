@@ -21,7 +21,7 @@
         new Splide('#sameArtist-carousel', {
             type: 'loop',
             perPage: 3,
-            autoplay: true,
+            autoplay: false,
             interval: 2500,
             pauseOnHover: false,
             perMove: 1,
@@ -42,7 +42,7 @@
         new Splide('#sameAlbum-carousel', {
             type: 'loop',
             perPage: 3,
-            autoplay: true,
+            autoplay: false,
             interval: 2500,
             pauseOnHover: false,
             pauseOnFocus: false,
@@ -64,7 +64,7 @@
         new Splide('#sameGenre-carousel', {
             type: 'loop',
             perPage: 3,
-            autoplay: true,
+            autoplay: false,
             interval: 2500,
             pauseOnHover: false,
             pauseOnFocus: false,

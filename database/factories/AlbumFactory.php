@@ -19,6 +19,7 @@ class AlbumFactory extends Factory
 
         $artist = Artist::inRandomOrder()->first();
         $name = fake()->name();
+        $description = fake()->text(255);
         $release_date = fake()->date('Y-m-d');
         $created_at = fake()->dateTimeBetween($release_date, 'now')->format('Y-m-d');
 
@@ -27,7 +28,8 @@ class AlbumFactory extends Factory
             'name' => $name,
             'name_ru' => str($name)->upper(),
             'slug' => str($name)->slug(),
-            'description' => fake()->text(255),
+            'description' => $description,
+            'description_ru' => str($description)->upper(),
             'image' => $randomFile,
             'release_date' => $release_date,
             'created_at' => $created_at,

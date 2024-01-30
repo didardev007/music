@@ -35,12 +35,14 @@ class GenreSeeder extends Seeder
             $randomFile = $files[rand(0, count($files) - 1)];
 
             $description = fake()->paragraph(3);
+            $description_ru = str($description)->upper();
 
             $el = new Genre();
             $el->name = $genre['name'];
             $el->name_ru = $genre['name_ru'];
             $el->slug = str($genre['name'])->slug();
             $el->description = $description;
+            $el->description_ru = $description_ru;
             $el->image = $randomFile;
             $el->save();
         }

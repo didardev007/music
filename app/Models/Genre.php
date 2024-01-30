@@ -29,4 +29,16 @@ class Genre extends Model
             return $this->name;
         }
     }
+
+    public function getDescription()
+    {
+        $locale = app()->getLocale();
+        if ($locale == 'ru') {
+            return $this->description_ru ?: $this->description;
+        } elseif ($locale == 'en') {
+            return $this->description_en ?: $this->description;
+        } else {
+            return $this->description;
+        }
+    }
 }
