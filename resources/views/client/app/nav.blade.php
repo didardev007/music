@@ -20,9 +20,9 @@
                 @auth
                     <div class="col">
                         <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                {{ auth()->user()->name }}
-                            </button>
+                            <div class="dropdown-toggle text-success" type="button" data-bs-toggle="dropdown">
+                                {{ auth()->user()->username }}
+                            </div>
                             <ul class="dropdown-menu">
                                 <li class="dropdown-item">
                                     <a class="nav-link link-info" href="{{ route('admin.logout') }}"

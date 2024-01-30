@@ -26,14 +26,11 @@
                         </div>
                         @isset($obj->album_id)
                             <div class="text-danger-emphasis">
-                                @lang('app.album'): <a
-                                    href="{{ route('tracks.index', ['album' => $obj->album->slug]) }}"
-                                    class="text-decoration-none">{{ $obj->album->getName() }}</a>
+                                @lang('app.album'): <a href="{{ route('tracks.index', ['album' => $obj->album->slug]) }}" class="text-decoration-none">{{ $obj->album->getName() }}</a>
                             </div>
                         @endisset
                         <div class="text-danger-emphasis">
-                            @lang('app.genre'): <a href="{{ route('tracks.index', ['genre' => $obj->genre->slug]) }}"
-                                                   class="text-decoration-none">{{ $obj->genre->getName() }}</a>
+                            @lang('app.genre'): <a href="{{ route('tracks.index', ['genre' => $obj->genre->slug]) }}" class="text-decoration-none">{{ $obj->genre->getName() }}</a>
                         </div>
                         <div>
                             @lang('app.size'): <span class="text-success">{{ $obj->size_mb() }} Mb</span>
@@ -46,14 +43,11 @@
                 <div class="col-2">
                     <div class="d-block">
                         <div class="text-end">
-                            <button class="btn btn-md btn-outline-danger bi bi-play-btn playPauseButton{{$obj->id}}"
-                                    onclick="togglePlayPause('{{$obj->id}}',
-                                    '{{ asset('storage/' . $obj->mp3_path) }}')">
+                            <button class="btn btn-md btn-outline-danger bi bi-play-btn playPauseButton{{$obj->id}}" onclick="togglePlayPause('{{$obj->id}}', '{{ asset('storage/' . $obj->mp3_path) }}')">
                             </button>
                         </div>
-                        <div
-                            class="text-end my-2">
-                            <!-- Download button using HTML link tag -->
+                        <div class="text-end my-2">
+{{--                            Download button using HTML link tag--}}
                             <a href="{{ asset('storage/' . $obj->mp3_path) }}" download="{{ $obj->mp3_path }}">
                                 <button class="btn btn-md
                             btn-outline-danger bi

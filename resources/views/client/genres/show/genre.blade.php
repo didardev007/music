@@ -8,7 +8,7 @@
                 {{ $obj->getName() }}
             </div>
             <div class="h6 fw-normal">
-                {{ $obj->description }}
+                {{ $obj->getDescription() }}
             </div>
         </div>
     </div>

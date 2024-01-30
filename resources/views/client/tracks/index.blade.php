@@ -21,6 +21,5 @@
                 </div>
             </div>
         </div>
-        @include('client.app.bottom_player')
     </div>
 @endsection

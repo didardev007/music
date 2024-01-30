@@ -7,7 +7,7 @@ use App\Models\Playlist;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class FavoritesController extends Controller
+class FavoriteController extends Controller
 {
     public function addToFavorites($trackId)
     {
@@ -28,7 +28,7 @@ class FavoritesController extends Controller
     public function showFavorites($playlistId, $userId) {
         $favorites = User::with(['tracks' => function ($query) {
             $query->with('artist', 'album', 'genre');
-            $query->orderBy('id');
+            $query->orderBy('id', 'desc');
         }])
             ->findOrFail($userId);
 

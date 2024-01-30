@@ -4,7 +4,7 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use App\Models\Playlist;
-use App\Models\User;
+use App\Models\Track;
 use Illuminate\Http\Request;
 
 class PlaylistController extends Controller
@@ -69,15 +69,19 @@ class PlaylistController extends Controller
      */
     public function show($playlist)
     {
-        $obj = Playlist::with(['tracks' => function ($query) {
-            $query->with('artist', 'album', 'genre', 'playlists');
-            $query->orderBy('release_date', 'desc');
-        }])
-            ->findOrFail($playlist);
+        $new = Track::orderBy('release_date', 'desc')
+            ->with('artist', 'album', 'genre')
+            ->take(100)
+            ->get();
 
-        $top_100 = Playlist::with(['tracks' => function ($query) {
-            $query->with('artist', 'album', 'genre', 'playlists');
-            $query->orderBy('viewed', 'desc');
+        $top_100 = Track::with('artist', 'album', 'genre')
+            ->orderBy('viewed', 'desc')
+            ->take(100)
+            ->get();
+
+        $obj = Playlist::with(['tracks' => function ($query) {
+            $query->with('artist', 'album', 'genre');
+            $query->orderBy('id', 'desc');
         }])
             ->findOrFail($playlist);
 
@@ -85,6 +89,7 @@ class PlaylistController extends Controller
             ->with([
                 'obj' => $obj,
                 'top_100' => $top_100,
+                'new' => $new,
             ]);
     }
 

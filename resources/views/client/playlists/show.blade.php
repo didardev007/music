@@ -1,5 +1,7 @@
 @extends('client.layouts.app')
-@section('title') Music | @lang('app.playlists') | {{ $obj->getName() }}@endsection
+@section('title')
+    Music | @lang('app.playlists') | {{ $obj->getName() }}
+@endsection
 @section('main')
     <div class="container-xl py-4">
         <hr>
@@ -21,7 +23,7 @@
             @endif
         @elseif($obj->slug == 'new')
             <div class="row row-cols-1 row-cols-lg-2 pt-3">
-                @foreach($obj->tracks as $obj)
+                @foreach($new as $obj)
                     <div class="col">
                         @include('client.app.track')
                     </div>
@@ -29,7 +31,7 @@
             </div>
         @elseif($obj->slug == 'top-100-of-the-month')
             <div class="row row-cols-1 row-cols-lg-2 pt-3">
-                @foreach($top_100->tracks as $obj)
+                @foreach($top_100 as $obj)
                     <div class="col">
                         @include('client.app.track')
                     </div>
