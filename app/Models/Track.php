@@ -15,6 +15,12 @@ class Track extends Model
     protected $guarded = [
         'id',
     ];
+
+    protected $casts = [
+        'release_date' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
     public function artist(): BelongsTo
     {
         return $this->belongsTo(Artist::class);
