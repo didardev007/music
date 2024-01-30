@@ -13,9 +13,22 @@ class PlaylistController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $playlists = Playlist::orderBy('id', 'desc')
+        $request->validate([
+            'q' => 'nullable|string|max:255',
+        ]);
+
+
+        $q = $request->q ?: null;
+
+        $playlists = Playlist::when($q, function ($query, $q) {
+            return $query->where(function ($query) use ($q) {
+                $query->orWhere('name', 'like', '%' . $q . '%');
+                $query->orWhere('name_ru', 'like', '%' . $q . '%');
+            });
+        })
+            ->orderBy('id', 'desc')
             ->get();
 
         return view('admin.playlist.index', compact('playlists'));

@@ -6,6 +6,7 @@ use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Genre;
 use App\Models\Track;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -16,10 +17,22 @@ class TrackController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tracks = Track::orderBy('id', 'desc')
-            ->with('artist', 'album', 'genre')
+        $request->validate([
+            'q' => 'nullable|string|max:255',
+        ]);
+
+
+        $q = $request->q ?: null;
+
+        $tracks = Track::when($q, function ($query, $q) {
+            return $query->where(function ($query) use ($q) {
+                $query->orWhere('name', 'like', '%' . $q . '%');
+            });
+        })
+            ->orderBy('id', 'desc')
+            ->with('artist', 'album', 'genre', 'users')
             ->get();
 
         return view('admin.track.index', compact('tracks'));

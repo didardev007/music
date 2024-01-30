@@ -7,6 +7,7 @@
     <title>@yield('title')</title>
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon">
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </head>
 <body class="bg-light">
