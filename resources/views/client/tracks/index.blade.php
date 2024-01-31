@@ -22,4 +22,9 @@
             </div>
         </div>
     </div>
+    @foreach($tracks as $obj)
+        <div class="sticky-bottom">
+            @include('client.app.bottom_player')
+        </div>
+    @endforeach
 @endsection

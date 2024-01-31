@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Track;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class TrackController extends Controller
 {
@@ -14,7 +16,7 @@ class TrackController extends Controller
     public function index()
     {
         $tracks = Track::with('artist', 'album', 'genre')
-            ->get(['id', 'name', 'slug','viewed', 'release_date', 'mp3_path', 'file_size', 'image', 'created_at', 'artist_id', 'album_id', 'genre_id']);
+            ->get(['id', 'name', 'slug', 'viewed', 'release_date', 'mp3_path', 'file_size', 'image', 'created_at', 'artist_id', 'album_id', 'genre_id']);
 
         return response()->json([
             'tracks' => $tracks,
@@ -32,9 +34,29 @@ class TrackController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($track)
     {
-        //
+        $obj = Track::with('artist', 'album', 'genre')
+            ->find($track);
+
+        $track = [
+            'id' => $obj->id,
+            'name' => $obj->name,
+            'slug' => $obj->slug,
+            'viewed' => $obj->viewed,
+            'release_date' => $obj->release_date,
+            'mp3_path' => $obj->mp3_path,
+            'file_size' => $obj->file_size,
+            'image' => $obj->image,
+            'created_at' => $obj->created_at,
+            'artist' => $obj->artist,
+            'album' => $obj->album,
+            'genre' => $obj->genre,
+        ];
+
+        return response()->json([
+            'track' => $track,
+        ]);
     }
 
     /**

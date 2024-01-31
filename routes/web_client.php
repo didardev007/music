@@ -45,3 +45,4 @@ Route::resource('playlists', PlaylistController::class);
 Route::get('/playlists/{playlistId}/{userId}', [FavoriteController::class, 'showFavorites'])->name('favorites');
 Route::post('/tracks/increment-view', [TrackController::class , 'incrementView']);
 Route::get('/search', [SearchController::class, 'search'])->name('search');
+Route::view('/player', 'client.app.bottom_player');

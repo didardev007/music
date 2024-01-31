@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('name_ru')->nullable();
             $table->string('slug')->unique();
-            $table->string('date_of_birth')->nullable();
+            $table->dateTime('date_of_birth')->nullable();
             $table->string('country')->nullable();
             $table->text('image')->nullable();
         });

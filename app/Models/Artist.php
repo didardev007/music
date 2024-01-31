@@ -14,6 +14,10 @@ class Artist extends Model
         'id',
     ];
 
+    protected $casts = [
+        'date_of_birth' => 'datetime',
+    ];
+
     public $timestamps = false;
 
     public function albums(): HasMany

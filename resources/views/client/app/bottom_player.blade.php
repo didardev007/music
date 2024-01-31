@@ -1,187 +1,190 @@
-{{--<div class="container-xl player fixed-bottom">
-    <div class="track_name">
-
-    </div>
-    <div class="row">
-        <div class="col-4">
-            <img class="img_src">
+<div class="bg-info-subtle py-2 d-none player{{ $obj->id }}">
+    <div class="container-xl">
+        <div class="text-center d-none">
+            <audio src="" id="audio" controls></audio>
         </div>
-        <audio class="audio"></audio>
-        <div class="col-4">
-            <div class="row row-cols-3">
-                <div class="col">
-                    <button class="prev bi bi-skip-backward-btn-fill"></button>
-                    <button class="play btn_src bi bi-play"></button>
-                    <button class="next bi bi-skip-forward-btn-fill"></button>
+        <div class="text-center">
+            <a href="#" class="text-decoration-none trackShowUrl{{ $obj->id }}">
+                <span class="d-none d-md-inline artistName{{ $obj->id }}"></span> <span class="d-none d-md-inline"> - </span> <span class="trackName{{ $obj->id }}"></span>
+            </a>
+        </div>
+        <div class="row align-items-center justify-content-center text-center">
+            <div class="col-3">
+                <img src="" class="img-fluid rounded-circle albumImage{{ $obj->id }}" style="width: 100px; height: 100px">
+            </div>
+            <div class="col-6">
+                <div class="progress mt-2 progressContainer{{ $obj->id }}">
+                    <div class="progress-bar bg-black progressBar" role="progressbar" style="width: 0%"
+                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+                <div class="d-flex">
+                    <div class="me-auto currentTime">0:00</div>
+                    <div class="ms-auto totalDuration">0:00</div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="d-block d-md-flex">
+                    <div class="col-4 ms-auto me-auto">
+                        <button class="btn btn-danger bi bi-skip-backward-btn prevButton{{ $obj->id }}"></button>
+                    </div>
+                    <div class="col-4 ms-auto me-auto">
+                        <button class="btn btn-danger bi bi-play-btn playPauseButton{{$obj->id}}" onclick="togglePlayPause('{{$obj->id}}', '{{ asset('storage/' . $obj->mp3_path) }}')"></button>
+                    </div>
+                    <div class="col-4 ms-auto me-auto">
+                        <button class="btn btn-danger bi bi-skip-forward-btn nextButton{{ $obj->id }}"></button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col progress_container">
-            <div class="progress">
-
-            </div>
-        </div>
     </div>
-</div>--}}
+</div>
 
-{{--<div id="app">--}}
-    {{--<h1>Music Player</h1>--}}
-    {{--<ul>--}}
-        {{--@foreach($tracks as $track)--}}
-            {{--<li>--}}
-                {{--<a href="{{ route('tracks.show', $track->id) }}" onclick="playTrack('{{ $track->pm3_path }}')">--}}
-                    {{--{{ $track->name }} - {{ $track->artist->name }}--}}
-                {{--</a>--}}
-            {{--</li>--}}
-        {{--@endforeach--}}
-    {{--</ul>--}}
-    {{--<audio id="audioPlayer" controls></audio>--}}
-{{--</div>--}}
+{{--<script>
+    const audioElement = document.getElementById('audio');
+    const trackShowUrl = document.getElementById('trackShowUrl');
+    const artistName = document.getElementById('artistName');
+    const trackName = document.getElementById('trackName');
+    const trackImg = document.getElementById('trackImg');
+    const progressBar = document.getElementById('progressBar');
+    const progressContainer = document.getElementById('progressContainer');
+    const currentTimeSpan = document.getElementById('currentTime');
+    const totalDurationSpan = document.getElementById('totalDuration');
+    const prevBtn = document.getElementById('prevButton');
+    const playPauseBtn = document.getElementById('playPauseButton');
+    const nextBtn = document.getElementById('nextButton');
+    let currentIndex = 0;
+    let tracks = [];
+    let isPlaying = false;
 
-{{--<script>--}}
-    {{--function playTrack(filePath) {--}}
-        {{--const audioPlayer = document.getElementById('audioPlayer');--}}
-        {{--audioPlayer.src = filePath;--}}
-        {{--audioPlayer.play();--}}
-    {{--}--}}
-{{--</script>--}}
+    prevBtn.addEventListener('click', prevButtonClick);
+    playPauseBtn.addEventListener('click', playPauseClick);
+    nextBtn.addEventListener('click', nextButtonClick);
 
-    {{--<div class="row">--}}
-        {{--<div class="col-md-6 offset-md-3">--}}
-            {{--<h1>Track player</h1>--}}
-            {{--<div class="card">--}}
-                {{--<div class="card-body">--}}
-                    {{--<audio src="" id="audio" controls></audio>--}}
-                    {{--<div class="progress">--}}
-                        {{--<div class="progress-bar" id="progress-bar" role="progressbar"--}}
-                             {{--style="width: 0%;" aria-valuenow="0"--}}
-                             {{--aria-valuemin="0" aria-valuemax="100">--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                    {{--<div class="btn-group" role="group" aria-label="Controls">--}}
-                        {{--<button id="prev-btn" type="button" class="btn btn-secondary">--}}
-                            {{--<i class="bi bi-skip-backward"></i>--}}
-                        {{--</button>--}}
-                        {{--<button id="play-btn" type="button" class="btn btn-primary">--}}
-                            {{--<i class="bi bi-play"></i>--}}
-                        {{--</button>--}}
-                        {{--<button id="pause-btn" type="button" class="btn btn-primary">--}}
-                            {{--<i class="bi bi-pause"></i>--}}
-                        {{--</button>--}}
-                        {{--<button id="stop-btn" type="button" class="btn btn-secondary">--}}
-                            {{--<i class="bi bi-stop"></i>--}}
-                        {{--</button>--}}
-                    {{--</div>--}}
-                    {{--<div id="track-info" class="mt-3">--}}
-                        {{--<p id="track-title">No track</p>--}}
-                        {{--<p id="track-artist"></p>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-    {{--<script src="{{ asset('js/jquery.min.js') }}"></script>--}}
-    {{--<script>--}}
-        {{--var audio = $("#audio")[0];--}}
-        {{--var tracks = [];--}}
-        {{--var index = 0;--}}
+    audioElement.addEventListener('timeupdate', updateTimeAndProgressBar);
+    audioElement.addEventListener('ended', nextButtonClick);
 
-        {{--function formatDuration(seconds){--}}
-            {{--var minutes = Math.floor(seconds / 60);--}}
-            {{--var seconds = Math.round(seconds % 60);--}}
-            {{--if (seconds < 10) {--}}
-                {{--seconds = "0" + seconds;--}}
-            {{--}--}}
-            {{--return minutes + ":" + seconds;--}}
-        {{--}--}}
+    progressContainer.addEventListener('click', updatePlaybackTimeOnClick);
 
-        {{--function updateUI() {--}}
-            {{--var currentTime = audio.currentTime;--}}
-            {{--var duration = audio.duration;--}}
+    fetch('http://music.test/api/v1/tracks')
+        .then(response => response.json())
+        .then(data => {
+            tracks = data.tracks;
+            updateAudioAndImageSource();
+            updateArtistAndTrackName();
+            console.log(tracks);
+        })
+        .catch(error => console.error('Error:', error));
 
-            {{--var percentage = (currentTime / duration) * 100;--}}
+    function updateArtistAndTrackName() {
+        if (tracks.length > 0) {
+            artistName.textContent = tracks[currentIndex].artist.name;
+            trackName.textContent = tracks[currentIndex].name;
+            trackShowUrl.setAttribute('href', 'http://music.test/tracks/' + tracks[currentIndex].id)
+        } else {
+            console.error('No tracks available.');
+        }
+    }
 
-            {{--$("#progress-bar").css("width", percentage + "%");--}}
-            {{--$("#progress-bar").attr("aria-valuenow", percentage);--}}
+    function prevButtonClick() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            isPlaying = true;
+            playPauseBtn.classList.remove('bi-play-btn');
+            playPauseBtn.classList.add('bi-pause-btn');
+            updateAudioAndImageSource();
+            updateArtistAndTrackName();
+        } else {
+            currentIndex = tracks.length - 1;
+            isPlaying = true;
+            playPauseBtn.classList.remove('bi-play-btn');
+            playPauseBtn.classList.add('bi-pause-btn');
+            updateAudioAndImageSource();
+            updateArtistAndTrackName();
+        }
+    }
 
-            {{--$("#track-title").text(tracks[index]);--}}
-            {{--$("#track-artist").text("Unknown artist");--}}
+    function nextButtonClick() {
+        if (currentIndex < tracks.length - 1) {
+            currentIndex++;
+            isPlaying = true;
+            playPauseBtn.classList.remove('bi-play-btn');
+            playPauseBtn.classList.add('bi-pause-btn');
+            trackImg.classList.add('spinning');
+            updateAudioAndImageSource();
+            updateArtistAndTrackName();
+        } else {
+            currentIndex = 0;
+            isPlaying = true;
+            trackImg.classList.remove('spinning');
+            playPauseBtn.classList.remove('bi-play-btn');
+            playPauseBtn.classList.add('bi-pause-btn');
+            updateAudioAndImageSource();
+            updateArtistAndTrackName();
+        }
+    }
 
-            {{--$("#track-info").append("<p id='track-duration'>" + formatDuration(duration) + "</p>");--}}
-        {{--}--}}
+    function playPauseClick() {
+        if (audioElement.paused) {
+            audioElement.play();
+            isPlaying = true;
+            playPauseBtn.classList.remove('bi-play-btn');
+            playPauseBtn.classList.add('bi-pause-btn');
+            trackImg.classList.add('spinning')
+        } else {
+            audioElement.pause();
+            isPlaying = false;
+            trackImg.classList.remove('spinning')
+            playPauseBtn.classList.remove('bi-pause-btn');
+            playPauseBtn.classList.add('bi-play-btn');
+        }
+    }
 
-        {{--function loadTrack(index) {--}}
-            {{--var track = track[index];--}}
+    function updateAudioAndImageSource() {
+        if (tracks.length > 0) {
+            audioElement.src = tracks[currentIndex].mp3_path;
+            trackImg.src = tracks[currentIndex].image;
+            audioElement.load();
+            if (isPlaying) {
+                audioElement.play();
+            }
+        } else {
+            console.error('No tracks available.');
+        }
+    }
 
-            {{--audio.src = "{{asset('storage/track/')}}" + track;--}}
+    function updateTimeAndProgressBar() {
+        const currentTime = formatTime(audioElement.currentTime);
+        const totalDuration = formatTime(audioElement.duration);
 
-            {{--audio.play();--}}
+        currentTimeSpan.textContent = currentTime;
+        totalDurationSpan.textContent = totalDuration;
 
-            {{--updateUI();--}}
-        {{--}--}}
+        const percentage = (audioElement.currentTime / audioElement.duration) * 100;
+        progressBar.style.width = percentage + '%';
+        progressBar.setAttribute('aria-valuenow', percentage);
+        addDynamicAnimation();
+    }
 
-        {{--function nextTrack() {--}}
-            {{--index++;--}}
+    function updatePlaybackTimeOnClick(event) {
+        const clickX = event.clientX - progressContainer.getBoundingClientRect().left;
+        const percentage = (clickX / progressContainer.offsetWidth) * 100;
+        const newTime = (percentage / 100) * audioElement.duration;
 
-            {{--if (index >= tracks.length){--}}
-                {{--index = 0;--}}
-            {{--}--}}
+        audioElement.currentTime = newTime;
+        addDynamicAnimation();
+    }
 
-            {{--loadTrack(index);--}}
-        {{--}--}}
+    function addDynamicAnimation() {
+        progressBar.classList.remove('dynamic-animation');
+        // Trigger reflow before adding the class to restart the animation
+        void progressBar.offsetWidth;
+        progressBar.classList.add('dynamic-animation');
+    }
 
-        {{--function prevTrack() {--}}
-            {{--index--;--}}
-
-            {{--if(index < 0){--}}
-                {{--index = tracks.length - 1;--}}
-            {{--}--}}
-
-            {{--loadTrack(index);--}}
-        {{--}--}}
-
-        {{--function stopAudio() {--}}
-            {{--audio.pause();--}}
-            {{--audio.currentTime = 0;--}}
-            {{--updateUI();--}}
-        {{--}--}}
-
-        {{--function browseDirectory() {--}}
-            {{--$.ajax({--}}
-                {{--url:"{{asset('storage/track/')}}",--}}
-                {{--success: function (data) {--}}
-                    {{--$(data).find("a:contains(.mp3), a:contains(.wav), a:contains(.ogg)").each(function () {--}}
-                        {{--var track = $(this).attr("href");--}}
-                        {{--track.push(track);--}}
-                    {{--});--}}
-                    {{--loadTrack(0);--}}
-                {{--},--}}
-            {{--});--}}
-        {{--}--}}
-
-        {{--$(document).ready(function () {--}}
-            {{--browseDirectory();--}}
-            {{--$("#play-btn").click(function () {--}}
-                {{--audio.play();--}}
-            {{--});--}}
-            {{--$("#pause-btn").click(function () {--}}
-                {{--audio.pause();--}}
-            {{--});--}}
-            {{--$("#stop-btn").click(function () {--}}
-                {{--stopAudio();--}}
-            {{--});--}}
-            {{--$("#next-btn").click(function () {--}}
-                {{--nextTrack();--}}
-            {{--});--}}
-            {{--$("#prev-btn").click(function () {--}}
-                {{--prevTrack();--}}
-            {{--});--}}
-
-            {{--audio.addEventListener("time update" , function () {--}}
-                {{--updateUI();--}}
-            {{--});--}}
-
-        {{--});--}}
-
-
-{{--</script>--}}
+    function formatTime(timeInSeconds) {
+        const minutes = Math.floor(timeInSeconds / 60);
+        const seconds = Math.floor(timeInSeconds % 60);
+        const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        return formattedTime;
+    }
+</script>--}}

@@ -12,13 +12,13 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             GenreSeeder::class,
         ]);
-        \App\Models\Artist::factory(50)->create();
-        \App\Models\Album::factory(75)->create();
-        \App\Models\Track::factory(150)->create();
+        \App\Models\Artist::factory(5)->create();
+        \App\Models\Album::factory(5)->create();
+        \App\Models\Track::factory(10)->create();
         $this->call([
             PlaylistSeeder::class,
         ]);
-        \App\Models\Playlist::factory(50)->create();
-        \App\Models\User::factory(50)->create();
+        \App\Models\Playlist::factory(5)->create();
+        \App\Models\User::factory(5)->create();
     }
 }

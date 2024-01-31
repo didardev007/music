@@ -5,6 +5,7 @@ namespace App\Providers;
 
 use App\Models\Genre;
 use App\Models\Playlist;
+use App\Models\Track;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades;
 use Illuminate\Pagination\Paginator;
@@ -37,6 +38,9 @@ class AppServiceProvider extends ServiceProvider
             $genres = Genre::orderBy('name')
                 ->get();
 
+            $tracks = Track::orderBy('id')
+                ->get();
+
             $artists = Artist::orderBy('name')
                 ->get();
 
@@ -50,6 +54,7 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with([
                 'genres' => $genres,
+                'tracks' => $tracks,
                 'artists' => $artists,
                 'albums' => $albums,
                 'playlists' => $playlists,
