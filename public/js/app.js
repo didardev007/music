@@ -1,7 +1,6 @@
 let currentTrackId = 0;
 let audio = new Audio();
 let isPlaying = false;
-const progressContainer = document.getElementsByClassName('progressContainer');
 
 audio.addEventListener('timeupdate', updateTimeAndProgressBar);
 
@@ -60,9 +59,6 @@ function playAudio(trackId, audioPath) {
                 itemElement.classList.add('spinning');
             }
         }
-    }
-    for (const item of progressContainer) {
-        item.addEventListener('click', updatePlaybackTimeOnClick);
     }
     // Increment view count by making an asynchronous request to the server
     incrementViewCount(trackId);
