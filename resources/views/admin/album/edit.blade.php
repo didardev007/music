@@ -16,6 +16,11 @@
             <input type="text" class="form-control" id="name" name="name" value="{{$album->name}}" required>
         </div>
 
+        <div class="mb-3">
+            <label for="name_ru" class="form-label">Name_ru</label>
+            <input type="text" class="form-control" id="name_ru" name="name_ru" value="{{$album->name_ru}}">
+        </div>
+
 
         <div class="mb-3">
             <label for="artist_id" class="form-label">Artist</label>

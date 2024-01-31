@@ -17,6 +17,11 @@
         </div>
 
         <div class="mb-3">
+            <label for="name_ru" class="form-label">Name_ru</label>
+            <input type="text" class="form-control" id="name_ru" name="name_ru" value="{{$artist->name_ru}}">
+        </div>
+
+        <div class="mb-3">
             <label for="date_of_birth" class="form-label">Date of birth</label>
             <input type="text" class="form-control" id="date_of_birth" name="date_of_birth" value="{{$artist->date_of_birth}}" required>
         </div>

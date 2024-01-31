@@ -9,6 +9,7 @@
     <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon">
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
 </head>
 <body class="bg-light">
 @include('admin.app.alert')
@@ -20,5 +21,8 @@
         @yield('main')
     </div>
 </div>
+
+<script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('js/jquery.min.js') }}"></script>
 </body>
 </html>

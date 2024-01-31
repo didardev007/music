@@ -17,10 +17,9 @@ class Track extends Model
     ];
 
     protected $casts = [
-        'release_date' => 'datetime',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
+        'release_date'
     ];
+
     public function artist(): BelongsTo
     {
         return $this->belongsTo(Artist::class);

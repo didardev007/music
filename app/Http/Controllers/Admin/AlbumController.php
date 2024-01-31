@@ -30,6 +30,7 @@ class AlbumController extends Controller
             ->orderBy('id' , 'desc')
             ->with('artist')
             ->get();
+
         return view('admin.album.index', compact('albums'));
     }
 
@@ -50,6 +51,7 @@ class AlbumController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'name_ru' => 'nullable|string|max:255',
             'artist_id' => 'required|exists:artists,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
@@ -65,7 +67,7 @@ class AlbumController extends Controller
             $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
 
             // Store the image in the "public/img" directory
-            $imagePath = $imageFile->storeAs('public/album', $imageFileName);
+            $imageFile->storeAs('public/album', $imageFileName);
 
             // Save the image path in the database
             $album->update(['image' => 'album/' . $imageFileName]);
@@ -105,6 +107,7 @@ class AlbumController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
+            'name_ru' => 'nullable|string|max:255',
             'artist_id' => 'required|exists:artists,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',// Validate the single artist ID
         ]);
@@ -120,7 +123,7 @@ class AlbumController extends Controller
             $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
 
             // Store the image in the "public/img" directory
-            $imagePath = $imageFile->storeAs('public/album', $imageFileName);
+            $imageFile->storeAs('public/album', $imageFileName);
 
             // Save the image path in the database
             $album->update(['image' => 'artist/' . $imageFileName]);

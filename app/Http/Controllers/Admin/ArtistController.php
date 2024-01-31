@@ -27,6 +27,7 @@ class ArtistController extends Controller
             });
         })  ->orderBy('id', 'desc')
             ->get();
+
         return view('admin.artist.index', compact('artists'));
     }
 
@@ -45,6 +46,7 @@ class ArtistController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'name_ru' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -59,7 +61,7 @@ class ArtistController extends Controller
             $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
 
             // Store the image in the "public/img" directory
-            $imagePath = $imageFile->storeAs('public/artist', $imageFileName);
+            $imageFile->storeAs('public/artist', $imageFileName);
 
             // Save the image path in the database
             $artist->update(['image' => 'artist/' . $imageFileName]);
@@ -95,6 +97,7 @@ class ArtistController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
+            'name_ru' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -109,7 +112,7 @@ class ArtistController extends Controller
             $imageFileName = $imageFile->getClientOriginalName(); // You might want to use a unique filename
 
             // Store the image in the "public/img" directory
-            $imagePath = $imageFile->storeAs('public/artist', $imageFileName);
+            $imageFile->storeAs('public/artist', $imageFileName);
 
             // Save the image path in the database
             $artist->update(['image' => 'artist/' . $imageFileName]);
