@@ -119,6 +119,18 @@ audio.addEventListener('ended', function () {
     currentTrackId = null;
 });
 
+function updateViewCountOnFrontend(trackId, newViewCount) {
+    // Update the view count dynamically on the frontend
+    let viewedElement = document.getElementById('viewed' + trackId);
+    if (viewedElement) {
+        let updatedViewCount = parseInt($('#viewed' + trackId).data('viewed')) + newViewCount;
+        // Use the translations variable
+        let translatedLabel = window.translations.viewedLabel;
+        // Update the view count with the translated label
+        viewedElement.innerHTML = translatedLabel + ': ' + updatedViewCount;
+    }
+}
+
 
 function incrementViewCount(trackId) {
     // Make an asynchronous request to the server to increment the view count
@@ -137,6 +149,7 @@ function incrementViewCount(trackId) {
             if (data.success) {
                 console.log('View count incremented for track ' + trackId);
                 console.log('Updated view count:', data.listened);
+                updateViewCountOnFrontend(trackId, data.listened);
             } else {
                 console.error('Failed to increment view count for track ' + trackId);
             }
@@ -144,6 +157,28 @@ function incrementViewCount(trackId) {
 
     });
 }
+function toggleFavorite(button) {
+    let form = button.parentElement;
+
+    $.ajax({
+        url: form.action,
+        type: 'POST',
+        data: $(form).serialize(),
+        success: function(data) {
+            if (data.success) {
+
+                // Toggle heart icon
+                $(button).toggleClass('bi-heart bi-heart-fill');
+            } else {
+                console.error('Failed to toggle favorite status');
+            }
+        },
+        error: function(error) {
+            console.error('AJAX request failed: ', error);
+        }
+    });
+}
+
 
 function updateAudioAndImageSource(trackId) {
     let audioElement = document.getElementsByClassName('audio' + trackId);
