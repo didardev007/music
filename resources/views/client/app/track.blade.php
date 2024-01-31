@@ -35,7 +35,12 @@
                         <div>
                             @lang('app.size'): <span class="text-success">{{ $obj->size_mb() }} Mb</span>
                         </div>
-                        <div class="text-danger-emphasis viewed{{ $obj->id }}">
+                        <div class="text-danger-emphasis viewed{{ $obj->id }}" id="viewed{{ $obj->id }}" data-viewed="{{ $obj->viewed }}">
+                            <script>
+                                window.translations = {
+                                    viewedLabel: '@lang("app.viewed")'
+                                };
+                            </script>
                             @lang('app.viewed'): {{ $obj->viewed }}
                         </div>
                     </div>
@@ -58,19 +63,16 @@
                         <div class="text-end">
                             @auth
                                 @if (Auth::user()->checkFavorite($obj))
-                                    <form action="{{ route('removeFavorite', ['trackId' => $obj->id]) }}" method="POST">
+                                    <form id="removeFavoriteForm" data-track-id="{{ $obj->id }}" action="{{ route('removeFavorite', ['trackId' => $obj->id]) }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-md
-                            btn-outline-danger bi
-                            bi-heart-fill">
+                                        @method('DELETE')
+                                        <button type="button" class="btn btn-md btn-outline-danger bi bi-heart-fill" onclick="toggleFavorite(this)">
                                         </button>
                                     </form>
                                 @else
-                                    <form action="{{ route('addFavorite', ['trackId' => $obj->id]) }}" method="POST">
+                                    <form id="addFavoriteForm" data-track-id="{{ $obj->id }}" action="{{ route('addFavorite', ['trackId' => $obj->id]) }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-md
-                            btn-outline-danger bi
-                            bi-heart">
+                                        <button type="button" class="btn btn-md btn-outline-danger bi bi-heart" onclick="toggleFavorite(this)">
                                         </button>
                                     </form>
                                 @endif

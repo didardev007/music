@@ -30,12 +30,15 @@
             <input type="file" class="form-control" id="image" name="image" accept=".jpg, .jpeg, .png, .svg">
         </div>
 
+        <button type="submit" class="btn btn-primary">Update Playlist</button>
+
         <div class="d-flex justify-content-between align-items-center">
             <h2 class="mt-4">Tracks
                 <small>({{ count($obj->tracks) }})</small>
             </h2>
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addTrackModal">Add Track</button>
         </div>
+
 
         <!-- Table for displaying existing tracks -->
         <table class="table">
@@ -66,8 +69,6 @@
             @endforeach
             </tbody>
         </table>
-
-        <button type="submit" class="btn btn-primary">Update Playlist</button>
     </form>
 
     @foreach($obj->tracks as $track)

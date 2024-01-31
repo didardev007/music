@@ -12,9 +12,9 @@ class FavoriteController extends Controller
     public function addToFavorites($trackId)
     {
         $user = auth()->user();
-        $user->tracks()->attach($trackId);
+        $user->tracks()->syncWithoutDetaching([$trackId]);
 
-        return redirect()->back()->with('success', 'Added to Favorites');
+        return response()->json(['success' => true]);
     }
 
     public function removeFromFavorites($trackId)
@@ -22,8 +22,9 @@ class FavoriteController extends Controller
         $user = auth()->user();
         $user->tracks()->detach($trackId);
 
-        return redirect()->back()->with('success', 'Removed from Favorites');
+        return response()->json(['success' => true]);
     }
+
 
     public function showFavorites($playlistId, $userId) {
         $favorites = User::with(['tracks' => function ($query) {

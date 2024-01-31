@@ -126,7 +126,7 @@ class AlbumController extends Controller
             $imageFile->storeAs('public/album', $imageFileName);
 
             // Save the image path in the database
-            $album->update(['image' => 'artist/' . $imageFileName]);
+            $album->update(['image' => 'album/' . $imageFileName]);
         }
 
         return redirect()->route('admin.album.index')->with('success', 'Album updated successfully');

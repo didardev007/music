@@ -10,6 +10,7 @@
     <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon">
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body class="bg-light">
 @include('admin.app.alert')
