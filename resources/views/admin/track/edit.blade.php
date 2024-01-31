@@ -20,7 +20,7 @@
 
         <div class="mb-3">
             <label for="artist" class="form-label">Artist</label>
-            <select class="form-select" id="artist" name="artist_id" required>
+            <select class="form-select" id="artist" disabled name="artist_id" required>
                 @foreach ($artists as $artist)
                     <option value="{{ $artist->id }}" {{ $track->artist_id == $artist->id ? 'selected' : '' }}>{{ $artist->name }}</option>
                 @endforeach
@@ -55,7 +55,7 @@
 
         <div class="mb-3">
             <label for="release_date" class="form-label">Release Date</label>
-            <input type="date" class="form-control" id="release_date" name="release_date"
+            <input type="datetime-local" class="form-control" id="release_date" name="release_date"
                    value="{{ $track->release_date }}" required>
         </div>
 

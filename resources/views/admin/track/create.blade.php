@@ -42,7 +42,7 @@
 
         <div class="mb-3">
             <label for="release_date" class="form-label">Release Date</label>
-            <input type="date" class="form-control" id="release_date" name="release_date" placeholder="year-month-day" required>
+            <input type="datetime-local" class="form-control" id="release_date" name="release_date" placeholder="year-month-day" required>
         </div>
 
         <div class="mb-3">
