@@ -18,12 +18,8 @@ class TrackController extends Controller
         $tracks = Track::with('artist', 'album', 'genre')
             ->get(['id', 'name', 'slug', 'viewed', 'release_date', 'mp3_path', 'file_size', 'image', 'created_at', 'artist_id', 'album_id', 'genre_id']);
 
-
-        $newTracks = Track::where('release_date', '<', Carbon::now()->subMonths(2))->get();
-
         return response()->json([
             'tracks' => $tracks,
-            'newTracks' => $newTracks,
         ]);
     }
 
@@ -38,17 +34,10 @@ class TrackController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($track)
     {
-        $obj = Track::where('id', $id)
-            ->with('artist', 'album', 'genre')
-            ->first();
-        if (!$obj) {
-            return response()->json([
-                'status' => 0,
-                'message' => 'Product not found',
-            ], Response::HTTP_NOT_FOUND);
-        }
+        $obj = Track::with('artist', 'album', 'genre')
+            ->find($track);
 
         $track = [
             'id' => $obj->id,

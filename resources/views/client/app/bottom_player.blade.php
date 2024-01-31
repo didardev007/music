@@ -1,38 +1,37 @@
-<div class="bg-info-subtle py-2">
+<div class="bg-info-subtle py-2 d-none player{{ $obj->id }}">
     <div class="container-xl">
         <div class="text-center d-none">
             <audio src="" id="audio" controls></audio>
         </div>
         <div class="text-center">
-            <a href="#" id="trackShowUrl" class="text-decoration-none">
-                <span id="artistName" class="d-none d-md-inline"></span> <span class="d-none d-md-inline"> - </span> <span
-                        id="trackName"></span>
+            <a href="#" class="text-decoration-none trackShowUrl{{ $obj->id }}">
+                <span class="d-none d-md-inline artistName{{ $obj->id }}"></span> <span class="d-none d-md-inline"> - </span> <span class="trackName{{ $obj->id }}"></span>
             </a>
         </div>
         <div class="row align-items-center justify-content-center text-center">
             <div class="col-3">
-                <img src="" class="img-fluid rounded-circle" id="trackImg" style="width: 100px; height: 100px">
+                <img src="" class="img-fluid rounded-circle albumImage{{ $obj->id }}" style="width: 100px; height: 100px">
             </div>
             <div class="col-6">
-                <div class="progress mt-2" id="progressContainer">
-                    <div id="progressBar" class="progress-bar bg-black" role="progressbar" style="width: 0%"
+                <div class="progress mt-2 progressContainer{{ $obj->id }}">
+                    <div class="progress-bar bg-black progressBar" role="progressbar" style="width: 0%"
                          aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <div class="d-flex">
-                    <div id="currentTime" class="me-auto">0:00</div>
-                    <div id="totalDuration" class="ms-auto">0:00</div>
+                    <div class="me-auto currentTime">0:00</div>
+                    <div class="ms-auto totalDuration">0:00</div>
                 </div>
             </div>
             <div class="col-3">
                 <div class="d-block d-md-flex">
                     <div class="col-4 ms-auto me-auto">
-                        <button class="btn btn-danger bi bi-skip-backward-btn" id="prevButton"></button>
+                        <button class="btn btn-danger bi bi-skip-backward-btn prevButton{{ $obj->id }}"></button>
                     </div>
                     <div class="col-4 ms-auto me-auto">
-                        <button class="btn btn-danger bi bi-play-btn" id="playPauseButton"></button>
+                        <button class="btn btn-danger bi bi-play-btn playPauseButton{{$obj->id}}" onclick="togglePlayPause('{{$obj->id}}', '{{ asset('storage/' . $obj->mp3_path) }}')"></button>
                     </div>
                     <div class="col-4 ms-auto me-auto">
-                        <button class="btn btn-danger bi bi-skip-forward-btn" id="nextButton"></button>
+                        <button class="btn btn-danger bi bi-skip-forward-btn nextButton{{ $obj->id }}"></button>
                     </div>
                 </div>
             </div>
@@ -40,7 +39,7 @@
     </div>
 </div>
 
-<script>
+{{--<script>
     const audioElement = document.getElementById('audio');
     const trackShowUrl = document.getElementById('trackShowUrl');
     const artistName = document.getElementById('artistName');
@@ -188,4 +187,4 @@
         const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
         return formattedTime;
     }
-</script>
+</script>--}}
