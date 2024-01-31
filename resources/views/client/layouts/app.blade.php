@@ -18,6 +18,9 @@
 @include('client.app.nav')
 @yield('main')
 @include('client.app.footer')
+<div class="sticky-bottom">
+    @include('client.app.bottom_player')
+</div>
 
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('js/jquery.min.js') }}"></script>

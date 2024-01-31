@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Track;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -17,8 +18,12 @@ class TrackController extends Controller
         $tracks = Track::with('artist', 'album', 'genre')
             ->get(['id', 'name', 'slug', 'viewed', 'release_date', 'mp3_path', 'file_size', 'image', 'created_at', 'artist_id', 'album_id', 'genre_id']);
 
+
+        $newTracks = Track::where('release_date', '<', Carbon::now()->subMonths(2))->get();
+
         return response()->json([
             'tracks' => $tracks,
+            'newTracks' => $newTracks,
         ]);
     }
 
