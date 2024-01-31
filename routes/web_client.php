@@ -34,7 +34,7 @@ Route::middleware('auth')
         Route::post('logout', [LoginController::class, 'destroy'])->name('logout');
         Route::resource('users',UserController::class);
         Route::post('/tracks/addFavorite/{trackId}', [FavoriteController::class, 'addToFavorites'])->name('addFavorite');
-        Route::post('/tracks/removeFavorite/{trackId}', [FavoriteController::class, 'removeFromFavorites'])->name('removeFavorite');
+        Route::delete('/tracks/removeFavorite/{trackId}', [FavoriteController::class, 'removeFromFavorites'])->name('removeFavorite');
     });
 
 Route::resource('tracks', TrackController::class);

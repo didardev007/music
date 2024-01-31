@@ -109,6 +109,7 @@ class TrackController extends Controller
         if ($track) {
             // Increment the view count
             $listened = $track->increment('viewed');
+
             return response()->json(['success' => true, 'listened' => $listened])->header('Cache-Control', 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
         }
 

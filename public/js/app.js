@@ -90,8 +90,22 @@ audio.addEventListener('ended', function () {
 });
 
 
+
+function updateViewCountOnFrontend(trackId, newViewCount) {
+    // Update the view count dynamically on the frontend
+    let viewedElement = document.getElementById('viewed' + trackId);
+    if (viewedElement) {
+        let updatedViewCount = parseInt($('#viewed' + trackId).data('viewed')) + newViewCount;
+        // Use the translations variable
+        let translatedLabel = window.translations.viewedLabel;
+        // Update the view count with the translated label
+        viewedElement.innerHTML = translatedLabel + ': ' + updatedViewCount;
+    }
+}
+
+
 function incrementViewCount(trackId) {
-    // Make an asynchronous request to the server to increment the view count
+    // Retrieve the initial view count value from the data attribute
     $.ajax({
         url: '/tracks/increment-view', // Your Laravel route
         type: 'POST',
@@ -102,15 +116,46 @@ function incrementViewCount(trackId) {
             'Pragma': 'no-cache',
             'Expires': '0'
         },
-        data: JSON.stringify({ track_id: trackId }),
+        data: JSON.stringify({ track_id: trackId}),
         success: function (data) {
             if (data.success) {
                 console.log('View count incremented for track ' + trackId);
                 console.log('Updated view count:', data.listened);
+
+                // Update the view count on the frontend
+                updateViewCountOnFrontend(trackId, data.listened);
             } else {
                 console.error('Failed to increment view count for track ' + trackId);
             }
         },
-
     });
 }
+function toggleFavorite(button) {
+    let form = button.parentElement;
+
+    $.ajax({
+        url: form.action,
+        type: 'POST',
+        data: $(form).serialize(),
+        success: function(data) {
+            if (data.success) {
+
+                // Toggle heart icon
+                $(button).toggleClass('bi-heart bi-heart-fill');
+            } else {
+                console.error('Failed to toggle favorite status');
+            }
+        },
+        error: function(error) {
+            console.error('AJAX request failed: ', error);
+        }
+    });
+}
+
+
+
+
+
+
+
+
