@@ -13,7 +13,7 @@
                 <img src="" class="img-fluid rounded-circle albumImage{{ $obj->id }}" style="width: 100px; height: 100px">
             </div>
             <div class="col-6">
-                <div class="progress mt-2 progressContainer{{ $obj->id }}">
+                <div class="progress mt-2 progressContainer">
                     <div class="progress-bar bg-black progressBar" role="progressbar" style="width: 0%"
                          aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
