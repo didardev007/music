@@ -1,41 +1,53 @@
-<div class="bg-info-subtle py-2 d-none player{{ $obj->id }}">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player</title>
+    <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}" type="image/x-icon">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+</head>
+<body>
+<div class="bg-info-subtle py-2" id="player">
     <div class="container-xl">
         <div class="text-center d-none">
             <audio src="" id="audio" controls></audio>
         </div>
         <div class="text-center">
-            <a href="#" class="text-decoration-none trackShowUrl{{ $obj->id }}">
-                <span class="d-none d-md-inline artistName{{ $obj->id }}"></span> <span
+            <a href="#" class="text-decoration-none" id="trackShowUrl">
+                <span class="d-none d-md-inline" id="artistName"></span> <span
                         class="d-none d-md-inline"> - </span>
-                <span class="trackName{{ $obj->id }}"></span>
+                <span id="trackName"></span>
             </a>
         </div>
         <div class="row align-items-center justify-content-center text-center">
             <div class="col-3">
-                <img src="" class="img-fluid rounded-circle albumImage{{ $obj->id }}"
+                <img src="" class="img-fluid rounded-circle" id="trackImg"
                      style="width: 100px; height: 100px">
             </div>
             <div class="col-6">
-                <div class="progress mt-2 progressContainer">
-                    <div class="progress-bar bg-black progressBar" role="progressbar" style="width: 0%"
+                <div class="progress mt-2" id="progressContainer">
+                    <div class="progress-bar bg-black" id="progressBar" role="progressbar" style="width: 0%"
                          aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <div class="d-flex">
-                    <div class="me-auto currentTime">0:00</div>
-                    <div class="ms-auto totalDuration">0:00</div>
+                    <div class="me-auto" id="currentTime">0:00</div>
+                    <div class="ms-auto" id="totalDuration">0:00</div>
                 </div>
             </div>
             <div class="col-3">
                 <div class="d-block d-md-flex">
                     <div class="col-4 ms-auto me-auto">
-                        <button class="btn btn-danger bi bi-skip-backward-btn prevButton{{ $obj->id }}"></button>
+                        <button class="btn btn-danger bi bi-skip-backward-btn" id="prevButton"></button>
                     </div>
                     <div class="col-4 ms-auto me-auto">
-                        <button class="btn btn-danger bi bi-play-btn playPauseButton{{$obj->id}}"
-                                onclick="togglePlayPause('{{$obj->id}}', '{{ asset('storage/' . $obj->mp3_path) }}')"></button>
+                        <button class="btn btn-danger bi bi-play-btn" id="playPauseButton"></button>
                     </div>
                     <div class="col-4 ms-auto me-auto">
-                        <button class="btn btn-danger bi bi-skip-forward-btn nextButton{{ $obj->id }}"></button>
+                        <button class="btn btn-danger bi bi-skip-forward-btn" id="nextButton"></button>
                     </div>
                 </div>
             </div>
@@ -43,7 +55,7 @@
     </div>
 </div>
 
-{{--<script>
+<script>
     const audioElement = document.getElementById('audio');
     const trackShowUrl = document.getElementById('trackShowUrl');
     const artistName = document.getElementById('artistName');
@@ -191,4 +203,6 @@
         const formattedTime = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
         return formattedTime;
     }
-</script>--}}
+</script>
+</body>
+
